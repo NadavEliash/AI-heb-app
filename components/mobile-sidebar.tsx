@@ -18,9 +18,9 @@ export default function MobileSidebar() {
     return (
         <Sheet>
             <SheetTrigger>
-                <Button variant="ghost" size="icon" className="md:hidden">
+                <div className="md:hidden">
                     <Menu />
-                </Button>
+                </div>
             </SheetTrigger>
             <SheetContent side="right" className="p-0" dir="rtl">
                 <Sidebar/>

@@ -3,8 +3,9 @@ import Link  from "next/link";
 
 export default function LandingPage() {
   return (
-    <div dir="rtl">
-      <h2>ברוכים הבאים!</h2>
+    <div className="w-96 mx-auto mt-8">
+      <h2>ברוכים הבאים לבינה עברית!</h2>
+      <h3>התנסו בכלי בינה מלאכותית בעברית בקלות</h3>
       <Link href="/sign-in">
        <Button>
         התחברות
