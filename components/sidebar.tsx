@@ -25,7 +25,7 @@ const routes = [
     {
         label: 'מחולל התמונות',
         icon: ImageIcon,
-        href: '/img',
+        href: '/image',
         color: 'text-pink-700'
     },
     {
