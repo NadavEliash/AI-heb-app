@@ -1,1 +1,1 @@
-## AI platforms accessible to Hebrew speakers
+AI platforms accessible to Hebrew speakers
