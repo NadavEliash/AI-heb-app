@@ -1,13 +1,15 @@
 'use client'
 
+const GOOGLE_CLOUD_KEY = "AIzaSyDWuTV2HDBhY63h3tpW5nascIVcvslHAvk"
+
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import OpenAI from "openai"
 import axios from "axios"
+
 
 import { Download, ImageIcon } from "lucide-react"
 import Heading from "@/components/heading"
@@ -22,8 +24,6 @@ import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/u
 import { SelectValue } from "@radix-ui/react-select"
 import { Card, CardFooter } from "@/components/ui/card"
 
-const translateKey = process.env.GOOGLE_CLOUD_KEY
-
 export default function Images() {
     const router = useRouter()
     const [images, setImages] = useState<string[]>([])
@@ -33,7 +33,7 @@ export default function Images() {
         defaultValues: {
             prompt: "",
             amount: "1",
-            resolution: "512x512"
+            resolution: "512"
         }
     })
 
@@ -42,18 +42,14 @@ export default function Images() {
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             setImages([])
-            
-            // const translation = await axios.post(`https://translation.googleapis.com/language/translate/v2?
-            // q=${values.prompt}&target=en&key=${translateKey}`)
-            // values.prompt = translation.data.data.translations[0].translatedText
 
-            const translation = await axios.post("/api/translate", { txt: values.prompt })
-            values.prompt = translation.data
+            const translation = await axios.post(`https://translation.googleapis.com/language/translate/v2?q=${values.prompt}&target=en&key=${GOOGLE_CLOUD_KEY}`)
+            values.prompt = translation.data.data.translations[0].translatedText
 
-            const response = await axios.post("/api/image", values)
-            const urls = response.data.map((image: { url: string }) => image.url)
+            const response = await axios.post("/api/image2", values)
 
-            setImages(urls)
+            setImages(response.data)
+
             form.reset()
         } catch (error: any) {
             console.log(error)
@@ -182,7 +178,7 @@ export default function Images() {
                                 </div>
                                 <CardFooter className="p-2">
                                     <Button
-                                        onClick={() => window.open(src)}
+                                        onClick={()=> window.open(src)}
                                         variant="secondary"
                                         className="mx-auto"
                                     >
