@@ -34,6 +34,10 @@ export default function Conversation() {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
+            const originalUserMessage = values.prompt
+            const translatedUserMessage = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
+            values.prompt = translatedUserMessage.data
+
             const userMessage: OpenAI.Chat.ChatCompletionMessage = {
                 role: "user",
                 content: values.prompt
@@ -42,6 +46,11 @@ export default function Conversation() {
 
             const response = await axios.post("/api/conversation", { messages: newMessages })
 
+            const translatedResponse = await axios.post("/api/translate", { txt: response.data.content, target: "he" })
+            console.log(translatedResponse.data)
+            response.data.content = translatedResponse.data
+
+            userMessage.content = originalUserMessage
             setMessages((prev) => [...prev, userMessage, response.data])
 
             form.reset()

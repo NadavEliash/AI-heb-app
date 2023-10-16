@@ -1,7 +1,5 @@
 'use client'
 
-const GOOGLE_CLOUD_KEY = "AIzaSyDWuTV2HDBhY63h3tpW5nascIVcvslHAvk"
-
 import { useState } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
@@ -43,8 +41,8 @@ export default function Images() {
         try {
             setImages([])
 
-            const translation = await axios.post(`https://translation.googleapis.com/language/translate/v2?q=${values.prompt}&target=en&key=${GOOGLE_CLOUD_KEY}`)
-            values.prompt = translation.data.data.translations[0].translatedText
+            const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
+            values.prompt = translation.data
 
             const response = await axios.post("/api/image2", values)
 

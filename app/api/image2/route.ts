@@ -36,7 +36,7 @@ export async function POST(
         }
         
         const response = await replicate.run(
-            "stability-ai/sdxl:c221b2b8ef527988fb59bf24a8b97c4561f1c671f73bd389f866bfb27c061316",
+            "stability-ai/stable-diffusion:ac732df83cea7fff18b8472768c88ad041fa750ff7682a21affe81863cbe77e4",
             {
                 input: {
                     prompt,
