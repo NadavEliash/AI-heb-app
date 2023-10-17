@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form"
 import axios from "axios"
 
 
-import { Download, VideoIcon } from "lucide-react"
+import { MusicIcon } from "lucide-react"
 import Heading from "@/components/heading"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { formSchema } from "./constants"
@@ -18,9 +18,9 @@ import { Button } from "@/components/ui/button"
 import { Loader } from "@/components/loader"
 import { Card, CardFooter } from "@/components/ui/card"
 
-export default function Video() {
+export default function Music() {
     const router = useRouter()
-    const [video, setVideo] = useState<string>()
+    const [music, setMusic] = useState<string>()
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -33,14 +33,14 @@ export default function Video() {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            setVideo(undefined)
+            setMusic(undefined)
 
             const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
             values.prompt = translation.data
 
-            const response = await axios.post("/api/video", values)
+            const response = await axios.post("/api/music", values)
 
-            setVideo(response.data)
+            setMusic(response.data)
 
             form.reset()
         } catch (error: any) {
@@ -53,11 +53,11 @@ export default function Video() {
     return (
         <div>
             <Heading
-                title="מחולל הוידאו"
-                description="צרו קטע וידאו קצר בעזרת בינה מלאכותית"
-                icon={VideoIcon}
-                iconColor="text-orange-700"
-                bgColor="bg-orange-700/10"
+                title="מחולל המוזיקה"
+                description="צרו רצועת שמע קצרה בעזרת בינה מלאכותית"
+                icon={MusicIcon}
+                iconColor="text-green-700"
+                bgColor="bg-green-700/10"
             />
             <div className="px-4 lg:px-8 w-full md:w-11/12">
                 <div>
@@ -74,7 +74,7 @@ export default function Video() {
                                             <Input
                                                 className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                                 disabled={isLoading}
-                                                placeholder="למשל: דג זהב באקווריום עגול וגדול"
+                                                placeholder="למשל: מנגינה קצבית המובילה לנעימה שקטה ורגועה"
                                                 {...field}
                                             />
                                         </FormControl>
@@ -90,20 +90,20 @@ export default function Video() {
                     </Form>
                 </div>
                 <div className="space-y-4 mt-4">
-                    {!video && isLoading && (
+                    {!music && isLoading && (
                         <div className="p-40">
                             <Loader />
                         </div>
                     )}
 
-                    {video && <div className="w-1/2 mx-auto">
+                    {music && <div className="w-2/3 mt-8 mx-auto">
                         <Card
-                            key={video}
-                            className="rounded-lg overflow-hidden">
+                            key={music}
+                            className="overflow-hidden bg-gray-100">
                             <div className="relative">
-                                <video className="w-full aspect-video rounded-lg border bg-black" controls>
-                                    <source src={video} />
-                                </video>
+                                <audio className="w-full" controls>
+                                    <source src={music} />
+                                </audio>
                             </div>
                         </Card>
                     </div>}

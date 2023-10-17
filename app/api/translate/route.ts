@@ -8,7 +8,6 @@ export async function POST(
 ) {
     try {
         const body = await req.json()
-        console.log(body)
         const { txt, target } = body
 
 

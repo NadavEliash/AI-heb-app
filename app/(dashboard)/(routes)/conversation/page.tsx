@@ -47,7 +47,6 @@ export default function Conversation() {
             const response = await axios.post("/api/conversation", { messages: newMessages })
 
             const translatedResponse = await axios.post("/api/translate", { txt: response.data.content, target: "he" })
-            console.log(translatedResponse.data)
             response.data.content = translatedResponse.data
 
             userMessage.content = originalUserMessage
