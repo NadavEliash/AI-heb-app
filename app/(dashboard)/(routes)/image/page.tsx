@@ -26,7 +26,8 @@ const translateKey = process.env.GOOGLE_CLOUD_KEY
 
 export default function Images() {
     const router = useRouter()
-    const [images, setImages] = useState<string[]>([])
+    const [images, setImages] = useState<{ text: string, images: string[] }[]>([{ text: '', images: [] }])
+
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -41,15 +42,15 @@ export default function Images() {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            setImages([])
-            
             const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
+            const newText = values.prompt
             values.prompt = translation.data
 
             const response = await axios.post("/api/image", values)
             const urls = response.data.map((image: { url: string }) => image.url)
+            const imagesNewRow = { text: newText, images: urls }
 
-            setImages(urls)
+            setImages(prevImages => [imagesNewRow, ...prevImages])
             form.reset()
         } catch (error: any) {
             console.log(error)
@@ -160,33 +161,48 @@ export default function Images() {
                 <div className="space-y-4 mt-4">
                     {isLoading && (
                         <div className="p-40">
-                            <Loader animation="animate-growing"/>
+                            <Loader animation="animate-growing" />
                         </div>
                     )}
-
-                    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-8">
-                        {images.map(src => (
-                            <Card
-                                key={src}
-                                className="rounded-lg overflow-hidden">
-                                <div className="relative aspect-square">
-                                    <Image
-                                        alt="Image"
-                                        fill
-                                        src={src}
-                                    />
+                    <div>
+                        {images.map(row => (
+                            row.text &&
+                            <div
+                                className="bg-pink-700/10 p-4 my-4 rounded-lg"
+                                key={row.text}>
+                                <h2 className="text-sm rounded-lg w-fit mb-4">הבקשה שלכם:
+                                    <span className="font-semibold mr-2">
+                                        {row.text}
+                                    </span>
+                                </h2>
+                                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-2">
+                                    {row.images.map(src => (
+                                        <div>
+                                            <Card
+                                                key={src}
+                                                className="rounded-lg overflow-hidden">
+                                                <div className="relative aspect-square">
+                                                    <Image
+                                                        alt="Image"
+                                                        fill
+                                                        src={src}
+                                                    />
+                                                </div>
+                                                <CardFooter className="p-2">
+                                                    <Button
+                                                        onClick={() => window.open(src)}
+                                                        variant="secondary"
+                                                        className="mx-auto"
+                                                    >
+                                                        <Download className="h-4 w-4 ml-2" />
+                                                        הורדה
+                                                    </Button>
+                                                </CardFooter>
+                                            </Card>
+                                        </div>
+                                    ))}
                                 </div>
-                                <CardFooter className="p-2">
-                                    <Button
-                                        onClick={() => window.open(src)}
-                                        variant="secondary"
-                                        className="mx-auto"
-                                    >
-                                        <Download className="h-4 w-4 ml-2" />
-                                        הורדה
-                                    </Button>
-                                </CardFooter>
-                            </Card>
+                            </div>
                         ))}
                     </div>
                 </div>
