@@ -20,7 +20,7 @@ import { Card, CardFooter } from "@/components/ui/card"
 
 export default function Music() {
     const router = useRouter()
-    const [music, setMusic] = useState<string>()
+    const [music, setMusic] = useState<{ text: string, audio: string }[]>([{ text: '', audio: '' }])
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -33,14 +33,13 @@ export default function Music() {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            setMusic(undefined)
-
             const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
+            const newText = values.prompt
             values.prompt = translation.data
 
             const response = await axios.post("/api/music", values)
 
-            setMusic(response.data)
+            setMusic(prevMusic => [{ text: newText, audio: response.data }, ...prevMusic])
 
             form.reset()
         } catch (error: any) {
@@ -74,7 +73,7 @@ export default function Music() {
                                             <Input
                                                 className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
                                                 disabled={isLoading}
-                                                placeholder="למשל: מנגינה קצבית המובילה לנעימה שקטה ורגועה"
+                                                placeholder="למשל: מנגינה קצבית ומקפיצה המובילה לנעימה שקטה ורגועה"
                                                 {...field}
                                             />
                                         </FormControl>
@@ -90,23 +89,28 @@ export default function Music() {
                     </Form>
                 </div>
                 <div className="space-y-4 mt-4">
-                    {!music && isLoading && (
+                    {isLoading && (
                         <div className="p-40">
-                            <Loader animation="animate-growing-music"/>
+                            <Loader animation="animate-growing-music" />
                         </div>
                     )}
 
-                    {music && <div className="w-2/3 mt-8 mx-auto">
-                        <Card
-                            key={music}
-                            className="overflow-hidden bg-gray-100">
-                            <div className="relative">
-                                <audio className="w-full" controls>
-                                    <source src={music} />
-                                </audio>
-                            </div>
-                        </Card>
-                    </div>}
+                    {music.map(row =>
+                        row.audio && <div
+                            key={row.audio}
+                            className="w-2/3 mt-8 mx-auto">
+
+                            <Card
+                                className="overflow-hidden bg-gray-100">
+                                <h2 className="p-2">"{row.text}"</h2>
+                                <div className="relative">
+                                    <audio className="w-full" controls>
+                                        <source src={row.audio} />
+                                    </audio>
+                                </div>
+                            </Card>
+
+                        </div>)}
                 </div>
             </div>
         </div>
