@@ -47,10 +47,11 @@ export default function Conversation() {
             const response = await axios.post("/api/conversation", { messages: newMessages })
 
             const translatedResponse = await axios.post("/api/translate", { txt: response.data.content, target: "he" })
+            console.log(translatedResponse.data)
             response.data.content = translatedResponse.data
 
             userMessage.content = originalUserMessage
-            setMessages((prev) => [...prev, userMessage, response.data])
+            setMessages((prev) => [...prev, response.data, userMessage])
 
             form.reset()
 
@@ -111,7 +112,7 @@ export default function Conversation() {
                         {messages.map(message =>
                             <div
                                 key={message.content}
-                                className={cn("w-full border rounded-lg p-8 flex items-start gap-x-8", message.role === "user" ? "bg-white font-bold" : "bg-muted")}>
+                                className={cn("w-full border rounded-lg p-8 flex items-start gap-x-8", message.role === "user" ? "bg-white font-bold" : "bg-violet-500/10")}>
                                 {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
                                 {message.content}
                             </div>
