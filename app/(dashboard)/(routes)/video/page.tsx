@@ -20,7 +20,7 @@ import { Card, CardFooter } from "@/components/ui/card"
 
 export default function Video() {
     const router = useRouter()
-    const [video, setVideo] = useState<string>()
+    const [video, setVideo] = useState<{ text: string, video: string }[]>([{ text: '', video: '' }])
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -33,14 +33,13 @@ export default function Video() {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            setVideo(undefined)
-
             const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
+            const newText = values.prompt
             values.prompt = translation.data
 
             const response = await axios.post("/api/video", values)
 
-            setVideo(response.data)
+            setVideo(prevVideo => [{ text: newText, video: response.data }, ...prevVideo])
 
             form.reset()
         } catch (error: any) {
@@ -90,23 +89,26 @@ export default function Video() {
                     </Form>
                 </div>
                 <div className="space-y-4 mt-4">
-                    {!video && isLoading && (
-                        <div className="p-40">
-                            <Loader animation="animate-growing-video"/>
+                    {isLoading && (
+                        <div className="py-20">
+                            <Loader animation="animate-growing-video" />
                         </div>
                     )}
 
-                    {video && <div className="w-1/2 mx-auto">
-                        <Card
-                            key={video}
-                            className="rounded-lg overflow-hidden">
-                            <div className="relative">
-                                <video className="w-full aspect-video rounded-lg border bg-black" controls>
-                                    <source src={video} />
-                                </video>
-                            </div>
-                        </Card>
-                    </div>}
+                    {video[0].video &&
+                        video.map(row =>
+                            row.video && <div className="w-2/3">
+                                <Card
+                                    key={row.video}
+                                    className="rounded-lg overflow-hidden bg-orange-700/10 border-2 border-orange-500 p-4 mt-8">
+                                    <h2 className="p-2 font-semibold mb-2">"{row.text}"</h2>
+                                    <div className="relative">
+                                        <video className="w-full aspect-video rounded-sm border bg-black" controls>
+                                            <source src={row.video} />
+                                        </video>
+                                    </div>
+                                </Card>
+                            </div>)}
                 </div>
             </div>
         </div>

@@ -90,7 +90,7 @@ export default function Music() {
                 </div>
                 <div className="space-y-4 mt-4">
                     {isLoading && (
-                        <div className="p-40">
+                        <div className="p-20">
                             <Loader animation="animate-growing-music" />
                         </div>
                     )}
@@ -101,8 +101,8 @@ export default function Music() {
                             className="w-2/3 mt-8 mx-auto">
 
                             <Card
-                                className="overflow-hidden bg-gray-100">
-                                <h2 className="p-2">"{row.text}"</h2>
+                                className="overflow-hidden bg-gray-100 mt-8">
+                                <h2 className="p-2 font-semibold">"{row.text}"</h2>
                                 <div className="relative">
                                     <audio className="w-full" controls>
                                         <source src={row.audio} />

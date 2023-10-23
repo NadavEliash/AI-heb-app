@@ -170,11 +170,7 @@ export default function Images() {
                             <div
                                 className="bg-pink-700/10 p-4 my-4 rounded-lg"
                                 key={row.text}>
-                                <h2 className="text-sm rounded-lg w-fit mb-4">הבקשה שלכם:
-                                    <span className="font-semibold mr-2">
-                                        {row.text}
-                                    </span>
-                                </h2>
+                                <h2 className="text-sm rounded-lg w-fit mb-4 font-semibold">{row.text}</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-2">
                                     {row.images.map(src => (
                                         <div>
