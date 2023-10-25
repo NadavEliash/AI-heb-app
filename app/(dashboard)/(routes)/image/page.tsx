@@ -158,9 +158,9 @@ export default function Images() {
                         </form>
                     </Form>
                 </div>
-                <div className="space-y-4 mt-4">
+                <div className="space-y-4 mt-16">
                     {isLoading && (
-                        <div className="p-40">
+                        <div className="px-40">
                             <Loader animation="animate-growing" />
                         </div>
                     )}
@@ -172,10 +172,11 @@ export default function Images() {
                                 key={row.text}>
                                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-2">
                                     {row.images.map(src => (
-                                        <div className="relative">
-                                            <h2 className="absolute text-sm text-gray-600 font-semibold bg-white bg-opacity-60 z-10 p-2 w-full">"{row.text}"</h2>
+                                        <div className="relative" key={src}>
+                                            <h2 className="absolute text-sm text-gray-600 font-semibold bg-white bg-opacity-60 z-10 p-2 w-full">
+                                                "{row.text}"
+                                                </h2>
                                             <Card
-                                                key={src}
                                                 className="rounded-lg overflow-hidden">
                                                 <div className="relative aspect-square">
                                                     <Image

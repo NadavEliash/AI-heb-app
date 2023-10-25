@@ -68,7 +68,8 @@ module.exports = {
         "growing": {
           "0%": {transform: 'translateX(100%)'},
           "50%": {transform: 'translateX(35%)'},
-          "100%": {transform: 'translateX(2%)'}
+          "90%": {transform: 'translateX(4%)'},
+          "95%": {transform: 'translateX(2%)'}
         }
       },
       animation: {

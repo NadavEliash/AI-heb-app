@@ -18,7 +18,7 @@ export function Loader({animation}:LoaderProps) {
                 </p>
             </div>
             <div className="border-green-700 border-2 rounded-xl w-9/12 h-4 mt-16 mx-auto overflow-hidden">
-                <div className={cn("w-full h-full bg-green-300 rounded-r-lg", animation)}>
+                <div className={cn("w-full h-full bg-green-300 rounded-r-lg translate-x-2", animation)}>
                 </div>
             </div>
         </div>

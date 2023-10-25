@@ -7,8 +7,13 @@ import Link from "next/link"
 import { LayoutDashboard, MessageSquare, ImageIcon, VideoIcon, Music, Settings } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { Progress } from "./ui/progress"
+import { FreeCounter } from "./free-counter"
 
 const rubik = Rubik({ weight: "700", subsets: ["hebrew"]})
+
+interface SidebarProps {
+    freeApiCount: number
+}
 
 const routes = [
     {
@@ -48,7 +53,7 @@ const routes = [
     },
 ]
 
-export default function Sidebar() {
+export default function Sidebar({ freeApiCount = 0 }: SidebarProps) {
     const pathname = usePathname()
     return (
         <div className="space-y-4 py-4 flex flex-col h-full bg-[#111827] text-white">
@@ -72,7 +77,7 @@ export default function Sidebar() {
                     ))}
                 </div>
             </div>
-            <Progress />
+            <FreeCounter freeApiCount={freeApiCount} />
         </div>
     )
 }
