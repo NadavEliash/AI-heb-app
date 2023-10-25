@@ -6,6 +6,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { LayoutDashboard, MessageSquare, ImageIcon, VideoIcon, Music, Settings } from "lucide-react"
 import { usePathname } from "next/navigation"
+import { Progress } from "./ui/progress"
 
 const rubik = Rubik({ weight: "700", subsets: ["hebrew"]})
 
@@ -71,8 +72,7 @@ export default function Sidebar() {
                     ))}
                 </div>
             </div>
-
-
+            <Progress />
         </div>
     )
 }
