@@ -90,7 +90,7 @@ export default function Video() {
                 </div>
                 <div className="space-y-4 mt-4">
                     {isLoading && (
-                        <div className="py-20">
+                        <div className="py-20 px-40">
                             <Loader animation="animate-growing-video" />
                         </div>
                     )}
@@ -100,8 +100,8 @@ export default function Video() {
                             row.video && <div className="w-2/3">
                                 <Card
                                     key={row.video}
-                                    className="rounded-lg overflow-hidden bg-orange-700/10 border-2 border-orange-500 p-4 mt-8">
-                                    <h2 className="p-2 font-semibold mb-2">"{row.text}"</h2>
+                                    className="rounded-lg overflow-hidden bg-orange-700/10 border-2 border-orange-700/10 p-4 mt-8">
+                                    <h2 className="p-1 text-sm font-semibold mb-2">"{row.text}"</h2>
                                     <div className="relative">
                                         <video className="w-full aspect-video rounded-sm border bg-black" controls>
                                             <source src={row.video} />

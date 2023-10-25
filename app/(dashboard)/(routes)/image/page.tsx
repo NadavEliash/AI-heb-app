@@ -168,12 +168,12 @@ export default function Images() {
                         {images.map(row => (
                             row.text &&
                             <div
-                                className="bg-pink-700/10 p-4 my-4 rounded-lg"
+                                className="p-4 my-4"
                                 key={row.text}>
-                                <h2 className="text-sm rounded-lg w-fit mb-4 font-semibold">{row.text}</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-2">
                                     {row.images.map(src => (
-                                        <div>
+                                        <div className="relative">
+                                            <h2 className="absolute text-sm text-gray-600 font-semibold bg-white bg-opacity-60 z-10 p-2 w-full">"{row.text}"</h2>
                                             <Card
                                                 key={src}
                                                 className="rounded-lg overflow-hidden">
