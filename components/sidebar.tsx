@@ -8,7 +8,6 @@ import { LayoutDashboard, MessageSquare, ImageIcon, VideoIcon, Music, Settings }
 import { usePathname } from "next/navigation"
 import { Progress } from "./ui/progress"
 import { FreeCounter } from "./free-counter"
-import { useState } from "react"
 
 const rubik = Rubik({ weight: "700", subsets: ["hebrew"] })
 

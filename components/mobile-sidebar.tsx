@@ -5,16 +5,19 @@ import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import Sidebar from "./sidebar";
 
+interface MobileSidebarProps {
+    freeApiCount: number
+}
 
-export default function MobileSidebar() {
+export default function MobileSidebar({ freeApiCount = 0 }: MobileSidebarProps) {
     const [isMounted, setIsMounted] = useState(false)
 
-    useEffect(()=> {
+    useEffect(() => {
         setIsMounted(true)
     }, [])
 
     if (!isMounted) return null
-    
+
     return (
         <Sheet>
             <SheetTrigger>
@@ -23,7 +26,7 @@ export default function MobileSidebar() {
                 </div>
             </SheetTrigger>
             <SheetContent side="right" className="p-0" dir="rtl">
-                <Sidebar/>
+                <Sidebar freeApiCount={freeApiCount} />
             </SheetContent>
         </Sheet>
     )
