@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader } from "@/components/loader"
 import { Card, CardFooter } from "@/components/ui/card"
+import { useProModal } from "@/store/pro-modal-store"
 
 export default function Music() {
     const router = useRouter()
@@ -31,6 +32,8 @@ export default function Music() {
 
     const isLoading = form.formState.isSubmitting
 
+    const { openModal } = useProModal()
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
@@ -43,7 +46,9 @@ export default function Music() {
 
             form.reset()
         } catch (error: any) {
-            console.log(error)
+            if (error?.response?.status === 403) {
+                openModal()
+            }
         } finally {
             router.refresh()
         }
@@ -105,7 +110,7 @@ export default function Music() {
                                 <h2 className="p-2 text-sm font-semibold">"{row.text}"</h2>
                                 <div className="relative">
                                     <audio className="w-full" controls>
-                                        <source src={row.audio} />
+                                        <source src={row.audio} placeholder="רצועת שמע" />
                                     </audio>
                                 </div>
                             </Card>

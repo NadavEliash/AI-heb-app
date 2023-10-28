@@ -17,6 +17,7 @@ import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader } from "@/components/loader"
 import { Card, CardFooter } from "@/components/ui/card"
+import { useProModal } from "@/store/pro-modal-store"
 
 export default function Video() {
     const router = useRouter()
@@ -31,6 +32,8 @@ export default function Video() {
 
     const isLoading = form.formState.isSubmitting
 
+    const { openModal } = useProModal()
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
@@ -43,7 +46,9 @@ export default function Video() {
 
             form.reset()
         } catch (error: any) {
-            console.log(error)
+            if (error?.response?.status === 403) {
+                openModal()
+            }
         } finally {
             router.refresh()
         }

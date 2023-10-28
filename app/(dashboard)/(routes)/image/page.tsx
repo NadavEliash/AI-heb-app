@@ -21,6 +21,7 @@ import { BotAvatar } from "@/components/bot-avatar"
 import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/ui/select"
 import { SelectValue } from "@radix-ui/react-select"
 import { Card, CardFooter } from "@/components/ui/card"
+import { useProModal } from "@/store/pro-modal-store"
 
 const translateKey = process.env.GOOGLE_CLOUD_KEY
 
@@ -40,6 +41,8 @@ export default function Images() {
 
     const isLoading = form.formState.isSubmitting
 
+    const { openModal } = useProModal()
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
@@ -51,9 +54,12 @@ export default function Images() {
             const imagesNewRow = { text: newText, images: urls }
 
             setImages(prevImages => [imagesNewRow, ...prevImages])
+
             form.reset()
         } catch (error: any) {
-            console.log(error)
+            if (error?.response?.status === 403) {
+                openModal()
+            }
         } finally {
             router.refresh()
         }
@@ -175,7 +181,7 @@ export default function Images() {
                                         <div className="relative" key={src}>
                                             <h2 className="absolute text-sm text-gray-600 font-semibold bg-white bg-opacity-60 z-10 p-2 w-full">
                                                 "{row.text}"
-                                                </h2>
+                                            </h2>
                                             <Card
                                                 className="rounded-lg overflow-hidden">
                                                 <div className="relative aspect-square">
