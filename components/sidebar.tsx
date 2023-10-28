@@ -6,10 +6,9 @@ import Image from "next/image"
 import Link from "next/link"
 import { LayoutDashboard, MessageSquare, ImageIcon, VideoIcon, Music, Settings } from "lucide-react"
 import { usePathname } from "next/navigation"
-import { Progress } from "./ui/progress"
 import { FreeCounter } from "./free-counter"
 
-const rubik = Rubik({ weight: "700", subsets: ["hebrew"] })
+const rubik = Rubik({ weight: "700", subsets: ['hebrew'] })
 
 interface SidebarProps {
     freeApiCount: number
@@ -60,8 +59,8 @@ export default function Sidebar({ freeApiCount = 0 }: SidebarProps) {
         <div className="py-4 flex flex-col h-full bg-[#111827] text-white">
             <div className="px-3 py-2 flex-1">
                 <Link href="/dashboard" className="flex items-center pr-3 mb-14">
-                    <div className="relative rounded-full w-12 h-12 ml-4 bg-[#900000]">
-                        <Image className="p-2" fill alt="logo" src="https://www.svgrepo.com/show/313089/artificial-intelligence.svg" />
+                    <div className="relative rounded-full w-14 h-14 ml-4 bg-yellow-200">
+                        <Image className="p-2" fill alt="logo" src="https://www.svgrepo.com/show/352965/ai.svg" />
                     </div>
                     <h1 className={cn("text-3xl font-bold", rubik.className)}>בינה עברית</h1>
                 </Link>
