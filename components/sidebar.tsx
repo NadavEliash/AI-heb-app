@@ -59,8 +59,8 @@ export default function Sidebar({ freeApiCount = 0 }: SidebarProps) {
         <div className="py-4 flex flex-col h-full bg-[#111827] text-white">
             <div className="px-3 py-2 flex-1">
                 <Link href="/dashboard" className="flex items-center pr-3 mb-14">
-                    <div className="relative rounded-full w-14 h-14 ml-4 bg-yellow-200">
-                        <Image className="p-2" fill alt="logo" src="https://www.svgrepo.com/show/352965/ai.svg" />
+                    <div className="relative rounded-full w-12 h-12 ml-4 bg-white">
+                        <Image className="p-1" fill alt="logo" src="https://www.svgrepo.com/show/352965/ai.svg" />
                     </div>
                     <h1 className={cn("text-3xl font-bold", rubik.className)}>בינה עברית</h1>
                 </Link>

@@ -103,7 +103,7 @@ export default function Music() {
                     {music.map(row =>
                         row.audio && <div
                             key={row.audio}
-                            className="w-2/3 mt-8">
+                            className="w-full mt-8 px-2">
 
                             <Card
                                 className="overflow-hidden bg-gray-100 mt-8">

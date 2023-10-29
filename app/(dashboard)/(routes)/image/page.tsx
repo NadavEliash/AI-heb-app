@@ -178,8 +178,8 @@ export default function Images() {
                                 key={row.text}>
                                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-2">
                                     {row.images.map(src => (
-                                        <div className="relative" key={src}>
-                                            <h2 className="absolute text-sm text-gray-600 font-semibold bg-white bg-opacity-60 z-10 p-2 w-full">
+                                        <div className="relative group" key={src}>
+                                            <h2 className="absolute text-sm font-semibold text-transparent bg-transparent group-hover:text-gray-600 group-hover:bg-white group-hover:bg-opacity-80 z-10 p-2 w-full">
                                                 "{row.text}"
                                             </h2>
                                             <Card
