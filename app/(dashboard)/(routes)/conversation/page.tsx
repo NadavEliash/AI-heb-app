@@ -19,6 +19,7 @@ import { MessagesSquare } from "lucide-react"
 import { UserAvatar } from "@/components/user-avatar"
 import { BotAvatar } from "@/components/bot-avatar"
 import { useProModal } from "@/store/pro-modal-store"
+import { useUserMsg } from "@/store/user-msg-store"
 
 export default function Conversation() {
     const router = useRouter()
@@ -34,6 +35,7 @@ export default function Conversation() {
     const isLoading = form.formState.isSubmitting
 
     const { openModal } = useProModal()
+    const { openMsg } = useUserMsg()
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
@@ -60,6 +62,8 @@ export default function Conversation() {
         } catch (error: any) {
             if (error?.response?.status === 403) {
                 openModal()
+            } else {
+                openMsg()
             }
         } finally {
             router.refresh()

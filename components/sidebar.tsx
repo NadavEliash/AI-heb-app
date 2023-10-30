@@ -7,8 +7,9 @@ import Link from "next/link"
 import { LayoutDashboard, MessageSquare, ImageIcon, VideoIcon, Music, Settings } from "lucide-react"
 import { usePathname } from "next/navigation"
 import { FreeCounter } from "./free-counter"
+import { NextFont } from "next/dist/compiled/@next/font"
 
-const rubik = Rubik({ weight: "700", subsets: ['hebrew'] })
+const rubik = Rubik({ weight: "700", subsets: ['hebrew'] }) as NextFont
 
 interface SidebarProps {
     freeApiCount: number

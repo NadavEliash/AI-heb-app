@@ -4,8 +4,9 @@ import { ClerkProvider } from '@clerk/nextjs'
 import { heIL } from "@clerk/localizations"
 import { Fredoka } from "next/font/google"
 import ProModal from '@/components/pro-modal'
+import { NextFont } from 'next/dist/compiled/@next/font'
 
-const fredoka = Fredoka({ weight: "400", subsets: ['hebrew'] })
+const fredoka = Fredoka({ weight: "400", subsets: ['hebrew'] }) as NextFont
 
 
 export const metadata: Metadata = {

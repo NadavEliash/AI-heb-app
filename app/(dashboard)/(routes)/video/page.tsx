@@ -18,6 +18,7 @@ import { Button } from "@/components/ui/button"
 import { Loader } from "@/components/loader"
 import { Card, CardFooter } from "@/components/ui/card"
 import { useProModal } from "@/store/pro-modal-store"
+import { useUserMsg } from "@/store/user-msg-store"
 
 export default function Video() {
     const router = useRouter()
@@ -33,6 +34,7 @@ export default function Video() {
     const isLoading = form.formState.isSubmitting
 
     const { openModal } = useProModal()
+    const { openMsg } = useUserMsg()
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
@@ -48,6 +50,8 @@ export default function Video() {
         } catch (error: any) {
             if (error?.response?.status === 403) {
                 openModal()
+            } else {
+                openMsg()
             }
         } finally {
             router.refresh()

@@ -22,6 +22,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger } from "@/components/u
 import { SelectValue } from "@radix-ui/react-select"
 import { Card, CardFooter } from "@/components/ui/card"
 import { useProModal } from "@/store/pro-modal-store"
+import { useUserMsg } from "@/store/user-msg-store"
 
 const translateKey = process.env.GOOGLE_CLOUD_KEY
 
@@ -42,6 +43,7 @@ export default function Images() {
     const isLoading = form.formState.isSubmitting
 
     const { openModal } = useProModal()
+    const { openMsg } = useUserMsg()
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
@@ -59,6 +61,8 @@ export default function Images() {
         } catch (error: any) {
             if (error?.response?.status === 403) {
                 openModal()
+            } else {
+                openMsg()
             }
         } finally {
             router.refresh()
@@ -188,6 +192,7 @@ export default function Images() {
                                                     <Image
                                                         alt="Image"
                                                         fill
+                                                        sizes="max-width: 1024px"
                                                         src={src}
                                                     />
                                                 </div>
