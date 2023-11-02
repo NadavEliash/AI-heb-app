@@ -2,8 +2,8 @@
 
 import { Button } from "@/components/ui/button"
 import { useAuth } from "@clerk/nextjs"
-import { Icon } from "@radix-ui/react-select"
-import { Image, LucideIcon, MessageSquare, Music, Video } from "lucide-react"
+import  Image  from "next/image"
+import { ImageIcon, LucideIcon, MessageSquare, Music, Video } from "lucide-react"
 import Link from "next/link"
 
 const tools: { title: string, textColor: string, icon: LucideIcon, animation: string }[] = [
@@ -16,7 +16,7 @@ const tools: { title: string, textColor: string, icon: LucideIcon, animation: st
   {
     title: 'מחולל תמונות ממשפט בעברית',
     textColor: 'green-700',
-    icon: Image,
+    icon: ImageIcon,
     animation: 'animate-emerge-2'
   },
   {
@@ -40,11 +40,14 @@ export default function LandingPage() {
   return (
     <div className="w-full h-full py-4 px-2 flex flex-col items-center text-center caret-transparent">
       <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mt-2 sm:mt-20">ברוכים הבאים <br className="sm:hidden" /> לבינה עברית!</h2>
-      <img className="sm:absolute h-20 w-20 right-4 lg:right-8 mt-4" alt="logo" src="https://www.svgrepo.com/show/352965/ai.svg" />
+      <Image src="https://www.svgrepo.com/show/352965/ai.svg"
+      alt="logo" className="sm:absolute h-20 w-20 right-4 lg:right-8 mt-4"
+      width={20}
+      height={20}/>
       <div className="sm:mt-8 flex-1">
         <h3 className="text-2xl sm:text-3xl lg:text-4xl my-6"> התנסו בכלי בינה מלאכותית המתקדמים ביותר:</h3>
         {tools.map(tool =>
-          <div key={tool.title} className={`flex flex-row justify-start items-center rounded-full gap-6 py-3 sm:py-6 p-2 ${tool.animation}`}>
+          <div key={tool.title} className={`flex flex-row justify-start items-center rounded-full gap-6 py-3 sm:py-6 p-2 ${tool.animation} hover:drop-shadow-md`}>
             <tool.icon className={`text-${tool.textColor}`} />
             <h2 className={`text-${tool.textColor} text-base sm:text-2xl font-bold text-right del`}>
               {tool.title}

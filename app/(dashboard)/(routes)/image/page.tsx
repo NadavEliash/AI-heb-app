@@ -184,7 +184,7 @@ export default function Images() {
                                     {row.images.map(src => (
                                         <div className="relative group" key={src}>
                                             <h2 className="absolute text-sm font-semibold text-transparent bg-transparent group-hover:text-gray-600 group-hover:bg-white group-hover:bg-opacity-80 z-10 p-2 w-full">
-                                                "{row.text}"
+                                            &quot;{row.text}&quot;
                                             </h2>
                                             <Card
                                                 className="rounded-lg overflow-hidden">

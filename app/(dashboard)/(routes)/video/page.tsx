@@ -109,7 +109,7 @@ export default function Video() {
                             row.video && <div className="w-2/3 mx-auto" key={row.video}>
                                 <Card
                                     className="overflow-hidden border-0 p-4 mt-8">
-                                    <h2 className="p-1 text-sm font-semibold mb-2">"{row.text}"</h2>
+                                    <h2 className="p-1 text-sm font-semibold mb-2">&quot;{row.text}&quot;</h2>
                                     <div className="relative">
                                         <video className="w-full aspect-video rounded-sm border bg-black" controls>
                                             <source src={row.video} />

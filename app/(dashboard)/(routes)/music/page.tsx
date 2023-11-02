@@ -111,7 +111,7 @@ export default function Music() {
 
                             <Card
                                 className="overflow-hidden bg-gray-100 mt-8">
-                                <h2 className="p-2 text-sm font-semibold">"{row.text}"</h2>
+                                <h2 className="p-2 text-sm font-semibold">&quot;{row.text}&quot;</h2>
                                 <div className="relative">
                                     <audio className="w-full" controls>
                                         <source src={row.audio} placeholder="רצועת שמע" />
