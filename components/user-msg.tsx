@@ -16,7 +16,7 @@ export default function UserMassage() {
     return (
         <div>
             <Dialog open={isOpen} onOpenChange={closeMsg}>
-                <DialogContent>
+                <DialogContent className="caret-transparent">
                     <DialogHeader>
                         <DialogTitle className="text-2xl text-center mb-2">
                             אופס! משהו לא עובד...

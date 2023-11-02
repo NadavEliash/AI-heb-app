@@ -17,7 +17,7 @@ const buttonVariants = cva(
         secondary:
           "bg-pink-300 text-secondary-foreground hover:bg-pink-200",
         upgrade:
-          "bg-gradient-to-r from-blue-700 to-pink-700 text-gray-300 hover:from-blue-500 hover:to-pink-500 hover:text-black",
+          "bg-gradient-to-r from-purple-700 to-pink-700 text-gray-100 font-bold tracking-wider hover:from-purple-900 hover:to-pink-500",
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
       },

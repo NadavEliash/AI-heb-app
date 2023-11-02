@@ -36,7 +36,7 @@ const tools = [
 export default function DashboardPage() {
     const router = useRouter()
     return (
-        <div className="px-4 md:px-20 lg:px-32">
+        <div className="px-4 md:px-20 lg:px-32 caret-transparent">
             <h2 className="pr-8 mt-20 font-bold text-3xl">גלו את עוצמת הבינה המלאכותית בעברית:</h2>
             <div className="mt-10 space-y-6 max-w-3xl">
             {tools.map(tool => (

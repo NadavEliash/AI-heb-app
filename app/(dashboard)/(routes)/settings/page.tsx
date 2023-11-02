@@ -1,11 +1,30 @@
 'use client'
 
+import Heading from "@/components/heading"
+import { Button } from "@/components/ui/button"
+import { useProModal } from "@/store/pro-modal-store"
+import { SettingsIcon } from "lucide-react"
+
 export default function Settings() {
-    
+    const { openModal } = useProModal()
+
+
     return (
-        <div className="px-4 md:px-20 lg:px-32">
-            <h2 className="pr-8 mt-4 font-bold text-3xl">הגדרות חשבון :</h2>
-            
+        <div>
+            <Heading
+                title="הגדרות"
+                description="נהל את החשבון שלך"
+                icon={SettingsIcon}
+                bgColor="bg-gray-100"
+            />
+
+            <h2 className="px-4 lg:px-8 py-4 text-xl">כרגע אין בחשבונך מסלול משודרג</h2>
+            <Button
+                variant={"upgrade"}
+                className="w-40 text-lg rounded-full h-12 mx-4 lg:mx-8"
+                onClick={openModal}>
+                שדרג
+            </Button>
         </div>
     )
 }

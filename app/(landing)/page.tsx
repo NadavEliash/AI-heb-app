@@ -1,23 +1,62 @@
-import { Button } from "@/components/ui/button";
-import Link from "next/link";
+'use client'
+
+import { Button } from "@/components/ui/button"
+import { useAuth } from "@clerk/nextjs"
+import { Icon } from "@radix-ui/react-select"
+import { Image, LucideIcon, MessageSquare, Music, Video } from "lucide-react"
+import Link from "next/link"
+
+const tools: { title: string, textColor: string, icon: LucideIcon, animation: string }[] = [
+  {
+    title: 'צ\'אט חופשי בעברית',
+    textColor: 'gray-700',
+    icon: MessageSquare,
+    animation: 'animate-emerge-1'
+  },
+  {
+    title: 'מחולל תמונות ממשפט בעברית',
+    textColor: 'green-700',
+    icon: Image,
+    animation: 'animate-emerge-2'
+  },
+  {
+    title: 'מחולל וידאו ממשפט בעברית',
+    textColor: 'pink-700',
+    icon: Video,
+    animation: 'animate-emerge-3'
+  },
+  {
+    title: 'מחולל רצועת מוזיקה ממשפט בעברית',
+    textColor: 'orange-700',
+    icon: Music,
+    animation: 'animate-emerge-4'
+  },
+]
 
 export default function LandingPage() {
+  const { isSignedIn } = useAuth()
+  const correctLink: string = isSignedIn ? "/sign-in" : "/sign-up"
+
   return (
-    <div className="w-3/4 mx-auto mt-40 border-2 p-8 flex flex-col items-center rounded-3xl h-1/2">
-      <h2 className="text-5xl font-bold">ברוכים הבאים לבינה עברית!</h2>
-      <h3 className="mt-8 text-2xl flex-1">התנסו בכלי בינה מלאכותית בעברית בקלות</h3>
-      <div className="flex flex-row gap-8 mt-8">
-        <Link href="/sign-in">
-          <Button>
-            התחברות
-          </Button>
-        </Link>
-        <Link href="/sign-up">
-          <Button>
-            הצטרפות
-          </Button>
-        </Link>
+    <div className="w-full h-full py-4 px-2 flex flex-col items-center text-center caret-transparent">
+      <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mt-2 sm:mt-20">ברוכים הבאים <br className="sm:hidden" /> לבינה עברית!</h2>
+      <img className="sm:absolute h-20 w-20 right-4 lg:right-8 mt-4" alt="logo" src="https://www.svgrepo.com/show/352965/ai.svg" />
+      <div className="sm:mt-8 flex-1">
+        <h3 className="text-2xl sm:text-3xl lg:text-4xl my-6"> התנסו בכלי בינה מלאכותית המתקדמים ביותר:</h3>
+        {tools.map(tool =>
+          <div key={tool.title} className={`flex flex-row justify-start items-center rounded-full gap-6 py-3 sm:py-6 p-2 ${tool.animation}`}>
+            <tool.icon className={`text-${tool.textColor}`} />
+            <h2 className={`text-${tool.textColor} text-base sm:text-2xl font-bold text-right del`}>
+              {tool.title}
+            </h2>
+          </div>
+        )}
       </div>
+      <Link className="w-full sm:mb-20 p-2" href={correctLink}>
+        <Button className="w-full max-w-sm h-16 text-xl rounded-full" variant={"upgrade"}>
+          התחל ליצור
+        </Button>
+      </Link>
     </div>
   )
 }
