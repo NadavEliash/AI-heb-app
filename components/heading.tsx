@@ -10,20 +10,20 @@ interface HeadingProps {
 }
 
 export default function Heading({
-title,
-description,
-icon: Icon,
-iconColor,
-bgColor
+    title,
+    description,
+    icon: Icon,
+    iconColor,
+    bgColor
 }: HeadingProps) {
-    return ( 
-        <div className="px-4 lg:px-8 flex items-center gap-x-8 mb-8 caret-transparent">
+    return (
+        <div className="px-4 lg:px-8 flex items-center gap-x-2 lg:gap-x-4 caret-transparent mb-4 lg:mb-8">
             <div className={cn("p-2 w-fit rounded-md", bgColor)}>
-                <Icon className={cn("w-10 h-10", iconColor)}/>
+                <Icon className={cn("w-10 h-10", iconColor)} />
             </div>
             <div>
-            <h2 className="text-3xl font-bold">{title}</h2>
-            <p className="text-sm font-bold">{description}</p>
+                <h2 className="text-3xl font-bold">{title}</h2>
+                <p className="text-sm font-bold">{description}</p>
             </div>
         </div>
     )

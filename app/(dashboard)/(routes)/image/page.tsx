@@ -104,7 +104,7 @@ export default function Images() {
                                 control={form.control}
                                 name="amount"
                                 render={({ field }) => (
-                                    <FormItem className="col-span-12 lg:col-span-2">
+                                    <FormItem className="col-span-6 lg:col-span-2">
                                         <Select
                                             disabled={isLoading}
                                             onValueChange={field.onChange}
@@ -134,7 +134,7 @@ export default function Images() {
                                 control={form.control}
                                 name="resolution"
                                 render={({ field }) => (
-                                    <FormItem className="col-span-12 lg:col-span-2">
+                                    <FormItem className="col-span-6 lg:col-span-2">
                                         <Select
                                             disabled={isLoading}
                                             onValueChange={field.onChange}
@@ -170,7 +170,7 @@ export default function Images() {
                 </div>
                 <div className="space-y-4 mt-16">
                     {isLoading && (
-                        <div className="px-40">
+                        <div className="px-40 py-20">
                             <Loader animation="animate-growing" />
                         </div>
                     )}

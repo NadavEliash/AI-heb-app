@@ -28,11 +28,11 @@ export function FreeCounter({ freeApiCount = 0 }) {
 
 
     return (
-        <div className={cn("p-4 bg-white/70 text-gray-700 text-center mx-8 rounded-lg h-36", rubik.className)}>
+        <div className={cn("p-4 bg-white/70 text-gray-700 text-center mx-4 sm:mx-8 rounded-lg h-36", rubik.className)}>
             <p className="text-lg mb-3">תקופת ניסיון:
                 <span className="text-base"> {freeApiCount}/{MAX_FREE_ROUNDS}</span>
             </p>
-            <Progress value={100 * freeApiCount / MAX_FREE_ROUNDS} className="mb-4 w-44 mx-auto h-2" />
+            <Progress value={100 * freeApiCount / MAX_FREE_ROUNDS} className="mb-4 mx-auto h-2" />
             <Button
                 variant={"upgrade"}
                 className="w-3/4 text-lg"

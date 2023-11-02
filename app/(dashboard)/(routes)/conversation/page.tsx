@@ -84,7 +84,7 @@ export default function Conversation() {
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
-                            className="rounded-lg border p-4 px-8 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
+                            className="rounded-lg border p-4 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
                         >
                             <FormField
                                 name="prompt"

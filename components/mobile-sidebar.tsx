@@ -1,4 +1,5 @@
 'use client'
+
 import { useState, useEffect } from "react"
 import { Menu } from "lucide-react";
 import { Button } from "./ui/button";
@@ -11,6 +12,7 @@ interface MobileSidebarProps {
 
 export default function MobileSidebar({ freeApiCount = 0 }: MobileSidebarProps) {
     const [isMounted, setIsMounted] = useState(false)
+    const [open, setOpen] = useState(false)
 
     useEffect(() => {
         setIsMounted(true)
@@ -19,13 +21,13 @@ export default function MobileSidebar({ freeApiCount = 0 }: MobileSidebarProps) 
     if (!isMounted) return null
 
     return (
-        <Sheet>
+        <Sheet open={open} onOpenChange={setOpen}>
             <SheetTrigger>
                 <div className="md:hidden">
                     <Menu />
                 </div>
             </SheetTrigger>
-            <SheetContent side="right" className="p-0" dir="rtl">
+            <SheetContent side="right" className="p-0" dir="rtl" onClick={()=>setOpen(false)}>
                 <Sidebar freeApiCount={freeApiCount} />
             </SheetContent>
         </Sheet>
