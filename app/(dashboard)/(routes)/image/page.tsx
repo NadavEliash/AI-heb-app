@@ -170,7 +170,7 @@ export default function Images() {
                 </div>
                 <div className="space-y-4 mt-16">
                     {isLoading && (
-                        <div className="px-40 py-20">
+                        <div className="py-20">
                             <Loader animation="animate-growing" />
                         </div>
                     )}

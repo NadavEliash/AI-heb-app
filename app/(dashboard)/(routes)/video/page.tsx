@@ -99,7 +99,7 @@ export default function Video() {
                 </div>
                 <div className="space-y-4 mt-4">
                     {isLoading && (
-                        <div className="py-20 px-40">
+                        <div className="py-20">
                             <Loader animation="animate-growing-video" />
                         </div>
                     )}
