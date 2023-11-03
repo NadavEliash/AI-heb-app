@@ -106,7 +106,7 @@ export default function Video() {
 
                     {video[0].video &&
                         video.map(row =>
-                            row.video && <div className="w-2/3 mx-auto" key={row.video}>
+                            row.video && <div className="sm:w-2/3 mx-auto" key={row.video}>
                                 <Card
                                     className="overflow-hidden border-0 p-4 mt-8">
                                     <h2 className="p-1 text-sm font-semibold mb-2">&quot;{row.text}&quot;</h2>
