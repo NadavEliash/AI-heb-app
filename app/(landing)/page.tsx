@@ -35,7 +35,7 @@ const tools: { title: string, textColor: string, icon: LucideIcon, animation: st
 
 export default function LandingPage() {
   const { isSignedIn } = useAuth()
-  const correctLink: string = isSignedIn ? "/sign-in" : "/sign-up"
+  const correctLink: string = isSignedIn ? "/dashboard" : "/sign-up"
 
   return (
     <div className="w-full h-full py-4 px-2 flex flex-col items-center text-center caret-transparent">
