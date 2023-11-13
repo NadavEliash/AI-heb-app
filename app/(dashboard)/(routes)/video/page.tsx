@@ -30,8 +30,10 @@ export default function Video() {
 
     useEffect(() => {
         if (prediction !== null) {
-            completeGeneration()
-            setPrediction(null)
+            setTimeout(() => {
+                completeGeneration()
+                setPrediction(null)
+            }, 50 * 1000)
         }
     }, [prediction])
 
