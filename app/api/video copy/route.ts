@@ -47,7 +47,11 @@ export async function POST(
                 motion_module: "mm_sd_v14"
             }
         })
+
+        prediction = await replicate.wait(prediction, {})
         
+        increaseApiLimit()
+
         return NextResponse.json(prediction)
 
     } catch (error) {

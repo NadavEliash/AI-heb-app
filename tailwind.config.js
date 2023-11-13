@@ -72,8 +72,9 @@ module.exports = {
         "growing": {
           "0%": {transform: 'translateX(100%)'},
           "50%": {transform: 'translateX(35%)'},
-          "90%": {transform: 'translateX(4%)'},
-          "95%": {transform: 'translateX(2%)'}
+          "80%": {transform: 'translateX(4%)'},
+          "95%": {transform: 'translateX(3%)'},
+          "100%": {transform: 'translateX(2%)'}
         },
         "emerge-1": {
           "0%": {opacity: "0"},
@@ -101,7 +102,7 @@ module.exports = {
         "accordion-up": "accordion-up 0.2s ease-out",
         "growing": "growing 20s linear",
         "growing-music": "growing 40s linear",
-        "growing-video": "growing 60s linear",
+        "growing-video": "growing 80s linear",
         "emerge-1": "emerge-1 1s ease-in",
         "emerge-2": "emerge-2 1.5s ease-in",
         "emerge-3": "emerge-3 2s ease-in",

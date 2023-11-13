@@ -15,7 +15,7 @@ import { formSchema } from "./constants"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader } from "@/components/loader"
-import { MessagesSquare } from "lucide-react"
+import { MessagesSquare, Rss } from "lucide-react"
 import { UserAvatar } from "@/components/user-avatar"
 import { BotAvatar } from "@/components/bot-avatar"
 import { useProModal } from "@/store/pro-modal-store"
@@ -48,9 +48,9 @@ export default function Conversation() {
                 content: values.prompt
             }
             const newMessages = [...messages, userMessage]
-
+            
             const response = await axios.post("/api/conversation", { messages: newMessages })
-
+            
             const translatedResponse = await axios.post("/api/translate", { txt: response.data.content, target: "he" })
             response.data.content = translatedResponse.data
 

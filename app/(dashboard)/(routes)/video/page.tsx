@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import * as z from "zod"
@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form"
 import axios from "axios"
 
 
-import { Download, VideoIcon } from "lucide-react"
+import { CopySlash, Download, VideoIcon } from "lucide-react"
 import Heading from "@/components/heading"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { formSchema } from "./constants"
@@ -23,6 +23,17 @@ import { useUserMsg } from "@/store/user-msg-store"
 export default function Video() {
     const router = useRouter()
     const [video, setVideo] = useState<{ text: string, video: string }[]>([{ text: '', video: '' }])
+    const [loader, setLoader] = useState<boolean>(false)
+
+    const [text, setText] = useState<string>('')
+    const [prediction, setPrediction] = useState(null)
+
+    useEffect(() => {
+        if (prediction !== null) {
+            completeGeneration()
+            setPrediction(null)
+        }
+    }, [prediction])
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -31,28 +42,45 @@ export default function Video() {
         }
     })
 
-    const isLoading = form.formState.isSubmitting
-
     const { openModal } = useProModal()
     const { openMsg } = useUserMsg()
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
+            setLoader(true)
             const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
-            const newText = values.prompt
+            setText(values.prompt)
             values.prompt = translation.data
 
             const response = await axios.post("/api/video", values)
+            setPrediction(response.data)
 
-            setVideo(prevVideo => [{ text: newText, video: response.data }, ...prevVideo])
-
-            form.reset()
         } catch (error: any) {
             if (error?.response?.status === 403) {
                 openModal()
             } else {
                 openMsg()
             }
+        }
+    }
+
+    const completeGeneration = async () => {
+        try {
+            const response = await axios.post("/api/completed_video", { prediction })
+
+            setLoader(false)
+            setVideo(prevVideo => [{ text, video: response.data }, ...prevVideo])
+            form.reset()
+
+        } catch (error: any) {
+            setLoader(false)
+
+            if (error?.response?.status === 403) {
+                openModal()
+            } else {
+                openMsg()
+            }
+
         } finally {
             router.refresh()
         }
@@ -81,7 +109,7 @@ export default function Video() {
                                         <FormControl className="m-0 p-0">
                                             <Input
                                                 className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
-                                                disabled={isLoading}
+                                                disabled={loader}
                                                 placeholder="למשל: דג זהב באקווריום עגול וגדול"
                                                 {...field}
                                             />
@@ -91,14 +119,14 @@ export default function Video() {
                             />
                             <Button
                                 className="col-span-12 lg:col-span-1 w-full"
-                                disabled={isLoading}>
+                                disabled={loader}>
                                 צור
                             </Button>
                         </form>
                     </Form>
                 </div>
                 <div className="space-y-4 mt-4">
-                    {isLoading && (
+                    {loader && (
                         <div className="py-20">
                             <Loader animation="animate-growing-video" />
                         </div>
@@ -111,7 +139,7 @@ export default function Video() {
                                     className="overflow-hidden border-0 p-4 mt-8">
                                     <h2 className="p-1 text-sm font-semibold mb-2">&quot;{row.text}&quot;</h2>
                                     <div className="relative">
-                                        <video className="w-full aspect-video rounded-sm border bg-black" controls>
+                                        <video className="w-full aspect-video rounded-sm border bg-black" controls loop>
                                             <source src={row.video} />
                                         </video>
                                     </div>

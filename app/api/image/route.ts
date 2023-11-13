@@ -1,8 +1,8 @@
 import OpenAI from 'openai';
 import { auth } from "@clerk/nextjs"
 import { NextResponse } from "next/server"
-import { ChatCompletionMessage } from 'openai/resources/chat/index.mjs';
-import { checkApiLimit, increaseApiLimit } from '@/lib/api-limit';
+import { checkApiLimit, increaseApiLimit } from '@/lib/api-limit'
+
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY
