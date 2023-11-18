@@ -1,18 +1,15 @@
 'use client'
 
-import { useProModal } from "@/store/pro-modal-store"
 import {
     Dialog,
     DialogContent,
-    DialogDescription,
     DialogHeader,
     DialogTitle,
-    DialogTrigger,
 } from "@/components/ui/dialog"
 import { Button } from "./ui/button"
 import { Badge } from "@/components/ui/badge"
 import Link from "next/link"
-import { Loader } from "./loader"
+import { useProModal } from "@/store/pro-modal-store"
 import { usePaymentMsg } from "@/store/payment-msg-store"
 
 
@@ -22,8 +19,8 @@ export default function ProModal() {
     const { openMsg } = usePaymentMsg()
 
     function onPayment() {
-        closeModal()
         openMsg()
+        closeModal()
     }
 
     return (
@@ -44,11 +41,11 @@ export default function ProModal() {
                                 <div>לחודש אחד,<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">בלבד</span>
                                 </div>
-                                <Link className="w-full" href={"/dashboard"} onClick={onPayment}>
-                                    <Button className="w-full bg-pink-700 hover:bg-pink-600 rounded-full">
-                                        המשך
-                                    </Button>
-                                </Link>
+                                {/* <Link className="w-full" href={"/dashboard"} onClick={onPayment}> */}
+                                <Button className="w-full bg-pink-700 hover:bg-pink-600 rounded-full" onClick={onPayment}>
+                                    המשך
+                                </Button>
+                                {/* </Link> */}
                             </div>
 
                             <div className="border-2 rounded-3xl h-40 sm:h-80 sm:flex sm:flex-col items-center justify-between text-lg w-full p-2 text-center">
@@ -59,11 +56,11 @@ export default function ProModal() {
                                 <div>לחודש,<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">במשך 3 חודשים</span>
                                 </div>
-                                <Link className="w-full" href={"/dashboard"} onClick={onPayment}>
-                                    <Button className="w-full bg-blue-500 hover:bg-blue-400 rounded-full">
-                                        המשך
-                                    </Button>
-                                </Link>
+                                {/* <Link className="w-full" href={"/dashboard"} onClick={onPayment}> */}
+                                <Button className="w-full bg-blue-500 hover:bg-blue-400 rounded-full" onClick={onPayment}>
+                                    המשך
+                                </Button>
+                                {/* </Link> */}
                             </div>
 
                             <div className="border-2 rounded-3xl h-40 sm:h-80 flex flex-col items-center justify-between text-lg w-full p-2 text-center">
@@ -74,11 +71,11 @@ export default function ProModal() {
                                 <div>לחודש,<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">במשך שנה</span>
                                 </div>
-                                <Link className="w-full" href={"/dashboard"} onClick={onPayment}>
-                                    <Button className="w-full bg-green-500 hover:bg-green-400 rounded-full">
-                                        המשך
-                                    </Button>
-                                </Link>
+                                {/* <Link className="w-full" href={"/dashboard"} onClick={onPayment}> */}
+                                <Button className="w-full bg-green-500 hover:bg-green-400 rounded-full" onClick={onPayment}>
+                                    המשך
+                                </Button>
+                                {/* </Link> */}
                             </div>
                         </div>
                     </DialogHeader>

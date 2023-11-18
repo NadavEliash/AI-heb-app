@@ -19,7 +19,7 @@ export default function UserMassage() {
                 <DialogContent className="caret-transparent">
                     <DialogHeader>
                         <DialogTitle className="text-2xl text-center mb-2">
-                            אופס! משהו לא עובד...
+                            אופס! משהו השתבש...
                         </DialogTitle>
                         <Image
                             className="rounded-3xl"
@@ -29,13 +29,13 @@ export default function UserMassage() {
                             height={500}
                         />
                         <DialogDescription className="w-2/3 mx-auto text-2xl font-bold text-black text-center pt-2">
-                            נסו אולי לרענן את הדף😐
+                            נסו אולי לרענן את הדף? 🙄
                         </DialogDescription>
                     </DialogHeader>
                     <Button
                         onClick={() => {
-                            closeMsg()
                             router.refresh()
+                            closeMsg()
                         }}
                         className="bg-[#95baa8] hover:bg-[#84a89a] rounded-2xl">
                         רענן

@@ -71,10 +71,10 @@ module.exports = {
         },
         "growing": {
           "0%": {transform: 'translateX(100%)'},
-          "50%": {transform: 'translateX(35%)'},
-          "80%": {transform: 'translateX(4%)'},
-          "95%": {transform: 'translateX(3%)'},
-          "100%": {transform: 'translateX(2%)'}
+          "30%": {transform: 'translateX(35%)'},
+          "70%": {transform: 'translateX(10%)'},
+          "90%": {transform: 'translateX(3%)'},
+          "100%": {transform: 'translateX(1%)'}
         },
         "emerge-1": {
           "0%": {opacity: "0"},
@@ -100,13 +100,13 @@ module.exports = {
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
-        "growing": "growing 20s linear",
-        "growing-music": "growing 40s linear",
-        "growing-video": "growing 80s linear",
-        "emerge-1": "emerge-1 1s ease-in",
-        "emerge-2": "emerge-2 1.5s ease-in",
-        "emerge-3": "emerge-3 2s ease-in",
-        "emerge-4": "emerge-4 2.5s ease-in",
+        "growing": "growing 30s linear",
+        "growing-music": "growing 62s linear",
+        "growing-video": "growing 82s linear",
+        "emerge-1": "emerge-1 1.5s ease-in",
+        "emerge-2": "emerge-2 2.5s ease-in",
+        "emerge-3": "emerge-3 3.5s ease-in",
+        "emerge-4": "emerge-4 4.5s ease-in",
       },
     },
   },

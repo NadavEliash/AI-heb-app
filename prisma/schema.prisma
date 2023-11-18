@@ -15,12 +15,3 @@ model UserApiLimit {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
-
-model UserSubscription {
-  id                    String    @id @default(cuid())
-  userId                String    @unique
-  paymentCustomerId     String?   @unique @map(name: "payment_customer_id")
-  paymentSubscriptionId String?   @unique @map(name: "payment_subscription_id")
-  priceId               Int?      @map(name: "price_id")
-  periodEnding          DateTime? @map(name: "period_ending")
-}

@@ -20,6 +20,7 @@ import { UserAvatar } from "@/components/user-avatar"
 import { BotAvatar } from "@/components/bot-avatar"
 import { useProModal } from "@/store/pro-modal-store"
 import { useUserMsg } from "@/store/user-msg-store"
+import { useUpdate } from "@/store/update"
 
 export default function Conversation() {
     const router = useRouter()
@@ -36,6 +37,8 @@ export default function Conversation() {
 
     const { openModal } = useProModal()
     const { openMsg } = useUserMsg()
+    const { onUpdate } = useUpdate()
+    const { didUpdate } = useUpdate()
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
@@ -43,14 +46,14 @@ export default function Conversation() {
             const translatedUserMessage = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
             values.prompt = translatedUserMessage.data
 
-            const userMessage: OpenAI.Chat.ChatCompletionMessage = {
+            const userMessage = {
                 role: "user",
                 content: values.prompt
             }
             const newMessages = [...messages, userMessage]
-            
+
             const response = await axios.post("/api/conversation", { messages: newMessages })
-            
+
             const translatedResponse = await axios.post("/api/translate", { txt: response.data.content, target: "he" })
             response.data.content = translatedResponse.data
 
@@ -66,7 +69,8 @@ export default function Conversation() {
                 openMsg()
             }
         } finally {
-            router.refresh()
+            onUpdate()
+            setTimeout(() => { didUpdate() }, 500)
         }
     }
 
@@ -120,8 +124,8 @@ export default function Conversation() {
                         {messages.map(message =>
                             <div
                                 key={message.content}
-                                className={cn("w-full border rounded-lg p-8 flex items-start gap-x-8", message.role === "user" ? "bg-white font-bold text-sm" : "bg-violet-500/10")}>
-                                {message.role === "user" ? <UserAvatar /> : <BotAvatar />}
+                                className={cn("w-full border rounded-lg p-8 flex items-start gap-x-8", message.role === "assistant" ? "bg-violet-500/10" : "bg-white font-bold text-sm")}>
+                                {message.role === "assistant" ? <BotAvatar /> : <UserAvatar />}
                                 {message.content}
                             </div>
                         )}

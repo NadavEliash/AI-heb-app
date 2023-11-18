@@ -20,6 +20,7 @@ import { SelectValue } from "@radix-ui/react-select"
 import { Card, CardFooter } from "@/components/ui/card"
 import { useProModal } from "@/store/pro-modal-store"
 import { useUserMsg } from "@/store/user-msg-store"
+import { useUpdate } from "@/store/update"
 
 const translateKey = process.env.GOOGLE_CLOUD_KEY
 
@@ -41,6 +42,8 @@ export default function Images() {
 
     const { openModal } = useProModal()
     const { openMsg } = useUserMsg()
+    const { onUpdate } = useUpdate()
+    const { didUpdate } = useUpdate()
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
@@ -62,7 +65,8 @@ export default function Images() {
                 openMsg()
             }
         } finally {
-            router.refresh()
+            onUpdate()
+            setTimeout(() => { didUpdate() }, 500)
         }
     }
 
@@ -181,7 +185,7 @@ export default function Images() {
                                     {row.images.map(src => (
                                         <div className="relative group" key={src}>
                                             <h2 className="absolute text-sm font-semibold text-transparent bg-transparent group-hover:text-gray-600 group-hover:bg-white group-hover:bg-opacity-80 z-10 p-2 w-full">
-                                            &quot;{row.text}&quot;
+                                                &quot;{row.text}&quot;
                                             </h2>
                                             <Card
                                                 className="rounded-lg overflow-hidden">

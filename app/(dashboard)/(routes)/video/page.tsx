@@ -8,8 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 
-
-import { CopySlash, Download, VideoIcon } from "lucide-react"
+import { VideoIcon } from "lucide-react"
 import Heading from "@/components/heading"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { formSchema } from "./constants"
@@ -19,6 +18,7 @@ import { Loader } from "@/components/loader"
 import { Card, CardFooter } from "@/components/ui/card"
 import { useProModal } from "@/store/pro-modal-store"
 import { useUserMsg } from "@/store/user-msg-store"
+import { useUpdate } from "@/store/update"
 
 export default function Video() {
     const router = useRouter()
@@ -33,7 +33,7 @@ export default function Video() {
             setTimeout(() => {
                 completeGeneration()
                 setPrediction(null)
-            }, 50 * 1000)
+            }, 80 * 1000)
         }
     }, [prediction])
 
@@ -46,9 +46,12 @@ export default function Video() {
 
     const { openModal } = useProModal()
     const { openMsg } = useUserMsg()
+    const { onUpdate } = useUpdate()
+    const { didUpdate } = useUpdate()
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
+            console.log(new Date())
             setLoader(true)
             const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
             setText(values.prompt)
@@ -56,6 +59,7 @@ export default function Video() {
 
             const response = await axios.post("/api/video", values)
             setPrediction(response.data)
+            console.log(new Date())
 
         } catch (error: any) {
             if (error?.response?.status === 403) {
@@ -68,10 +72,12 @@ export default function Video() {
 
     const completeGeneration = async () => {
         try {
+            console.log(new Date())
             const response = await axios.post("/api/completed_video", { prediction })
-
+            console.log(new Date())
             setLoader(false)
             setVideo(prevVideo => [{ text, video: response.data }, ...prevVideo])
+
             form.reset()
 
         } catch (error: any) {
@@ -84,7 +90,8 @@ export default function Video() {
             }
 
         } finally {
-            router.refresh()
+            onUpdate()
+            setTimeout(() => { didUpdate() }, 500)
         }
     }
 

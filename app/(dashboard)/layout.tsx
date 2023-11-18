@@ -6,7 +6,7 @@ import { getFreeApiCount } from "@/lib/api-limit"
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
     const freeApiCount = await getFreeApiCount()
-
+    
     return (
         <div dir="rtl" className="h-full relative">
             <UserMassage />
