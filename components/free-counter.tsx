@@ -7,7 +7,6 @@ import { cn } from "@/lib/utils"
 import { useEffect, useState } from "react"
 import { Button } from "./ui/button"
 import { useProModal } from "@/store/pro-modal-store"
-import { useUpdate } from "@/store/update"
 
 const rubik = Rubik({ weight: "500", subsets: ["hebrew"] })
 
