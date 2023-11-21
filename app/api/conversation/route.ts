@@ -1,4 +1,5 @@
 import OpenAI from 'openai'
+// import { OpenAIStream, StreamingTextResponse } from 'ai'
 import { auth } from "@clerk/nextjs"
 import { NextResponse } from "next/server"
 import { ChatCompletionMessage } from 'openai/resources/chat/index.mjs'
@@ -7,7 +8,6 @@ import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit"
 
 const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
-    timeout: 30 * 1000
 })
 
 const instructionMessage: ChatCompletionMessage = {
@@ -46,8 +46,8 @@ export async function POST(
             messages: [instructionMessage, ...messages]
         })
 
-        increaseApiLimit()
 
+        increaseApiLimit()
         return NextResponse.json(response.choices[0].message)
     } catch (error) {
         console.log("CONVERSATION_ERROR")

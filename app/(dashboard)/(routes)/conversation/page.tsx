@@ -20,11 +20,11 @@ import { UserAvatar } from "@/components/user-avatar"
 import { BotAvatar } from "@/components/bot-avatar"
 import { useProModal } from "@/store/pro-modal-store"
 import { useUserMsg } from "@/store/user-msg-store"
-import { useUpdate } from "@/store/update"
 
 export default function Conversation() {
     const router = useRouter()
     const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>([])
+    const [enMessages, setEnMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>([])
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
@@ -37,28 +37,33 @@ export default function Conversation() {
 
     const { openModal } = useProModal()
     const { openMsg } = useUserMsg()
-    const { onUpdate } = useUpdate()
-    const { didUpdate } = useUpdate()
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const originalUserMessage = values.prompt
-            const translatedUserMessage = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
-            values.prompt = translatedUserMessage.data
-
-            const userMessage = {
-                role: "user",
-                content: values.prompt
+            const hebUserMessage = {
+                content: values.prompt,
+                role: "user"
             }
-            const newMessages = [...messages, userMessage]
+
+            const translatedUserMessage = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
+            const enUserMessage = {
+                content: translatedUserMessage.data,
+                role: "user"
+            }
+            const newMessages = [...enMessages, enUserMessage]
 
             const response = await axios.post("/api/conversation", { messages: newMessages })
 
-            const translatedResponse = await axios.post("/api/translate", { txt: response.data.content, target: "he" })
-            response.data.content = translatedResponse.data
+            const enResponse = response.data
 
-            userMessage.content = originalUserMessage
-            setMessages((prev) => [...prev, response.data, userMessage])
+            const translatedResponse = await axios.post("/api/translate", { txt: enResponse.content, target: "he" })
+            const hebResponse = {
+                content: translatedResponse.data,
+                role: response.data.role
+            }
+
+            setEnMessages((prev) => [...prev, enUserMessage, enResponse])
+            setMessages((prev) => [...prev, hebResponse, hebUserMessage])
 
             form.reset()
 
@@ -69,8 +74,9 @@ export default function Conversation() {
                 openMsg()
             }
         } finally {
-            onUpdate()
-            setTimeout(() => { didUpdate() }, 500)
+            setTimeout(() => {
+                router.refresh()
+            }, 500)
         }
     }
 
@@ -88,7 +94,7 @@ export default function Conversation() {
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
-                            className="rounded-lg border p-4 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
+                            className="rounded-lg border border-black p-4 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2 mb-8"
                         >
                             <FormField
                                 name="prompt"

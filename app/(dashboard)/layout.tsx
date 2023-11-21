@@ -3,10 +3,11 @@ import PaymentMassage from "@/components/payment-msg"
 import Sidebar from "@/components/sidebar"
 import UserMassage from "@/components/user-msg"
 import { getFreeApiCount } from "@/lib/api-limit"
+import { useEffect } from "react"
 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
     const freeApiCount = await getFreeApiCount()
-    
+
     return (
         <div dir="rtl" className="h-full relative">
             <UserMassage />

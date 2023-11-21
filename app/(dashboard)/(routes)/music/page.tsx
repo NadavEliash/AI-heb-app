@@ -19,7 +19,6 @@ import { Loader } from "@/components/loader"
 import { Card, CardFooter } from "@/components/ui/card"
 import { useProModal } from "@/store/pro-modal-store"
 import { useUserMsg } from "@/store/user-msg-store"
-import { useUpdate } from "@/store/update"
 
 export default function Music() {
     const router = useRouter()
@@ -36,8 +35,6 @@ export default function Music() {
 
     const { openModal } = useProModal()
     const { openMsg } = useUserMsg()
-    const { onUpdate } = useUpdate()
-    const { didUpdate } = useUpdate()
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
@@ -57,8 +54,9 @@ export default function Music() {
                 openMsg()
             }
         } finally {
-            onUpdate()
-            setTimeout(() => { didUpdate() }, 500)
+            setTimeout(() => {
+                router.refresh()
+            }, 500)
         }
     }
 

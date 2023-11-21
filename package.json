@@ -14,7 +14,7 @@
     "@clerk/nextjs": "^4.23.2",
     "@google-cloud/translate": "^8.0.2",
     "@hookform/resolvers": "^3.3.1",
-    "@prisma/client": "^5.4.2",
+    "@prisma/client": "^5.6.0",
     "@prisma/studio": "^0.494.0",
     "@radix-ui/react-avatar": "^1.0.4",
     "@radix-ui/react-dialog": "1.0.4",
@@ -25,6 +25,7 @@
     "@types/node": "20.5.2",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
+    "ai": "^2.2.25",
     "autoprefixer": "10.4.15",
     "axios": "^1.5.1",
     "class-variance-authority": "^0.7.0",
@@ -48,6 +49,6 @@
     "zustand": "^4.4.4"
   },
   "devDependencies": {
-    "prisma": "^5.4.2"
+    "prisma": "^5.6.0"
   }
 }
