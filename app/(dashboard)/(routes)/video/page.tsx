@@ -30,7 +30,7 @@ export default function Video() {
     useEffect(() => {
         if (prediction !== null) {
             setTimeout(() => {
-                completeGeneration()
+                completeVideoGeneration()
                 setPrediction(null)
             }, 80 * 1000)
         }
@@ -67,7 +67,7 @@ export default function Video() {
         }
     }
 
-    const completeGeneration = async () => {
+    const completeVideoGeneration = async () => {
         try {
             console.log(new Date())
             const response = await axios.post("/api/completed_video", { prediction })
