@@ -56,12 +56,13 @@ export default function Conversation() {
 
             const enResponse = response.data
 
-            const translatedResponse = await axios.post("/api/translate", { txt: enResponse.content, target: "he" })
+            const translatedResponse = await axios.post("/api/translate", { txt: enResponse.content.replaceAll('\n', '<br>'), target: "he" })
             const hebResponse = {
-                content: translatedResponse.data,
+                content: translatedResponse.data.replaceAll('<br>', '\n'),
                 role: response.data.role
             }
 
+            console.log(translatedResponse.data)
             setEnMessages((prev) => [...prev, enUserMessage, enResponse])
             setMessages((prev) => [...prev, hebResponse, hebUserMessage])
 
@@ -94,7 +95,7 @@ export default function Conversation() {
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
-                            className="rounded-lg border border-black p-4 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2 mb-8"
+                            className="rounded-lg border border-gray-400 p-4 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2 mb-8"
                         >
                             <FormField
                                 name="prompt"
@@ -130,7 +131,7 @@ export default function Conversation() {
                         {messages.map(message =>
                             <div
                                 key={message.content}
-                                className={cn("w-full border rounded-lg p-8 flex items-start gap-x-8", message.role === "assistant" ? "bg-violet-500/10" : "bg-white font-bold text-sm")}>
+                                className={cn("w-full border rounded-lg p-8 flex items-start gap-x-8 whitespace-pre-wrap", message.role === "assistant" ? "bg-violet-500/10" : "bg-white font-bold text-sm")}>
                                 {message.role === "assistant" ? <BotAvatar /> : <UserAvatar />}
                                 {message.content}
                             </div>

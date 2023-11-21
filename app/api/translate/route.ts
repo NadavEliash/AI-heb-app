@@ -10,7 +10,6 @@ export async function POST(
         const body = await req.json()
         const { txt, target } = body
 
-
         const translation = await axios.post(`https://translation.googleapis.com/language/translate/v2?q=${txt}&target=${target}&format=text&key=${apiKey}`)
 
         return NextResponse.json(translation.data.data.translations[0].translatedText)
