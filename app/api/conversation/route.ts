@@ -46,6 +46,7 @@ export async function POST(
             messages: [instructionMessage, ...messages]
         })
 
+        console.log(response.id)
 
         increaseApiLimit()
         return NextResponse.json(response.choices[0].message)

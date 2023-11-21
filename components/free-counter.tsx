@@ -8,6 +8,7 @@ import { useEffect, useState } from "react"
 import { Button } from "./ui/button"
 import { useProModal } from "@/store/pro-modal-store"
 
+
 const rubik = Rubik({ weight: "500", subsets: ["hebrew"] })
 
 interface FreeCounterProps {
