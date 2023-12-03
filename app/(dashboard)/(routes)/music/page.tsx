@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useRouter } from "next/navigation"
 import Image from "next/image"
 import * as z from "zod"
@@ -24,6 +24,20 @@ export default function Music() {
     const router = useRouter()
     const [music, setMusic] = useState<{ text: string, audio: string }[]>([{ text: '', audio: '' }])
 
+    const [loader, setLoader] = useState<boolean>(false)
+
+    const [text, setText] = useState<string>('')
+    const [prediction, setPrediction] = useState(null)
+
+    useEffect(() => {
+        if (prediction !== null) {
+            setTimeout(() => {
+                completeMusicGeneration()
+                setPrediction(null)
+            }, 80 * 1000)
+        }
+    }, [prediction])
+
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
@@ -31,28 +45,45 @@ export default function Music() {
         }
     })
 
-    const isLoading = form.formState.isSubmitting
 
     const { openModal } = useProModal()
     const { openMsg } = useUserMsg()
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
+            setLoader(true)
             const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
-            const newText = values.prompt
+            setText(values.prompt)
             values.prompt = translation.data
 
             const response = await axios.post("/api/music", values)
+            setPrediction(response.data)
 
-            setMusic(prevMusic => [{ text: newText, audio: response.data }, ...prevMusic])
-
-            form.reset()
         } catch (error: any) {
             if (error?.response?.status === 403) {
                 openModal()
             } else {
                 openMsg()
             }
+        }
+    }
+
+    const completeMusicGeneration = async () => {
+        try {
+            const response = await axios.post("/api/completed_music", { prediction })
+            setLoader(false)
+            setMusic(prevMusic => [{ text, audio: response.data }, ...prevMusic])
+
+            form.reset()
+        } catch (error: any) {
+            setLoader(false)
+
+            if (error?.response?.status === 403) {
+                openModal()
+            } else {
+                openMsg()
+            }
+
         } finally {
             setTimeout(() => {
                 router.refresh()
@@ -83,7 +114,7 @@ export default function Music() {
                                         <FormControl className="m-0 p-0">
                                             <Input
                                                 className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
-                                                disabled={isLoading}
+                                                disabled={loader}
                                                 placeholder="למשל: מנגינה קצבית ומקפיצה המובילה לנעימה שקטה ורגועה"
                                                 {...field}
                                             />
@@ -93,14 +124,14 @@ export default function Music() {
                             />
                             <Button
                                 className="col-span-12 lg:col-span-1 w-full"
-                                disabled={isLoading}>
+                                disabled={loader}>
                                 צור
                             </Button>
                         </form>
                     </Form>
                 </div>
                 <div className="space-y-4 mt-4">
-                    {isLoading && (
+                    {loader && (
                         <div className="py-10">
                             <Loader animation="animate-growing-music" />
                         </div>

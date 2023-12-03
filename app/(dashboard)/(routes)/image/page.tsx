@@ -26,6 +26,7 @@ const translateKey = process.env.GOOGLE_CLOUD_KEY
 export default function Images() {
     const router = useRouter()
     const [images, setImages] = useState<{ text: string, images: string[] }[]>([{ text: '', images: [] }])
+    const [displayImage, setDisplayImage] = useState<string>('')
 
 
     const form = useForm<z.infer<typeof formSchema>>({
@@ -167,6 +168,19 @@ export default function Images() {
                         </form>
                     </Form>
                 </div>
+                {displayImage && (
+                    <div className="absolute top-0 left-0 w-full h-full">
+                        <Image
+                            alt="Image"
+                            width={600}
+                            height={600}
+                            src={displayImage}
+                            className="absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 z-30"
+                        />
+                        <div className="absolute bg-gray-200 opacity-60 w-full h-full z-20 " onClick={() => setDisplayImage('')}>
+                        </div>
+                    </div>
+                )}
                 <div className="space-y-4 mt-16">
                     {isLoading && (
                         <div className="py-20">
@@ -187,17 +201,18 @@ export default function Images() {
                                             </h2>
                                             <Card
                                                 className="rounded-lg overflow-hidden">
-                                                <div className="relative aspect-square">
+                                                <div className="relative aspect-square" onClick={() => setDisplayImage(src)}>
                                                     <Image
                                                         alt="Image"
                                                         fill
                                                         sizes="max-width: 1024px"
                                                         src={src}
+                                                        className="cursor-pointer"
                                                     />
                                                 </div>
                                                 <CardFooter className="p-2">
                                                     <Button
-                                                        onClick={() => window.open(src)}
+                                                        onClick={() => { window.open(src) }}
                                                         variant="secondary"
                                                         className="mx-auto"
                                                     >

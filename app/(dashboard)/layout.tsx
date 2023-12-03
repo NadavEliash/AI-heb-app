@@ -9,7 +9,7 @@ export default async function DashboardLayout({ children }: { children: React.Re
     const freeApiCount = await getFreeApiCount()
 
     return (
-        <div dir="rtl" className="h-full relative">
+        <div dir="rtl" className="h-full w-full absolute left-0">
             <UserMassage />
             <PaymentMassage />
             <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 z-[10] bg-gray-900">

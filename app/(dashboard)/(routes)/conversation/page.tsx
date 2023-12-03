@@ -62,7 +62,6 @@ export default function Conversation() {
                 role: response.data.role
             }
 
-            console.log(translatedResponse.data)
             setEnMessages((prev) => [...prev, enUserMessage, enResponse])
             setMessages((prev) => [...prev, hebResponse, hebUserMessage])
 
@@ -131,7 +130,7 @@ export default function Conversation() {
                         {messages.map(message =>
                             <div
                                 key={message.content}
-                                className={cn("w-full border rounded-lg p-8 flex items-start gap-x-8 whitespace-pre-wrap", message.role === "assistant" ? "bg-violet-500/10" : "bg-white font-bold text-sm")}>
+                                className={cn("w-full border rounded-lg p-8 flex items-start gap-x-8 whitespace-pre-wrap", message.role === "assistant" ? "bg-violet-100" : "font-bold bg-slate-200 text-sm")}>
                                 {message.role === "assistant" ? <BotAvatar /> : <UserAvatar />}
                                 {message.content}
                             </div>

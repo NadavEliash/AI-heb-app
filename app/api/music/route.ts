@@ -24,26 +24,33 @@ export async function POST(
         if (!prompt) {
             return new NextResponse("prompt is required", { status: 400 })
         }
-        
+
         const freeTrial = await checkApiLimit()
         if (!freeTrial) {
             return new NextResponse("Free trial has expired", { status: 403 })
         }
 
-        const response = await replicate.run(
-            "meta/musicgen:7a76a8258b23fae65c5a22debb8841d1d7e816b75c2f24218cd2bd8573787906",
-            {
-                input: {
-                    prompt,
-                    model_version: "melody",
-                    duration: 12
-                }
-            }
-        )
+        // const response = await replicate.run(
+        //     "meta/musicgen:7a76a8258b23fae65c5a22debb8841d1d7e816b75c2f24218cd2bd8573787906",
+        //     {
+        //         input: {
+        //             prompt,
+        //             model_version: "melody",
+        //             duration: 12
+        //         }
+        //     }
+        // )
 
-        increaseApiLimit()
-        
-        return NextResponse.json(response)
+        let prediction = await replicate.predictions.create({
+            version: "7a76a8258b23fae65c5a22debb8841d1d7e816b75c2f24218cd2bd8573787906",
+            input: {
+                prompt,
+                model_version: "melody",
+                duration: 12
+            }
+        })
+
+        return NextResponse.json(prediction)
     } catch (error) {
         return new NextResponse("internal error", { status: 500 })
     }

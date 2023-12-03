@@ -1,10 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     images: {
-        domains: [
-            "oaidalleapiprodscus.blob.core.windows.net",
-            "pbxt.replicate.delivery",
-            "res.cloudinary.com"
+        remotePatterns: [
+            { hostname: "oaidalleapiprodscus.blob.core.windows.net" },
+            { hostname: "pbxt.replicate.delivery" },
+            { hostname: "res.cloudinary.com" },
         ]
     }
 }
