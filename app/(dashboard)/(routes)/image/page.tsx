@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 
-import { Download, ImageIcon } from "lucide-react"
+import { Download, ImageIcon, X } from "lucide-react"
 import Heading from "@/components/heading"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { amountOptions, formSchema, resolutionOptions } from "./constants"
@@ -65,7 +65,7 @@ export default function Images() {
         } finally {
             setTimeout(() => {
                 router.refresh()
-            }, 500)
+            }, 1000)
         }
     }
 
@@ -169,15 +169,19 @@ export default function Images() {
                     </Form>
                 </div>
                 {displayImage && (
-                    <div className="absolute top-0 left-0 w-full h-full">
-                        <Image
-                            alt="Image"
-                            width={600}
-                            height={600}
-                            src={displayImage}
-                            className="absolute left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 z-30"
-                        />
-                        <div className="absolute bg-gray-200 opacity-60 w-full h-full z-20 " onClick={() => setDisplayImage('')}>
+                    <div className="absolute top-0 left-0 w-full h-full hidden md:block">
+                        <div className="fixed left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 z-30">
+                            <Image
+                                alt="Image"
+                                width={800}
+                                height={800}
+                                loading="eager"
+                                src={displayImage}
+                                className="animate-scale rounded-lg"
+                            />
+                            <X className="fixed p-2 top-2 right-2 h-12 w-12 rounded-lg cursor-pointer" onClick={() => setDisplayImage('')} />
+                        </div>
+                        <div className="fixed bg-gray-400 opacity-80 w-full h-full z-20" onClick={() => setDisplayImage('')}>
                         </div>
                     </div>
                 )}

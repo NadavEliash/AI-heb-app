@@ -73,8 +73,8 @@ module.exports = {
           "0%": {transform: 'translateX(100%)'},
           "30%": {transform: 'translateX(35%)'},
           "70%": {transform: 'translateX(10%)'},
-          "90%": {transform: 'translateX(3%)'},
-          "100%": {transform: 'translateX(1%)'}
+          "90%": {transform: 'translateX(5%)'},
+          "100%": {transform: 'translateX(2%)'}
         },
         "emerge-1": {
           "0%": {opacity: "0"},
@@ -96,6 +96,10 @@ module.exports = {
           "80%": {opacity: "0"},
           "100%": {opacity: "1"}
         },
+        "scale": {
+          "0%": {height: "0", width: "0"},
+          "100%": {height: "100", width: "100"}
+        }
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -107,6 +111,7 @@ module.exports = {
         "emerge-2": "emerge-2 2.5s ease-in",
         "emerge-3": "emerge-3 3.5s ease-in",
         "emerge-4": "emerge-4 4.5s ease-in",
+        "scale": "scale .3s ease-in",
       },
     },
   },
