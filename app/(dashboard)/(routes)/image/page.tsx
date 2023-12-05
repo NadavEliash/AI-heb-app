@@ -43,6 +43,25 @@ export default function Images() {
     const { openModal } = useProModal()
     const { openMsg } = useUserMsg()
 
+    const downloadImg = async (src: string) => {
+        try {
+            const imgUrl = "http://localhost:3000/_next/image?url=" + src + "&w=1920&q=75"
+            console.log(imgUrl)
+            const response = await axios.post('/api/download_image', { imgUrl }, { responseType: 'arraybuffer' })
+
+            const blob = new Blob([response.data], { type: 'image/jpeg' })
+            const url = window.URL.createObjectURL(blob)
+            const a = document.createElement('a')
+            a.href = url
+            a.download = 'בינה_עברית.jpg'
+            document.body.appendChild(a)
+            a.click()
+            window.URL.revokeObjectURL(url)
+        } catch (error) {
+            console.error('Error: ', error)
+        }
+    }
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
@@ -184,7 +203,7 @@ export default function Images() {
                                 src={displayImage}
                                 className="animate-scale rounded-lg"
                             />
-                            <X className="fixed p-2 top-2 right-2 h-12 w-12 rounded-lg cursor-pointer animate-scale" onClick={() => setDisplayImage('')} />
+                            <X className="fixed p-1 top-2 right-2 h-10 w-10 rounded-xl cursor-pointer animate-scale bg-white/30" onClick={() => setDisplayImage('')} />
                         </div>
                         <div className="fixed bg-gray-400 opacity-80 w-full h-full z-20" onClick={() => setDisplayImage('')}>
                         </div>
@@ -202,10 +221,11 @@ export default function Images() {
                             <div
                                 className="p-4 my-4"
                                 key={row.text}>
+                                <h2 className="lg:hidden text-lg font-light p-1">&quot;{row.text}&quot;</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-2">
                                     {row.images.map(src => (
                                         <div className="relative group" key={src}>
-                                            <h2 className="absolute text-sm font-semibold text-transparent bg-transparent group-hover:text-gray-600 group-hover:bg-white group-hover:bg-opacity-80 z-10 p-2 w-full">
+                                            <h2 className="hidden lg:block absolute text-sm font-semibold text-transparent bg-transparent group-hover:text-gray-600 group-hover:bg-white group-hover:bg-opacity-80 z-10 p-2 w-full">
                                                 &quot;{row.text}&quot;
                                             </h2>
                                             <Card
@@ -219,7 +239,7 @@ export default function Images() {
                                                         className="cursor-pointer"
                                                     />
                                                 </div>
-                                                <CardFooter className="p-2">
+                                                {/* <CardFooter className="p-2">
                                                     <Button
                                                         onClick={() => { window.open(src) }}
                                                         variant="secondary"
@@ -228,7 +248,7 @@ export default function Images() {
                                                         <Download className="h-4 w-4 ml-2" />
                                                         הורדה
                                                     </Button>
-                                                </CardFooter>
+                                                </CardFooter> */}
                                             </Card>
                                         </div>
                                     ))}
