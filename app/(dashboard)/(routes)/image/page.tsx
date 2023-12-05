@@ -77,6 +77,11 @@ export default function Images() {
                 icon={ImageIcon}
                 iconColor="text-pink-700"
                 bgColor="bg-pink-700/10"
+                tips={[
+                    "כדאי להוסיף תיאורים כמו \"איכות גבוהה\" \"מרהיב\" וכדומה",
+                    "הוסיפו תיאור מדויק של התמונה שתרצו: \"ציור\" \"צילום מקצועי\" \"צילום סטודיו\" וכדומה",
+                    "נסו להיות ספציפיים. הגדירו למחשב סגנון מדויק (למשל: ציור אימפרסיוניסטי של קלוד מונה)",
+                ]}
             />
             <div className="px-4 lg:px-8 w-full md:w-11/12">
                 <div>
@@ -179,7 +184,7 @@ export default function Images() {
                                 src={displayImage}
                                 className="animate-scale rounded-lg"
                             />
-                            <X className="fixed p-2 top-2 right-2 h-12 w-12 rounded-lg cursor-pointer" onClick={() => setDisplayImage('')} />
+                            <X className="fixed p-2 top-2 right-2 h-12 w-12 rounded-lg cursor-pointer animate-scale" onClick={() => setDisplayImage('')} />
                         </div>
                         <div className="fixed bg-gray-400 opacity-80 w-full h-full z-20" onClick={() => setDisplayImage('')}>
                         </div>

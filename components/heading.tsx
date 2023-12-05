@@ -1,5 +1,6 @@
 import { cn } from "@/lib/utils"
 import { LucideIcon } from "lucide-react"
+import { Accordion, AccordionItem, AccordionContent, AccordionTrigger } from "@/components/ui/accordion"
 
 interface HeadingProps {
     title: string
@@ -7,6 +8,7 @@ interface HeadingProps {
     icon: LucideIcon
     iconColor?: string
     bgColor?: string
+    tips?: string[]
 }
 
 export default function Heading({
@@ -14,18 +16,33 @@ export default function Heading({
     description,
     icon: Icon,
     iconColor,
-    bgColor
+    bgColor,
+    tips
 }: HeadingProps) {
     return (
-        <div className="px-4 lg:px-8 flex items-center gap-x-2 lg:gap-x-4 caret-transparent mb-4 lg:mb-8 mt-20">
-            <div className={cn("p-2 w-fit rounded-md", bgColor)}>
-                <Icon className={cn("w-10 h-10", iconColor)} />
+        <>
+            <div className="px-4 lg:px-8 flex items-center gap-x-2 lg:gap-x-4 caret-transparent mb-2 lg:mb-4 mt-20">
+                <div className={cn("p-2 w-fit rounded-md", bgColor)}>
+                    <Icon className={cn("w-10 h-10", iconColor)} />
+                </div>
+                <div>
+                    <h2 className="text-3xl font-bold">{title}</h2>
+                    <p className="text-sm font-bold">{description}</p>
+                </div>
             </div>
-            <div>
-                <h2 className="text-3xl font-bold">{title}</h2>
-                <p className="text-sm font-bold">{description}</p>
+            <div className="px-6 lg:px-10">
+                <Accordion type="single" collapsible>
+                    <AccordionItem value="item-1">
+                        <AccordionTrigger className="no-underline justify-start">טיפים ל<span className="ml-4">{title}</span></AccordionTrigger>
+                        <AccordionContent>
+                            {tips?.map(line =>
+                                <p key={line} className="caret-transparent my-2 text-justify"><span className="ml-4">◾</span> {line}</p>
+                            )}
+                        </AccordionContent>
+                    </AccordionItem>
+                </Accordion >
             </div>
-        </div>
+        </>
     )
 }
 

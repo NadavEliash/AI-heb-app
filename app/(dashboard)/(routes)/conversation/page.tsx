@@ -88,6 +88,11 @@ export default function Conversation() {
                 icon={MessagesSquare}
                 iconColor="text-violet-500"
                 bgColor="bg-violet-500/10"
+                tips={[
+                    "השאלה צריכה להיות ברורה ומדויקת, על מנת לקבל תשובה מיטבית",
+                    "הימנעו מכפל משמעות. נסו לכתוב כך שלדברים תהיה משמעות ברורה אחת בלבד",
+                    "שימו לב: הצ'אט לא יודע לענות על שאלות אקטואליות (כאלה שקשורות לזמן או למקום הספציפי שבו אתם נמצאים)"
+                ]}
             />
             <div className="px-4 lg:px-8 w-full md:w-11/12">
                 <div>
@@ -104,7 +109,7 @@ export default function Conversation() {
                                             <Input
                                                 className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent pla"
                                                 disabled={isLoading}
-                                                placeholder="שאלו כאן כל שאלה שרק תרצו"
+                                                placeholder="שאלו כל שאלה שתרצו. ידע כללי, קבלת עצה בכל תחום ואפילו סתם שיחה"
                                                 {...field}
                                             />
                                         </FormControl>

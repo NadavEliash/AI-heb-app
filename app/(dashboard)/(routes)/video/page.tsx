@@ -97,6 +97,12 @@ export default function Video() {
                 icon={VideoIcon}
                 iconColor="text-orange-700"
                 bgColor="bg-orange-700/10"
+                tips={[
+                    "שימו לב שקטע הוידאו הוא קצר, הוא מדמה תנועה בסיסית בלבד",
+                    "נסו לתאר כמה שיותר את התנועה שאמורה להתרחש בקטע הוידאו",
+                    "נסו להיות ספציפיים. הוסיפו תיאורים והכוונה מדויקת",
+                ]}
+
             />
             <div className="px-4 lg:px-8 w-full md:w-11/12">
                 <div>
