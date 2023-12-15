@@ -2,6 +2,7 @@ import Replicate from "replicate"
 import { auth } from "@clerk/nextjs"
 import { NextResponse } from "next/server"
 import { checkApiLimit, increaseApiLimit } from "@/lib/api-limit"
+import { checkSubscription } from "@/lib/subscription"
 
 const replicate = new Replicate({
     auth: process.env.REPLICATE_API_TOKEN
@@ -25,10 +26,15 @@ export async function POST(
             return new NextResponse("prompt is required", { status: 400 })
         }
 
-        const freeTrial = await checkApiLimit()
-        if (!freeTrial) {
-            return new NextResponse("Free trial has expired", { status: 403 })
+        const subscription = await checkSubscription()
+
+        if (!subscription) {
+            const freeTrial = await checkApiLimit()
+            if (!freeTrial) {
+                return new NextResponse("Free trial has expired", { status: 403 })
+            }
         }
+
 
         // const response = await replicate.run(
         //     "lucataco/animate-diff:beecf59c4aee8d81bf04f0381033dfa10dc16e845b4ae00d281e2fa377e48a9f",
@@ -47,7 +53,7 @@ export async function POST(
                 motion_module: "mm_sd_v14"
             }
         })
-        
+
         return NextResponse.json(prediction)
 
     } catch (error) {

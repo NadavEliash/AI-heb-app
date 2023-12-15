@@ -13,6 +13,7 @@ const rubik = Rubik({ weight: "700", subsets: ['hebrew'] }) as NextFont
 
 interface SidebarProps {
     freeApiCount: number
+    periodEnd?: Date | null
 }
 
 const routes = [
@@ -53,7 +54,9 @@ const routes = [
     },
 ]
 
-export default function Sidebar({ freeApiCount = 0 }: SidebarProps) {
+export default function Sidebar(
+    { freeApiCount = 0, periodEnd }: SidebarProps
+) {
     const pathname = usePathname()
 
     return (
@@ -79,7 +82,7 @@ export default function Sidebar({ freeApiCount = 0 }: SidebarProps) {
                 </div>
             </div>
             <div className="mb-8">
-                <FreeCounter freeApiCount={freeApiCount} />
+                <FreeCounter freeApiCount={freeApiCount} periodEnd={periodEnd}/>
             </div>
         </div>
     )

@@ -1,19 +1,22 @@
 import Navbar from "@/components/navbar"
-import PaymentMassage from "@/components/payment-msg"
 import Sidebar from "@/components/sidebar"
+import PaymentMassage from "@/components/payment-msg"
 import UserMassage from "@/components/user-msg"
+import ProModal from "@/components/pro-modal"
 import { getFreeApiCount } from "@/lib/api-limit"
-import { useEffect } from "react"
-
+import { checkSubscription } from "@/lib/subscription"
+ 
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
+    const subscription = await checkSubscription()
     const freeApiCount = await getFreeApiCount()
 
     return (
         <div dir="rtl" className="h-full w-full absolute left-0">
             <UserMassage />
             <PaymentMassage />
+            <ProModal />
             <div className="hidden h-full md:flex md:w-72 md:flex-col md:fixed md:inset-y-0 z-[10] bg-gray-900">
-                <Sidebar freeApiCount={freeApiCount} />
+                <Sidebar freeApiCount={freeApiCount} periodEnd={subscription?.periodEnd}/>
             </div>
             <main className="md:pr-72">
                 <Navbar />

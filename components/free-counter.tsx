@@ -12,10 +12,11 @@ const rubik = Rubik({ weight: "500", subsets: ["hebrew"] })
 
 interface FreeCounterProps {
     freeApiCount: number
+    periodEnd?: Date | null
 }
 
 
-export function FreeCounter({ freeApiCount = 0 }: FreeCounterProps) {
+export function FreeCounter({ freeApiCount = 0, periodEnd }: FreeCounterProps) {
     const [mounted, setMounted] = useState(false)
 
     const { openModal } = useProModal()
@@ -24,21 +25,29 @@ export function FreeCounter({ freeApiCount = 0 }: FreeCounterProps) {
         setMounted(true)
     }, [])
 
-    if (!mounted) return null
+    const timeLeft = periodEnd ? periodEnd.getTime() - Date.now() : 0
 
+    if (!mounted) return null
 
     return (
         <div className={cn("p-4 bg-white/70 text-gray-700 text-center mx-4 sm:mx-8 rounded-lg h-36", rubik.className)}>
-            <p className="text-lg mb-3">תקופת ניסיון:
-                <span className="text-base"> {MAX_FREE_ROUNDS} / {freeApiCount} </span>
-            </p>
-            <Progress value={100 * freeApiCount / MAX_FREE_ROUNDS} className="mb-4 mx-auto h-2" />
-            <Button
+            {periodEnd ?
+                <div className="mb-4">
+                    <p>שימוש חופשי עד:</p>
+                    <p>{periodEnd.toLocaleDateString('en-IL')}</p>
+                </div>
+                : <div>
+                    <p className="text-lg mb-3">תקופת ניסיון:
+                        <span className="text-base"> {MAX_FREE_ROUNDS} / {freeApiCount} </span>
+                    </p>
+                    <Progress value={100 * freeApiCount / MAX_FREE_ROUNDS} className="mb-4 mx-auto h-2" />
+                </div>}
+            {timeLeft < 2592000000 && <Button
                 variant={"upgrade"}
                 className="w-3/4 text-lg"
                 onClick={openModal}>
                 שדרג
-            </Button>
+            </Button>}
         </div>
     )
 }

@@ -26,7 +26,6 @@ export default function RootLayout({
           <link rel='icon' href='https://www.svgrepo.com/show/352965/ai.svg' sizes='any' />
         </head>
         <body className={fredoka.className}>
-          <ProModal />
           {children}
         </body>
       </html>
