@@ -25,7 +25,7 @@ export default function Settings() {
     }, [])
 
     const checkSubscription = async () => {
-        const response = await axios.get('/api/check_subscription')
+        const response = await axios.post('/api/check_subscription')
         setSubscription(response.data)
     }
 
