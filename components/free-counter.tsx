@@ -12,7 +12,7 @@ const rubik = Rubik({ weight: "500", subsets: ["hebrew"] })
 
 interface FreeCounterProps {
     freeApiCount: number
-    periodEnd?: Date | null
+    periodEnd: Date | false
 }
 
 

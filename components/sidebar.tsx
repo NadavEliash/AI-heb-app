@@ -13,7 +13,7 @@ const rubik = Rubik({ weight: "700", subsets: ['hebrew'] }) as NextFont
 
 interface SidebarProps {
     freeApiCount: number
-    periodEnd?: Date | null
+    periodEnd: Date | false
 }
 
 const routes = [
