@@ -8,9 +8,10 @@ import Sidebar from "./sidebar";
 
 interface MobileSidebarProps {
     freeApiCount: number
+    periodEnd?: Date | false
 }
 
-export default function MobileSidebar({ freeApiCount = 0 }: MobileSidebarProps) {
+export default function MobileSidebar({ freeApiCount = 0, periodEnd }: MobileSidebarProps) {
     const [isMounted, setIsMounted] = useState(false)
     const [open, setOpen] = useState(false)
 
@@ -28,7 +29,7 @@ export default function MobileSidebar({ freeApiCount = 0 }: MobileSidebarProps) 
                 </div>
             </SheetTrigger>
             <SheetContent side="right" className="p-0" dir="rtl" onClick={()=>setOpen(false)}>
-                <Sidebar freeApiCount={freeApiCount} />
+                <Sidebar freeApiCount={freeApiCount} periodEnd={periodEnd || false}/>
             </SheetContent>
         </Sheet>
     )
