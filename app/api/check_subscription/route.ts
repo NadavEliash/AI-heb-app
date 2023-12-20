@@ -6,12 +6,22 @@ export async function POST() {
     try {
         const { userId } = auth()
 
-        if (!userId) return false
+        if (!userId) {
+            return new NextResponse("Unauthorized", { status: 401 })
+        }
 
         const subscription = await checkSubscription()
 
         if (!subscription) {
-            return false
+            const trial = {
+                id: '',
+                userId,
+                createdAt: Date.now(),
+                updatedAt: Date.now(),
+                plan: 'trial',
+                periodEnd: Date.now()
+            }
+            return NextResponse.json(trial)
         }
         return NextResponse.json(subscription)
     } catch (error) {

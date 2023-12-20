@@ -26,13 +26,12 @@ export default function Settings() {
 
     const checkSubscription = async () => {
         const response = await axios.post('/api/check_subscription')
-        console.log(response.data)
 
-        // setSubscription(response.data)
+        setSubscription(response.data.plan === "trial"? null : response.data)
     }
-
+    
     const { openModal } = useProModal()
-
+    
     const plan = subscription?.plan === "month" ? "חודשי" : subscription?.plan === "quarter" ? "לשלושה חודשים" : "שנתי"
     const from = subscription ? new Date(subscription.updatedAt).toLocaleDateString('en-IL') : ''
     const to = subscription ? new Date(subscription.periodEnd).toLocaleDateString('en-IL') : ''
