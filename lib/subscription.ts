@@ -37,7 +37,7 @@ export async function setSubscription(timeLeft: number, plan: string) {
 export async function checkSubscription() {
     const { userId } = auth()
 
-    if (!userId) return null
+    if (!userId) return false
 
     const subscription = await prismadb.userSubscription.findUnique({
         where: {
@@ -50,10 +50,10 @@ export async function checkSubscription() {
             await prismadb.userSubscription.delete({
                 where: { userId }
             })
-            return null
+            return false
         }
         return subscription
     } else {
-        return null
+        return false
     }
 }

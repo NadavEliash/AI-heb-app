@@ -9,7 +9,7 @@ export async function POST() {
         if (!userId) return null
 
         const subscription = await checkSubscription()
-        return subscription? NextResponse.json(subscription) : new NextResponse("")
+        return NextResponse.json(subscription)
     } catch (error) {
         console.log("CHECK_SUBSCRIPTION_ERROR")
         return new NextResponse("internal error", { status: 500 })
