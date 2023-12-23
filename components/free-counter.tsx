@@ -30,7 +30,7 @@ export function FreeCounter({ freeApiCount = 0, periodEnd }: FreeCounterProps) {
     if (!mounted) return null
 
     return (
-        <div className={cn("p-4 bg-white/70 text-gray-700 text-center mx-4 sm:mx-8 rounded-lg h-36", rubik.className)}>
+        <div className={cn("p-4 bg-white/70 text-gray-700 text-center mx-4 sm:mx-8 rounded-lg", rubik.className)}>
             {periodEnd ?
                 <div className="mb-4">
                     <p>שימוש חופשי עד:</p>
@@ -40,7 +40,7 @@ export function FreeCounter({ freeApiCount = 0, periodEnd }: FreeCounterProps) {
                     <p className="text-lg mb-3">תקופת ניסיון:
                         <span className="text-base"> {MAX_FREE_ROUNDS} / {freeApiCount} </span>
                     </p>
-                    <Progress value={100 * freeApiCount / MAX_FREE_ROUNDS} className="mb-4 mx-auto h-2" />
+                    <Progress value={100 * freeApiCount / MAX_FREE_ROUNDS} className="mb-8 mx-auto h-2" />
                 </div>}
             {timeLeft < 2592000000 && <Button
                 variant={"upgrade"}

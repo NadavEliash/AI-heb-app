@@ -9,7 +9,7 @@ import { checkSubscription } from "@/lib/subscription"
 export default async function DashboardLayout({ children }: { children: React.ReactNode }) {
     const subscription = await checkSubscription()
     const freeApiCount = await getFreeApiCount()
-    const periodEnd = subscription ? subscription.periodEnd ? subscription.periodEnd : false : false
+    const periodEnd = subscription ? subscription.periodEnd : false
 
     return (
         <div dir="rtl" className="h-full w-full absolute left-0">

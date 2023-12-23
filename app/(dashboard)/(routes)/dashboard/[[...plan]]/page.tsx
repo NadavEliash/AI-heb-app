@@ -42,6 +42,7 @@ export default function DashboardPage() {
     useEffect(() => {
         if (params.plan) {
             setSubscription()
+            router.push('/dashboard')
         }
     }, [])
 

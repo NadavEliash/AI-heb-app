@@ -9,17 +9,20 @@ export async function POST(
         const { userId } = auth()
         const body = await req.json()
         const { data } = body
+        const MONTH = process.env.PREMIUM_MONTH
+        const QUARTER = process.env.PREMIUM_QUARTER
+        const YEAR = process.env.PREMIUM_YEAR
 
         let timeLeft
         let plan
 
-        if (data === "month") {
+        if (data === MONTH) {
             timeLeft = 30 * 864 * 100000
             plan = "month"
-        } else if (data === "quarter") {
-            timeLeft = 120 * 864 * 100000
+        } else if (data === QUARTER) {
+            timeLeft = 92 * 864 * 100000
             plan = "quarter"
-        } else if (data === "year") {
+        } else if (data === YEAR) {
             timeLeft = 365 * 864 * 100000
             plan = "year"
         } else {

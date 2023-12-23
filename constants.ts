@@ -1,1 +1,1 @@
-export const MAX_FREE_ROUNDS:number = 30
+export const MAX_FREE_ROUNDS:number = 5

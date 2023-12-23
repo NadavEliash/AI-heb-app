@@ -27,12 +27,12 @@ export default function Settings() {
     const checkSubscription = async () => {
         const response = await axios.post('/api/check_subscription')
 
-        setSubscription(response.data.plan === "trial"? null : response.data)
+        setSubscription(response.data.plan === "trial" ? null : response.data)
     }
-    
+
     const { openModal } = useProModal()
-    
-    const plan = subscription?.plan === "month" ? "חודשי" : subscription?.plan === "quarter" ? "לשלושה חודשים" : "שנתי"
+
+    const plan = subscription?.plan === "month" ? "חודשי" : subscription?.plan === "quarter" ? "לשלושה חודשים" : subscription?.plan === "year" ? "שנתי" : "תקופת ניסיון"
     const from = subscription ? new Date(subscription.updatedAt).toLocaleDateString('en-IL') : ''
     const to = subscription ? new Date(subscription.periodEnd).toLocaleDateString('en-IL') : ''
 
@@ -44,9 +44,9 @@ export default function Settings() {
                 icon={SettingsIcon}
                 bgColor="bg-gray-100"
             />
-            <div className="">
+            <div className="flex flex-col items-start gap-4 px-10 lg:px-16 py-8">
                 {subscription ?
-                    <div className="flex flex-col items-start gap-4 px-10 lg:px-16 py-8">
+                    <div>
                         <h2 className="text-xl">המנוי שלך הוא {plan}</h2>
                         <div className="flex justify-between w-52">
                             <h1>החל מתאריך: </h1>
@@ -57,13 +57,15 @@ export default function Settings() {
                             <h1>{to}</h1>
                         </div>
                     </div>
-                    : <h2 className="px-4 lg:px-8 py-4 text-xl">כרגע אין בחשבונך מסלול משודרג</h2>
+                    : <div className="py-4">
+                        <h2 className="text-xl">כרגע אין בחשבונך מסלול משודרג</h2>
+                    </div>
                 }
                 {plan !== "שנתי" && <Button
                     variant={"upgrade"}
-                    className="w-40 text-lg rounded-full h-12 mx-10 lg:mx-16 mt-10"
+                    className="w-60 text-lg rounded-full h-12 mt-10 flex items-start"
                     onClick={openModal}>
-                    שדרג
+                    שדרג אותי
                 </Button>}
             </div>
         </div>
