@@ -5,7 +5,7 @@ export const UserAvatar = () => {
     const { user } = useUser()
 
     return (
-        <div className="w-8 h-8">
+        <div className="w-8 h-8 hidden sm:flex">
             <Avatar>
                 <AvatarImage src={user?.imageUrl} className="rounded-full"/>
                 <AvatarFallback className="rounded-full">

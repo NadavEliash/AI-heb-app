@@ -60,6 +60,11 @@ module.exports = {
         md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
       },
+      height: {
+        '128': '32rem',
+        '144': '36rem',
+        '160': '40rem',
+      },
       keyframes: {
         "accordion-down": {
           from: { height: 0 },

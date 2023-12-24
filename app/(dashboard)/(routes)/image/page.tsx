@@ -102,12 +102,12 @@ export default function Images() {
                     "נסו להיות ספציפיים. הגדירו למחשב סגנון מדויק (למשל: ציור אימפרסיוניסטי של קלוד מונה)",
                 ]}
             />
-            <div className="px-4 lg:px-8 w-full md:w-11/12">
+            <div className="px-4 lg:px-8 w-full md:w-11/12 mt-6">
                 <div>
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
-                            className="rounded-lg border w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
+                            className="rounded-lg border border-gray-400 w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
                         >
                             <FormField
                                 name="prompt"

@@ -40,10 +40,17 @@ export default function Conversation() {
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
-            const hebUserMessage = {
+            interface hebUserMessage {
+                content: any
+                role: any
+            }
+
+            const hebUserMessage: hebUserMessage = {
                 content: values.prompt,
                 role: "user"
             }
+
+            setMessages((prev) => [hebUserMessage, ...prev])
 
             const translatedUserMessage = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
             const enUserMessage = {
@@ -63,7 +70,7 @@ export default function Conversation() {
             }
 
             setEnMessages((prev) => [...prev, enUserMessage, enResponse])
-            setMessages((prev) => [...prev, hebResponse, hebUserMessage])
+            setMessages((prev) => [hebResponse, ...prev])
 
             form.reset()
 
@@ -90,57 +97,59 @@ export default function Conversation() {
                 bgColor="bg-violet-500/10"
                 tips={[
                     "השאלה צריכה להיות ברורה ומדויקת, על מנת לקבל תשובה מיטבית",
+                    "השאלות והתשובות מתורגמות, שימו לב שעלולות ליפול טעויות",
                     "הימנעו מכפל משמעות. נסו לכתוב כך שלדברים תהיה משמעות ברורה אחת בלבד",
                     "שימו לב: הצ'אט לא יודע לענות על שאלות אקטואליות (כאלה שקשורות לזמן או למקום הספציפי שבו אתם נמצאים)"
                 ]}
             />
-            <div className="px-4 lg:px-8 w-full md:w-11/12">
-                <div>
-                    <Form {...form}>
-                        <form
-                            onSubmit={form.handleSubmit(onSubmit)}
-                            className="rounded-lg border border-gray-400 p-4 px-4 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2 mb-8"
-                        >
-                            <FormField
-                                name="prompt"
-                                render={({ field }) => (
-                                    <FormItem className="col-span-12 lg:col-span-10">
-                                        <FormControl className="m-0 p-0">
-                                            <Input
-                                                className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent pla"
-                                                disabled={isLoading}
-                                                placeholder="שאלו כל שאלה שתרצו. ידע כללי, קבלת עצה בכל תחום ואפילו סתם שיחה"
-                                                {...field}
-                                            />
-                                        </FormControl>
-                                    </FormItem>
-                                )}
-                            />
-                            <Button
-                                className="col-span-12 lg:col-span-2 w-full"
-                                disabled={isLoading}>
-                                לשאול
-                            </Button>
-                        </form>
-                    </Form>
+            <div className="px-6 lg:px-16 w-full">
+                <div className="fixed bg-white w-full bottom-8 right-0">
+                    <div className="md:mr-72 px-6 lg:px-16">
+                        <Form {...form}>
+                            <form
+                                onSubmit={form.handleSubmit(onSubmit)}
+                                className="rounded-lg border border-gray-700 p-4 px-4 focus-within:shadow-sm grid grid-cols-12 gap-2 lg:mb-8"
+                            >
+                                <FormField
+                                    name="prompt"
+                                    render={({ field }) => (
+                                        <FormItem className="col-span-12 lg:col-span-10">
+                                            <FormControl className="m-0 p-0">
+                                                <Input
+                                                    className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent placeholder:text-sm sm:placeholder:text-base"
+                                                    disabled={isLoading}
+                                                    placeholder="שאלו כל שאלה שתרצו, בכל תחום"
+                                                    {...field}
+                                                />
+                                            </FormControl>
+                                        </FormItem>
+                                    )}
+                                />
+                                <Button
+                                    className="col-span-12 lg:col-span-2 w-full"
+                                    disabled={isLoading}>
+                                    לשאול
+                                </Button>
+                            </form>
+                        </Form>
+                    </div>
                 </div>
-                <div className="space-y-4 mt-4">
-                    {isLoading && (
-                        <div className="p-8 rounded-lg w-full flex flex-col items-center justify-center bg-muted">
-                            <Loader animation="animate-growing" />
-                        </div>
-                    )}
-
-                    <div className="flex flex-col-reverse gap-y-4">
+                <div className="space-y-4 h-144 flex flex-col justify-end">
+                    <div className="flex flex-col-reverse gap-y-4 overflow-y-scroll no-scrollbar">
                         {messages.map(message =>
                             <div
                                 key={message.content}
-                                className={cn("w-full border rounded-lg p-8 flex items-start gap-x-8 whitespace-pre-wrap", message.role === "assistant" ? "bg-violet-100" : "font-bold bg-slate-200 text-sm")}>
+                                className={cn("w-full border rounded-lg p-4 sm:p-8 flex items-start gap-x-8 whitespace-pre-wrap", message.role === "assistant" ? "bg-violet-100" : "font-bold bg-slate-200 text-sm")}>
                                 {message.role === "assistant" ? <BotAvatar /> : <UserAvatar />}
                                 {message.content}
                             </div>
                         )}
                     </div>
+                    {isLoading && (
+                        <div className="p-8 rounded-lg w-full flex flex-col items-center justify-center bg-muted">
+                            <Loader animation="chat" />
+                        </div>
+                    )}
                 </div>
             </div>
         </div>
