@@ -16,10 +16,8 @@ import { usePaymentMsg } from "@/store/payment-msg-store"
 export default function ProModal() {
     const isOpen = useProModal((state) => state.isOpen)
     const { closeModal } = useProModal()
-    const { openMsg } = usePaymentMsg()
 
     function onPayment() {
-        openMsg()
         closeModal()
     }
 
@@ -37,45 +35,45 @@ export default function ProModal() {
                                 <Badge className="hidden sm:block font-normal p-1 px-4 bg-pink-700 hover:bg-pink-500">
                                     טעימה
                                 </Badge>
-                                <h2 className="text-7xl"><span className="text-xl mr-2">₪</span>20</h2>
+                                <h2 className="text-7xl"><span className="text-xl mr-2">₪</span>28</h2>
                                 <div>לחודש אחד,<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">בלבד</span>
                                 </div>
-                                {/* <Link className="w-full" href={"/dashboard"} onClick={onPayment}> */}
+                                <Link className="w-full" href={"https://app.upay.co.il/API6/s.php?m=Uzd1dlg4aXdMcmlxakN0YlpwUXZJZz09"}>
                                 <Button className="w-full bg-pink-700 hover:bg-pink-600 rounded-full" onClick={onPayment}>
                                     המשך
                                 </Button>
-                                {/* </Link> */}
+                                </Link>
                             </div>
 
                             <div className="border-2 rounded-3xl h-40 sm:h-80 sm:flex sm:flex-col items-center justify-between text-lg w-full p-2 text-center">
                                 <Badge className="hidden sm:block font-normal p-1 px-4 bg-blue-500 hover:bg-blue-300">
                                     נשנוש
                                 </Badge>
-                                <h2 className="text-7xl"><span className="text-xl mr-2">₪</span>16</h2>
+                                <h2 className="text-7xl"><span className="text-xl mr-2">₪</span>20</h2>
                                 <div>לחודש,<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">במשך 3 חודשים</span>
                                 </div>
-                                {/* <Link className="w-full" href={"/dashboard"} onClick={onPayment}> */}
+                                <Link className="w-full" href={"https://app.upay.co.il/API6/s.php?m=V0cwM1JjQ3ZuWDcydkVZclpkZG81Zz09"}>
                                 <Button className="w-full bg-blue-500 hover:bg-blue-400 rounded-full" onClick={onPayment}>
                                     המשך
                                 </Button>
-                                {/* </Link> */}
+                                </Link>
                             </div>
 
                             <div className="border-2 rounded-3xl h-40 sm:h-80 flex flex-col items-center justify-between text-lg w-full p-2 text-center">
                                 <Badge className="hidden sm:block font-normal p-1 px-4 bg-green-500 hover:bg-green-300">
                                     חופשי על הבר
                                 </Badge>
-                                <h2 className="text-7xl"><span className="text-xl mr-2">₪</span>10</h2>
+                                <h2 className="text-7xl"><span className="text-xl mr-2">₪</span>16</h2>
                                 <div>לחודש,<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">במשך שנה</span>
                                 </div>
-                                {/* <Link className="w-full" href={"/dashboard"} onClick={onPayment}> */}
+                                <Link className="w-full" href={"https://app.upay.co.il/API6/s.php?m=K3ZMZTRHODUzWVF4Z010SXJWdjY2Zz09"}>
                                 <Button className="w-full bg-green-500 hover:bg-green-400 rounded-full" onClick={onPayment}>
                                     המשך
                                 </Button>
-                                {/* </Link> */}
+                                </Link>
                             </div>
                         </div>
                     </DialogHeader>

@@ -30,7 +30,7 @@ export default function Heading({
                     <p className="text-sm font-bold">{description}</p>
                 </div>
             </div>
-            {tips && <div className="mx-10">
+            {tips && <div className="mx-10 mt-2">
                 <Accordion type="single" collapsible>
                     <AccordionItem value="item-1">
                         <AccordionTrigger className="no-underline justify-start">טיפים ל<span className="ml-4">{title}</span></AccordionTrigger>
