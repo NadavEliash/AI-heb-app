@@ -10,25 +10,25 @@ import { useEffect } from "react"
 
 const tools = [
     {
-        label: 'שיחה עם בינה מלאכותית',
+        label: 'התכתבו באופן חופשי עם צ\'אט GPT',
         icon: MessageSquare,
         href: '/conversation',
         color: 'text-violet-500'
     },
     {
-        label: 'מחולל התמונות',
+        label: 'כתבו משפט והמחשב יהפוך אותו לתמונות מרהיבות',
         icon: ImageIcon,
         href: '/image',
         color: 'text-pink-700'
     },
     {
-        label: 'מחולל הוידאו',
+        label: 'תארו למחשב את הוידאו שברצונכם ליצור',
         icon: VideoIcon,
         href: '/video',
         color: 'text-orange-700'
     },
     {
-        label: 'מחולל המוזיקה',
+        label: 'צרו קטע שמע ייחודי בעזרת כמה מילים',
         icon: Music,
         href: '/music',
         color: 'text-emerald-500'

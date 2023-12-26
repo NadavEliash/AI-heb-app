@@ -16,9 +16,11 @@ import { usePaymentMsg } from "@/store/payment-msg-store"
 export default function ProModal() {
     const isOpen = useProModal((state) => state.isOpen)
     const { closeModal } = useProModal()
+    const { openMsg } = usePaymentMsg()
 
-    function onPayment() {
+    function onPayment(link: string) {
         closeModal()
+        openMsg(link)
     }
 
     return (
@@ -30,50 +32,47 @@ export default function ProModal() {
                             רוצים להמשיך ליהנות מבינה עברית ללא הגבלה?
                         </DialogTitle>
                         <h3 className="hidden sm:block text-center text-xl">לגישה חופשית לכל התכנים באתר:</h3>
-                        <div className="w-full sm:pt-8 flex flex-col sm:flex-row items-center gap-1 sm:gap-4">
+                        <div className="w-full sm:pt-8 flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
                             <div className="border-2 rounded-3xl sm:h-80 flex flex-col items-center justify-between text-lg w-full p-2 text-center">
                                 <Badge className="hidden sm:block font-normal p-1 px-4 bg-pink-700 hover:bg-pink-500">
                                     טעימה
                                 </Badge>
-                                <h2 className="text-7xl"><span className="text-xl mr-2">₪</span>28</h2>
-                                <div>לחודש אחד,<br className="hidden sm:block" />
+                                <h2 className="text-6xl sm:text-7xl"><span className="text-xl mr-2">₪</span>28</h2>
+                                <div>לחודש אחד<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">בלבד</span>
                                 </div>
-                                <Link className="w-full" href={"https://app.upay.co.il/API6/s.php?m=Uzd1dlg4aXdMcmlxakN0YlpwUXZJZz09"}>
-                                <Button className="w-full bg-pink-700 hover:bg-pink-600 rounded-full" onClick={onPayment}>
+                                <p className="text-sm">סה"כ 28 ₪</p>
+                                <Button className="w-full bg-pink-700 hover:bg-pink-600 rounded-full" onClick={() => onPayment("https://app.upay.co.il/API6/s.php?m=Uzd1dlg4aXdMcmlxakN0YlpwUXZJZz09")}>
                                     המשך
                                 </Button>
-                                </Link>
                             </div>
 
-                            <div className="border-2 rounded-3xl h-40 sm:h-80 sm:flex sm:flex-col items-center justify-between text-lg w-full p-2 text-center">
+                            <div className="border-2 rounded-3xl h-42 sm:h-80 sm:flex sm:flex-col items-center justify-between text-lg w-full p-2 text-center">
                                 <Badge className="hidden sm:block font-normal p-1 px-4 bg-blue-500 hover:bg-blue-300">
                                     נשנוש
                                 </Badge>
-                                <h2 className="text-7xl"><span className="text-xl mr-2">₪</span>20</h2>
-                                <div>לחודש,<br className="hidden sm:block" />
+                                <h2 className="text-6xl sm:text-7xl"><span className="text-xl mr-2">₪</span>20</h2>
+                                <div>לחודש<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">במשך 3 חודשים</span>
                                 </div>
-                                <Link className="w-full" href={"https://app.upay.co.il/API6/s.php?m=V0cwM1JjQ3ZuWDcydkVZclpkZG81Zz09"}>
-                                <Button className="w-full bg-blue-500 hover:bg-blue-400 rounded-full" onClick={onPayment}>
+                                <p className="text-sm">סה"כ 60 ₪</p>
+                                <Button className="w-full bg-blue-500 hover:bg-blue-400 rounded-full" onClick={() => onPayment("https://app.upay.co.il/API6/s.php?m=V0cwM1JjQ3ZuWDcydkVZclpkZG81Zz09")}>
                                     המשך
                                 </Button>
-                                </Link>
                             </div>
 
-                            <div className="border-2 rounded-3xl h-40 sm:h-80 flex flex-col items-center justify-between text-lg w-full p-2 text-center">
+                            <div className="border-2 rounded-3xl h-42 sm:h-80 flex flex-col items-center justify-between text-lg w-full p-2 text-center">
                                 <Badge className="hidden sm:block font-normal p-1 px-4 bg-green-500 hover:bg-green-300">
                                     חופשי על הבר
                                 </Badge>
-                                <h2 className="text-7xl"><span className="text-xl mr-2">₪</span>16</h2>
-                                <div>לחודש,<br className="hidden sm:block" />
+                                <h2 className="text-6xl sm:text-7xl"><span className="text-xl mr-2">₪</span>16</h2>
+                                <div>לחודש<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">במשך שנה</span>
                                 </div>
-                                <Link className="w-full" href={"https://app.upay.co.il/API6/s.php?m=K3ZMZTRHODUzWVF4Z010SXJWdjY2Zz09"}>
-                                <Button className="w-full bg-green-500 hover:bg-green-400 rounded-full" onClick={onPayment}>
+                                <p className="text-sm">סה"כ 192 ₪</p>
+                                <Button className="w-full bg-green-500 hover:bg-green-400 rounded-full" onClick={() => onPayment("https://app.upay.co.il/API6/s.php?m=K3ZMZTRHODUzWVF4Z010SXJWdjY2Zz09")}>
                                     המשך
                                 </Button>
-                                </Link>
                             </div>
                         </div>
                     </DialogHeader>

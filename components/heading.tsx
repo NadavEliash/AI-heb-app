@@ -36,7 +36,10 @@ export default function Heading({
                         <AccordionTrigger className="no-underline justify-start">טיפים ל<span className="ml-4">{title}</span></AccordionTrigger>
                         <AccordionContent>
                             {tips?.map(line =>
-                                <p key={line} className="caret-transparent my-2 text-justify"><span className="ml-4">◾</span> {line}</p>
+                                <div key={line} className="text-justify py-2">
+                                    <div className="-mb-5">◾</div>
+                                    <p className="inline caret-transparent mr-4">{line}</p>
+                                </div>
                             )}
                         </AccordionContent>
                     </AccordionItem>

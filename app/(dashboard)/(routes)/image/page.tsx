@@ -209,7 +209,7 @@ export default function Images() {
                         </div>
                     </div>
                 )}
-                <div className="space-y-4 mt-16">
+                <div className="space-y-4 mt-4">
                     {isLoading && (
                         <div className="py-20">
                             <Loader animation="animate-growing" />
@@ -221,7 +221,7 @@ export default function Images() {
                             <div
                                 className="p-4 my-4"
                                 key={row.text}>
-                                <h2 className="lg:hidden text-lg font-light p-1">&quot;{row.text}&quot;</h2>
+                                <h2 className="lg:hidden font-light p-1">&quot;{row.text}&quot;</h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-2">
                                     {row.images.map(src => (
                                         <div className="relative group" key={src}>
