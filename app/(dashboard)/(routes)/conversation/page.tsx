@@ -15,7 +15,7 @@ import { formSchema } from "./constants"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader } from "@/components/loader"
-import { MessagesSquare, Rss } from "lucide-react"
+import { MessagesSquare, Rss, Send } from "lucide-react"
 import { UserAvatar } from "@/components/user-avatar"
 import { BotAvatar } from "@/components/bot-avatar"
 import { useProModal } from "@/store/pro-modal-store"
@@ -103,22 +103,22 @@ export default function Conversation() {
                 ]}
             />
             <div className="px-6 lg:px-16 w-full">
-                <div className="fixed bg-white w-full bottom-8 right-0">
+                <div className="fixed bg-white w-full bottom-8 short:bottom-4 right-0">
                     <div className="md:mr-72 px-6 lg:px-16">
                         <Form {...form}>
                             <form
                                 onSubmit={form.handleSubmit(onSubmit)}
-                                className="rounded-lg border border-gray-700 p-4 px-4 focus-within:shadow-sm grid grid-cols-12 gap-2 lg:mb-8"
+                                className="rounded-lg border border-gray-700 p-2 sm:p-4 focus-within:shadow-sm grid grid-cols-12 gap-2"
                             >
                                 <FormField
                                     name="prompt"
                                     render={({ field }) => (
-                                        <FormItem className="col-span-12 lg:col-span-10">
+                                        <FormItem className="col-span-10">
                                             <FormControl className="m-0 p-0">
                                                 <Input
                                                     className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent placeholder:text-sm sm:placeholder:text-base"
                                                     disabled={isLoading}
-                                                    placeholder="שאלו כל שאלה שתרצו, בכל תחום"
+                                                    placeholder="כתבו כאן כל שאלה שתרצו, בכל תחום"
                                                     {...field}
                                                 />
                                             </FormControl>
@@ -126,15 +126,16 @@ export default function Conversation() {
                                     )}
                                 />
                                 <Button
-                                    className="col-span-12 lg:col-span-2 w-full"
+                                    className="col-span-2 p-1"
                                     disabled={isLoading}>
-                                    לשאול
+                                    <p className="hidden sm:block">לשאול</p>
+                                    <Send className="sm:hidden -rotate-90"/>
                                 </Button>
                             </form>
                         </Form>
                     </div>
                 </div>
-                <div className="space-y-4 h-144 flex flex-col justify-end">
+                <div className="space-y-4 h-[65vh] short:h-[55vh] flex flex-col justify-end">
                     <div className="flex flex-col-reverse gap-y-4 overflow-y-scroll no-scrollbar">
                         {messages.map(message =>
                             <div
@@ -146,7 +147,7 @@ export default function Conversation() {
                         )}
                     </div>
                     {isLoading && (
-                        <div className="p-8 rounded-lg w-full flex flex-col items-center justify-center bg-muted">
+                        <div className="p-8 rounded-lg w-full flex flex-col items-center justify-center bg-violet-100">
                             <Loader animation="chat" />
                         </div>
                     )}

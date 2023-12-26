@@ -30,18 +30,19 @@ export default function Heading({
                     <p className="text-sm font-bold">{description}</p>
                 </div>
             </div>
-            {tips && <div className="mx-10 mt-2">
+            {tips && <div className="mt-2">
                 <Accordion type="single" collapsible>
                     <AccordionItem value="item-1">
-                        <AccordionTrigger className="no-underline justify-start">טיפים ל<span className="ml-4">{title}</span></AccordionTrigger>
+                        <AccordionTrigger className="no-underline justify-start mx-10">טיפים ל<span className="ml-4">{title}</span></AccordionTrigger>
                         <AccordionContent>
                             {tips?.map(line =>
-                                <div key={line} className="text-justify py-2">
+                                <div key={line} className="text-justify py-1 sm:py-2 mx-6 sm:mx-10">
                                     <div className="-mb-5">◾</div>
                                     <p className="inline caret-transparent mr-4">{line}</p>
                                 </div>
                             )}
                         </AccordionContent>
+                        <div className="fixed w-full h-4 bg-gradient-to-b from-white to-transparent z-10"></div>
                     </AccordionItem>
                 </Accordion >
             </div>}

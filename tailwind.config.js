@@ -6,7 +6,7 @@ module.exports = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   theme: {
     container: {
       center: true,
@@ -16,6 +16,9 @@ module.exports = {
       },
     },
     extend: {
+      screens: {
+        'short': { 'raw': '(max-height: 800px)' }
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
@@ -75,35 +78,35 @@ module.exports = {
           to: { height: 0 },
         },
         "growing": {
-          "0%": {transform: 'translateX(100%)'},
-          "30%": {transform: 'translateX(35%)'},
-          "70%": {transform: 'translateX(10%)'},
-          "90%": {transform: 'translateX(5%)'},
-          "100%": {transform: 'translateX(2%)'}
+          "0%": { transform: 'translateX(100%)' },
+          "30%": { transform: 'translateX(35%)' },
+          "70%": { transform: 'translateX(10%)' },
+          "90%": { transform: 'translateX(5%)' },
+          "100%": { transform: 'translateX(2%)' }
         },
         "emerge-1": {
-          "0%": {opacity: "0"},
-          "50%": {opacity: "0"},
-          "100%": {opacity: "1"}
+          "0%": { opacity: "0" },
+          "50%": { opacity: "0" },
+          "100%": { opacity: "1" }
         },
         "emerge-2": {
-          "0%": {opacity: "0"},
-          "66%": {opacity: "0"},
-          "100%": {opacity: "1"}
+          "0%": { opacity: "0" },
+          "66%": { opacity: "0" },
+          "100%": { opacity: "1" }
         },
         "emerge-3": {
-          "0%": {opacity: "0"},
-          "75%": {opacity: "0"},
-          "100%": {opacity: "1"}
+          "0%": { opacity: "0" },
+          "75%": { opacity: "0" },
+          "100%": { opacity: "1" }
         },
         "emerge-4": {
-          "0%": {opacity: "0"},
-          "80%": {opacity: "0"},
-          "100%": {opacity: "1"}
+          "0%": { opacity: "0" },
+          "80%": { opacity: "0" },
+          "100%": { opacity: "1" }
         },
         "scale": {
-          "0%": {height: "0", width: "0"},
-          "100%": {height: "100", width: "100"}
+          "0%": { height: "0", width: "0" },
+          "100%": { height: "100", width: "100" }
         }
       },
       animation: {
