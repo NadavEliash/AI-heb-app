@@ -48,14 +48,14 @@ export default function Settings() {
                 icon={SettingsIcon}
                 bgColor="bg-gray-100"
             />
-            <div className="w-full px-10 lg:px-16 py-8">
-                {isLoading && <div className="w-40 mt-10">
+            <div className="w-full sm:px-10 lg:px-16 py-8">
+                {isLoading && <div className="sm:w-40 mt-10">
                     <Loader animation="chat"/>
                 </div>}
                 {subscription ?
-                    !isLoading && <div className="flex flex-col gap-4">
+                    !isLoading && <div className="flex flex-col gap-4 items-center sm:items-start">
                         <h2 className="text-lg sm:text-xl">המנוי שלך הוא <span className="p-2 px-4 mx-2 rounded-full bg-gradient-to-r from-orange-700 to-yellow-400 text-gray-100 font-bold tracking-wider hover:from-yellow-400 hover:to-orange-700">{plan}</span></h2>
-                        <h2 className="my-4">והוא מאפשר לך שימוש חופשי בכל הכלים</h2>
+                        <h2 className="my-4 p-2 text-center">והוא מאפשר לך שימוש חופשי בכל הכלים</h2>
                         <div className="flex justify-between w-48">
                             <h1>תאריך התחלה: </h1>
                             <h1>{from}</h1>

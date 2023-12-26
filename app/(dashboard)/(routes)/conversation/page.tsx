@@ -135,19 +135,21 @@ export default function Conversation() {
                         </Form>
                     </div>
                 </div>
-                <div className="space-y-4 h-[65vh] short:h-[55vh] flex flex-col justify-end">
+                <div className="space-y-4 h-[65vh] short:h-[53vh] flex flex-col justify-end">
                     <div className="flex flex-col-reverse gap-y-4 overflow-y-scroll no-scrollbar">
+                        <div className="w-full h-1"></div>
                         {messages.map(message =>
                             <div
-                                key={message.content}
-                                className={cn("w-full border rounded-lg p-4 sm:p-8 flex items-start gap-x-8 whitespace-pre-wrap", message.role === "assistant" ? "bg-violet-100" : "font-bold bg-slate-200 text-sm")}>
+                            key={message.content}
+                            className={cn("w-full border rounded-lg p-4 sm:p-8 flex items-start gap-x-8 whitespace-pre-wrap", message.role === "assistant" ? "bg-violet-100" : "font-bold bg-slate-200 text-sm")}>
                                 {message.role === "assistant" ? <BotAvatar /> : <UserAvatar />}
                                 {message.content}
                             </div>
                         )}
+                        <div className="w-full h-1"></div>
                     </div>
                     {isLoading && (
-                        <div className="p-8 rounded-lg w-full flex flex-col items-center justify-center bg-violet-100">
+                        <div className="p-8 rounded-lg w-full flex flex-col items-center justify-center">
                             <Loader animation="chat" />
                         </div>
                     )}
