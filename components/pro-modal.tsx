@@ -41,7 +41,7 @@ export default function ProModal() {
                                 <div>לחודש אחד<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">בלבד</span>
                                 </div>
-                                <p className="text-sm">סה"כ 28 ₪</p>
+                                <p className="text-sm">סה&quot;כ 28 ₪</p>
                                 <Button className="w-full bg-pink-700 hover:bg-pink-600 rounded-full" onClick={() => onPayment("https://app.upay.co.il/API6/s.php?m=Uzd1dlg4aXdMcmlxakN0YlpwUXZJZz09")}>
                                     המשך
                                 </Button>
@@ -55,7 +55,7 @@ export default function ProModal() {
                                 <div>לחודש<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">במשך 3 חודשים</span>
                                 </div>
-                                <p className="text-sm">סה"כ 60 ₪</p>
+                                <p className="text-sm">סה&quot;כ 60 ₪</p>
                                 <Button className="w-full bg-blue-500 hover:bg-blue-400 rounded-full" onClick={() => onPayment("https://app.upay.co.il/API6/s.php?m=V0cwM1JjQ3ZuWDcydkVZclpkZG81Zz09")}>
                                     המשך
                                 </Button>
@@ -69,7 +69,7 @@ export default function ProModal() {
                                 <div>לחודש<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">במשך שנה</span>
                                 </div>
-                                <p className="text-sm">סה"כ 192 ₪</p>
+                                <p className="text-sm">סה&quot;כ 192 ₪</p>
                                 <Button className="w-full bg-green-500 hover:bg-green-400 rounded-full" onClick={() => onPayment("https://app.upay.co.il/API6/s.php?m=K3ZMZTRHODUzWVF4Z010SXJWdjY2Zz09")}>
                                     המשך
                                 </Button>
