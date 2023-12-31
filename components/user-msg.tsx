@@ -16,17 +16,17 @@ export default function UserMassage() {
     return (
         <div>
             <Dialog open={isOpen} onOpenChange={closeMsg}>
-                <DialogContent className="caret-transparent">
+                <DialogContent className="caret-transparent shadow-md border-2">
                     <DialogHeader>
                         <DialogTitle className="text-2xl text-center mb-2">
                             אופס! משהו השתבש...
                         </DialogTitle>
                         <Image
-                            className="rounded-3xl"
+                            className="rounded-3xl mx-auto"
                             src="https://res.cloudinary.com/dnvbfkgsb/image/upload/v1698688109/slip_qtjres.jpg"
                             alt="Oops"
-                            width={500}
-                            height={500}
+                            width={400}
+                            height={400}
                         />
                         <DialogDescription className="w-2/3 mx-auto text-2xl font-bold text-black text-center pt-2">
                             נסו אולי לרענן את הדף? 🙄
@@ -37,8 +37,8 @@ export default function UserMassage() {
                             router.refresh()
                             closeMsg()
                         }}
-                        className="bg-[#95baa8] hover:bg-[#84a89a] rounded-2xl">
-                        רענן
+                        className="bg-[#95baa8] hover:bg-[#84a89a] rounded-2xl w-1/2 mx-auto text-black font-bold">
+                        המשך
                     </Button>
                 </DialogContent>
             </Dialog>

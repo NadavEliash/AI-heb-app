@@ -79,10 +79,8 @@ module.exports = {
         },
         "growing": {
           "0%": { transform: 'translateX(100%)' },
-          "30%": { transform: 'translateX(35%)' },
-          "70%": { transform: 'translateX(10%)' },
-          "90%": { transform: 'translateX(5%)' },
-          "100%": { transform: 'translateX(2%)' }
+          "80%": { transform: 'translateX(5%)' },
+          "100%": { transform: 'translateX-0' }
         },
         "emerge-1": {
           "0%": { opacity: "0" },

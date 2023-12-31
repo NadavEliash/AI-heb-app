@@ -72,7 +72,7 @@ export default function DashboardPage() {
                     >
                         <div className="flex items-center gap-8">
                             <tool.icon className={cn("w-8 h-8", tool.color)} />
-                            <h2 className="font-bold">{tool.label}</h2>
+                            <h2 className="text-sm sm:text-base font-bold">{tool.label}</h2>
                         </div>
                         <ArrowLeft className="w-5 h-5" />
                     </Card>

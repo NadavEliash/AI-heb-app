@@ -38,7 +38,7 @@ export default function LandingPage() {
   const correctLink: string = isSignedIn ? "/dashboard" : "/sign-up"
 
   return (
-    <div className="w-full h-full py-4 px-2 flex flex-col items-center text-center caret-transparent">
+    <div className="w-full h-full py-4 px-4 flex flex-col items-center text-center caret-transparent">
       <Image src="https://www.svgrepo.com/show/352965/ai.svg"
         alt="logo" className="absolute h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 right-4"
         width={20}
@@ -49,14 +49,14 @@ export default function LandingPage() {
         {tools.map(tool =>
           <div key={tool.title} className={`flex flex-row justify-between items-center gap-10 py-3 sm:py-6 ${tool.animation} hover:drop-shadow-md`}>
             <tool.icon className={`text-${tool.textColor}`} />
-            <h2 className={`text-${tool.textColor} text-base sm:text-2xl font-bold text-right`}>
+            <h2 className={`text-${tool.textColor} sm:text-2xl text-right`}>
               {tool.title}
             </h2>
           </div>
         )}
       </div>
-      <Link className="w-full sm:mb-20 p-2" href={correctLink}>
-        <Button className="w-full max-w-sm h-16 text-xl rounded-full" variant={"upgrade"}>
+      <Link className="w-full mb-10 sm:mb-20 p-4" href={correctLink}>
+        <Button className="w-full max-w-md h-16 text-3xl rounded-full" variant={"upgrade"}>
           התחל ליצור
         </Button>
       </Link>
