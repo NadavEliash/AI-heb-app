@@ -20,13 +20,13 @@ const tools: { title: string, textColor: string, icon: LucideIcon, animation: st
     animation: 'animate-emerge-2'
   },
   {
-    title: 'מחולל קטע וידאו ממשפט בעברית',
+    title: 'מחולל קטעי וידאו קצרים',
     textColor: 'pink-700',
     icon: Video,
     animation: 'animate-emerge-3'
   },
   {
-    title: 'מחולל רצועת מוזיקה ממשפט בעברית',
+    title: 'מחולל רצועות מוזיקה',
     textColor: 'orange-700',
     icon: Music,
     animation: 'animate-emerge-4'
@@ -44,7 +44,7 @@ export default function LandingPage() {
         width={20}
         height={20} />
       <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold my-10">ברוכים הבאים <br className="sm:hidden" /> לבינה עברית!</h2>
-      <h3 className="text-2xl sm:text-3xl lg:text-4xl my-6"> התנסו בכלי בינה מלאכותית המתקדמים ביותר:</h3>
+      <h3 className="text-xl sm:text-3xl lg:text-4xl my-10"> התנסו בכלי בינה מלאכותית המתקדמים ביותר:</h3>
       <div className="flex-1 flex flex-col items-start">
         {tools.map(tool =>
           <div key={tool.title} className={`flex flex-row justify-between items-center gap-10 py-3 sm:py-6 ${tool.animation} hover:drop-shadow-md`}>
@@ -55,7 +55,7 @@ export default function LandingPage() {
           </div>
         )}
       </div>
-      <Link className="w-full mb-10 sm:mb-20 p-4" href={correctLink}>
+      <Link className="w-full mb-10 mt-4 sm:mb-20 p-4" href={correctLink}>
         <Button className="w-full max-w-md h-16 text-3xl rounded-full" variant={"upgrade"}>
           התחל ליצור
         </Button>

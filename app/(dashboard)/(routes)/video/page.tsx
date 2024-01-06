@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 
-import { VideoIcon } from "lucide-react"
+import { Send, VideoIcon } from "lucide-react"
 import Heading from "@/components/heading"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { formSchema } from "./constants"
@@ -104,7 +104,7 @@ export default function Video() {
                 ]}
 
             />
-            <div className="px-4 lg:px-8 w-full md:w-11/12 mt-6">
+            <div className="px-4 lg:px-8 w-full md:w-11/12 mt-4">
                 <div>
                     <Form {...form}>
                         <form
@@ -114,7 +114,7 @@ export default function Video() {
                             <FormField
                                 name="prompt"
                                 render={({ field }) => (
-                                    <FormItem className="col-span-12 lg:col-span-11">
+                                    <FormItem className="col-span-10">
                                         <FormControl className="m-0 p-0">
                                             <Input
                                                 className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
@@ -127,9 +127,10 @@ export default function Video() {
                                 )}
                             />
                             <Button
-                                className="col-span-12 lg:col-span-1 w-full"
+                                className="col-span-2 w-full p-1"
                                 disabled={loader}>
-                                צור
+                                <span className="hidden sm:block">צור</span>
+                                <Send className="sm:hidden -rotate-90"/>
                             </Button>
                         </form>
                     </Form>

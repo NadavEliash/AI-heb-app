@@ -38,7 +38,7 @@ export default function UserMassage() {
                             closeMsg()
                         }}
                         className="bg-[#95baa8] hover:bg-[#84a89a] rounded-2xl w-1/2 mx-auto text-black font-bold">
-                        המשך
+                        סגור
                     </Button>
                 </DialogContent>
             </Dialog>

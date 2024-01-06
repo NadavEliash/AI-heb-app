@@ -28,7 +28,7 @@ export default function ProModal() {
             <Dialog open={isOpen} onOpenChange={closeModal}>
                 <DialogContent className="px-2 md:px-6 w-11/12 max-w-2xl rounded-2xl py-4 caret-transparent shadow-md border-2">
                     <DialogHeader className="w-full">
-                        <DialogTitle className="flex flex-col justify-center items-center font-thin sm:font-semibold sm:text-xl pt-4 sm:pt-6 text-center leading-5 mb-4">
+                        <DialogTitle className="flex flex-col justify-center items-center font-thin sm:font-semibold sm:text-xl pt-4 sm:pt-6 text-center leading-5 my-4">
                             רוצים להמשיך ליהנות מבינה עברית ללא הגבלה?
                         </DialogTitle>
                         <h3 className="hidden sm:block text-center text-xl">לגישה חופשית לכל התכנים באתר:</h3>

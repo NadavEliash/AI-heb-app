@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form"
 import axios from "axios"
 
 
-import { MusicIcon } from "lucide-react"
+import { MusicIcon, Send } from "lucide-react"
 import Heading from "@/components/heading"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { formSchema } from "./constants"
@@ -94,7 +94,7 @@ export default function Music() {
     return (
         <div>
             <Heading
-                title="מחולל המוזיקה"
+                title="מחולל השמע"
                 description="צרו רצועת שמע קצרה בעזרת בינה מלאכותית"
                 icon={MusicIcon}
                 iconColor="text-green-700"
@@ -105,7 +105,7 @@ export default function Music() {
                     "נסו להיות ספציפיים. הוסיפו תיאורים והכוונה מדויקת",
                 ]}
             />
-            <div className="px-4 lg:px-8 w-full md:w-11/12 mt-6">
+            <div className="px-4 lg:px-8 w-full md:w-11/12 mt-4">
                 <div>
                     <Form {...form}>
                         <form
@@ -115,7 +115,7 @@ export default function Music() {
                             <FormField
                                 name="prompt"
                                 render={({ field }) => (
-                                    <FormItem className="col-span-12 lg:col-span-11">
+                                    <FormItem className="col-span-10">
                                         <FormControl className="m-0 p-0">
                                             <Input
                                                 className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
@@ -128,9 +128,10 @@ export default function Music() {
                                 )}
                             />
                             <Button
-                                className="col-span-12 lg:col-span-1 w-full"
+                                className="col-span-2 w-full p-1"
                                 disabled={loader}>
-                                צור
+                                <span className="hidden sm:block">צור</span>
+                                <Send className="sm:hidden -rotate-90"/>
                             </Button>
                         </form>
                     </Form>

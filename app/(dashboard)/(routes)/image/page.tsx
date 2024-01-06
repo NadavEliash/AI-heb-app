@@ -8,7 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import axios from "axios"
 
-import { Download, ImageIcon, X } from "lucide-react"
+import { Download, ImageIcon, Send, X } from "lucide-react"
 import Heading from "@/components/heading"
 import { Form, FormControl, FormField, FormItem } from "@/components/ui/form"
 import { amountOptions, formSchema, resolutionOptions } from "./constants"
@@ -102,17 +102,17 @@ export default function Images() {
                     "נסו להיות ספציפיים. הגדירו למחשב סגנון מדויק (למשל: ציור אימפרסיוניסטי של קלוד מונה)",
                 ]}
             />
-            <div className="px-4 lg:px-8 w-full md:w-11/12 mt-6">
+            <div className="px-4 lg:px-8 w-full md:w-11/12 sm:mt-4">
                 <div>
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
-                            className="rounded-lg border border-gray-400 w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
+                            className="rounded-lg sm:border border-gray-400 w-full sm:p-4 sm:px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
                         >
                             <FormField
                                 name="prompt"
                                 render={({ field }) => (
-                                    <FormItem className="col-span-12 lg:col-span-7">
+                                    <FormItem className="col-span-12 lg:col-span-7 border sm:border-0 rounded-lg p-1 sm:p-0">
                                         <FormControl className="m-0 p-0">
                                             <Input
                                                 className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
@@ -128,7 +128,7 @@ export default function Images() {
                                 control={form.control}
                                 name="amount"
                                 render={({ field }) => (
-                                    <FormItem className="col-span-6 lg:col-span-2">
+                                    <FormItem className="col-span-5 lg:col-span-2">
                                         <Select
                                             disabled={isLoading}
                                             onValueChange={field.onChange}
@@ -158,7 +158,7 @@ export default function Images() {
                                 control={form.control}
                                 name="resolution"
                                 render={({ field }) => (
-                                    <FormItem className="col-span-6 lg:col-span-2">
+                                    <FormItem className="col-span-5 lg:col-span-2">
                                         <Select
                                             disabled={isLoading}
                                             onValueChange={field.onChange}
@@ -185,9 +185,10 @@ export default function Images() {
                                 )}
                             />
                             <Button
-                                className="col-span-12 lg:col-span-1 w-full"
+                                className="col-span-2 lg:col-span-1 w-full p-1"
                                 disabled={isLoading}>
-                                צור
+                                <span className="hidden sm:block">צור</span>
+                                <Send className="sm:hidden -rotate-90"/>
                             </Button>
                         </form>
                     </Form>

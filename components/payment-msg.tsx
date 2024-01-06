@@ -15,7 +15,7 @@ export default function PaymentMassage() {
 
     useEffect(() => {
         setTimeout(() => { router.push(link) }, 3000)
-        setTimeout(() => { closeMsg() }, 3500)
+        setTimeout(() => { closeMsg() }, 4500)
     }, [isOpen])
 
     return (
