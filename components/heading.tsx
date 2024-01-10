@@ -1,6 +1,8 @@
 import { cn } from "@/lib/utils"
-import { LucideIcon } from "lucide-react"
-import { Accordion, AccordionItem, AccordionContent, AccordionTrigger } from "@/components/ui/accordion"
+import { Lightbulb, LucideIcon } from "lucide-react"
+import { useState } from "react"
+import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog"
+// import { Accordion, AccordionItem, AccordionContent, AccordionTrigger } from "@/components/ui/accordion"
 
 interface HeadingProps {
     title: string
@@ -19,33 +21,60 @@ export default function Heading({
     bgColor,
     tips
 }: HeadingProps) {
+    const [tipsOpen, setTipsOpen] = useState(false)
+
     return (
         <>
             <div className="px-4 lg:px-8 flex items-center gap-x-2 lg:gap-x-4 caret-transparent mt-20">
                 <div className={cn("p-2 w-fit rounded-md", bgColor)}>
-                    <Icon className={cn("w-10 h-10", iconColor)} />
+                    <Icon className={cn("w-8 h-8 sm:w-10 sm:h-10", iconColor)} />
                 </div>
+                <div className="flex-1">
+                    <h2 className="text-3xl font-bold mr-2 sm:mr-0">{title}</h2>
+                    <p className="hidden sm:block text-sm font-bold">{description}</p>
+                </div>
+                {tips && <div className="bg-yellow-300 hover:bg-yellow-200 rounded-full p-4 cursor-pointer font-bold flex items-center" onClick={() => setTipsOpen(!tipsOpen)}>
+                    <Lightbulb className="w-4 h-4 stroke-black sm:ml-2" />
+                    <span className="hidden sm:flex">טיפים</span>
+                    {/* <span className="hidden sm:inline mr-1">ל{title}</span> */}
+                </div>}
                 <div>
-                    <h2 className="text-3xl font-bold">{title}</h2>
-                    <p className="text-sm font-bold">{description}</p>
+                    <Dialog open={tipsOpen} onOpenChange={() => setTipsOpen(false)}>
+                        <DialogContent className="px-2 md:px-6 w-11/12 top-80 caret-transparent">
+                            <DialogHeader>
+                                <DialogTitle className="pt-4">
+                                    <div className="flex gap-4 items-center p-2">
+                                        <Icon className={cn("w-6 h-6", iconColor)} />
+                                        <h1 className="text-right font-normal text-lg">טיפים ל<span>{title}</span></h1>
+                                    </div>
+                                    {tips?.map(line =>
+                                        <div key={line} className="text-justify py-1 text-base font-normal sm:py-2 px-2 leading-relaxed flex gap-2">
+                                            <div>◾</div>
+                                            <p className="inline caret-transparent">{line}</p>
+                                        </div>
+                                    )}
+                                </DialogTitle>
+                            </DialogHeader>
+                        </DialogContent>
+                    </Dialog>
                 </div>
             </div>
-            {tips && <div className="mt-2">
-                <Accordion type="single" collapsible>
-                    <AccordionItem value="item-1">
-                        <AccordionTrigger className="relative no-underline justify-start mx-6 lg:mx-10">טיפים ל<span className="ml-4">{title}</span></AccordionTrigger>
-                        <AccordionContent className="absolute bg-gradient-to-b from-white/90 from-80% to-transparent pb-16 z-10 w-full md:w-[calc(100%-18rem)]">
-                            {tips?.map(line =>
-                                <div key={line} className="text-justify py-1 sm:py-2 mx-10">
-                                    <div className="-mb-5">◾</div>
-                                    <p className="inline caret-transparent mr-4">{line}</p>
-                                </div>
-                            )}
-                        </AccordionContent>
-                    </AccordionItem>
-                </Accordion >
-            </div>}
         </>
     )
 }
 
+// {tips && <div className="-mt-2">
+//     <Accordion type="single" collapsible>
+//         <AccordionItem value="item-1">
+//             <AccordionTrigger className="relative no-underline justify-start mx-20 lg:mx-28">טיפים ל<span className="ml-4">{title}</span></AccordionTrigger>
+//             <AccordionContent className="absolute bg-gradient-to-b from-white/90 from-80% to-transparent pb-16 z-10 w-full md:w-[calc(100%-18rem)]">
+//                 {tips?.map(line =>
+//                     <div key={line} className="text-justify py-1 sm:py-2 mx-6 lg:mx-10">
+//                         <div className="-mb-5">◾</div>
+//                         <p className="inline caret-transparent mr-4">{line}</p>
+//                     </div>
+//                 )}
+//             </AccordionContent>
+//         </AccordionItem>
+//     </Accordion >
+// </div>}

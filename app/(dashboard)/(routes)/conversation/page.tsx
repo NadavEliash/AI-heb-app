@@ -102,18 +102,18 @@ export default function Conversation() {
                     "שימו לב: הצ'אט לא יודע לענות על שאלות אקטואליות (כאלה שקשורות לזמן או למקום הספציפי שבו אתם נמצאים)"
                 ]}
             />
-            <div className="px-6 lg:px-16 w-full">
-                <div className="fixed bg-white w-full bottom-8 short:bottom-4 right-0">
-                    <div className="md:mr-72 px-6 lg:px-16">
+            <div className="px-6 lg:px-24 xl:px-60 w-full">
+                <div className="fixed bg-white w-full bottom-20 short:bottom-4 right-0">
+                    <div className="md:mr-72 px-6 lg:px-40 xl:px-80">
                         <Form {...form}>
                             <form
                                 onSubmit={form.handleSubmit(onSubmit)}
-                                className="rounded-lg border border-gray-700 p-2 sm:p-4 focus-within:shadow-sm grid grid-cols-12 gap-2"
+                                className="rounded-full border border-gray-700 p-2 sm:p-4 focus-within:shadow-sm grid grid-cols-12 gap-2"
                             >
                                 <FormField
                                     name="prompt"
                                     render={({ field }) => (
-                                        <FormItem className="col-span-10">
+                                        <FormItem className="col-span-10 lg:col-span-11">
                                             <FormControl className="m-0 p-0">
                                                 <Input
                                                     className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent placeholder:text-sm sm:placeholder:text-base"
@@ -126,16 +126,16 @@ export default function Conversation() {
                                     )}
                                 />
                                 <Button
-                                    className="col-span-2 p-1"
+                                    className="col-span-2 lg:col-span-1 p-1 min-w-fit rounded-full bg-transparent hover:bg-transparent"
                                     disabled={isLoading}>
-                                    <p className="hidden sm:block">לשאול</p>
-                                    <Send className="sm:hidden -rotate-90"/>
+                                    {/* <p className="hidden sm:block">לשאול</p> */}
+                                    <Send className="-rotate-90 stroke-violet-500 hover:scale-110"/>
                                 </Button>
                             </form>
                         </Form>
                     </div>
                 </div>
-                <div className="space-y-4 h-[65vh] short:h-[53vh] flex flex-col justify-end">
+                <div className="space-y-4 h-[60vh] short:h-[60vh] flex flex-col justify-end">
                     <div className="flex flex-col-reverse gap-y-4 overflow-y-scroll no-scrollbar">
                         <div className="w-full h-1"></div>
                         {messages.map(message =>

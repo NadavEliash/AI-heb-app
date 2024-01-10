@@ -63,18 +63,18 @@ export default function DashboardPage() {
     return (
         <div className="px-4 md:px-8 lg:px-20 caret-transparent">
             <h2 className="pr-8 mt-20 font-bold text-3xl">גלו את עוצמת הבינה המלאכותית בעברית:</h2>
-            <div className="mt-10 space-y-6 max-w-3xl">
+            <div className="mt-10 space-y-6 max-w-2xl">
                 {tools.map(tool => (
                     <Card
                         onClick={() => router.push(tool.href)}
                         key={tool.href}
-                        className="p-4 border-black/10 flex items-center justify-between hover:shadow-md transiton cursor-pointer"
+                        className="p-6 border-black/10 flex items-center justify-between hover:shadow-md transiton cursor-pointer rounded-full"
                     >
-                        <div className="flex items-center gap-8">
-                            <tool.icon className={cn("w-8 h-8", tool.color)} />
+                        <div className="flex items-center gap-6">
+                            <tool.icon className={cn("w-6 h-6", tool.color)} />
                             <h2 className="text-sm sm:text-base font-bold">{tool.label}</h2>
                         </div>
-                        <ArrowLeft className="w-5 h-5" />
+                        <ArrowLeft className="w-5 h-5 mr-2" />
                     </Card>
                 ))}
             </div>

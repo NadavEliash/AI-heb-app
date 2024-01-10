@@ -102,20 +102,20 @@ export default function Images() {
                     "נסו להיות ספציפיים. הגדירו למחשב סגנון מדויק (למשל: ציור אימפרסיוניסטי של קלוד מונה)",
                 ]}
             />
-            <div className="px-4 lg:px-8 w-full md:w-11/12 sm:mt-4">
+            <div className="px-4 lg:px-8 w-full max-w-4xl mt-12">
                 <div>
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
-                            className="rounded-lg sm:border border-gray-400 w-full sm:p-4 sm:px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
+                            className="rounded-3xl lg:rounded-full border border-gray-400 w-full p-2 lg:p-4 px-4 lg:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
                         >
                             <FormField
                                 name="prompt"
                                 render={({ field }) => (
-                                    <FormItem className="col-span-12 lg:col-span-7 border sm:border-0 rounded-lg p-1 sm:p-0">
+                                    <FormItem className="col-span-12 lg:col-span-7 border-0 rounded-lg p-1 sm:p-0">
                                         <FormControl className="m-0 p-0">
                                             <Input
-                                                className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
+                                                className="px-1 border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent placeholder:text-sm"
                                                 disabled={isLoading}
                                                 placeholder="למשל: תמונה מצוירת של ילדה בונה ארמון חול על שפת הים"
                                                 {...field}
@@ -135,12 +135,12 @@ export default function Images() {
                                             value={field.value}
                                             defaultValue={field.value}
                                         >
-                                            <FormControl>
+                                            <FormControl className="rounded-full focus:ring-0 focus:ring-offset-0">
                                                 <SelectTrigger>
                                                     <SelectValue defaultValue={field.value} />
                                                 </SelectTrigger>
                                             </FormControl>
-                                            <SelectContent className="">
+                                            <SelectContent>
                                                 {amountOptions.map((option) => (
                                                     <SelectItem
                                                         key={option.value}
@@ -165,7 +165,7 @@ export default function Images() {
                                             value={field.value}
                                             defaultValue={field.value}
                                         >
-                                            <FormControl>
+                                            <FormControl className="rounded-full focus:ring-0 focus:ring-offset-0">
                                                 <SelectTrigger>
                                                     <SelectValue defaultValue={field.value} />
                                                 </SelectTrigger>
@@ -185,10 +185,10 @@ export default function Images() {
                                 )}
                             />
                             <Button
-                                className="col-span-2 lg:col-span-1 w-full p-1"
+                                className="col-span-2 lg:col-span-1 w-full p-1 min-w-fit rounded-full bg-transparent hover:bg-transparent sm:bg-violet-500 sm:hover:bg-violet-500/90"
                                 disabled={isLoading}>
                                 <span className="hidden sm:block">צור</span>
-                                <Send className="sm:hidden -rotate-90"/>
+                                <Send className="sm:hidden -rotate-90 stroke-violet-500 hover:scale-110" />
                             </Button>
                         </form>
                     </Form>

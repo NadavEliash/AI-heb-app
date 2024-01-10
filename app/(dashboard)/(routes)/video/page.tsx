@@ -104,17 +104,17 @@ export default function Video() {
                 ]}
 
             />
-            <div className="px-4 lg:px-8 w-full md:w-11/12 mt-4">
+            <div className="px-4 lg:px-8 w-full max-w-4xl mt-12">
                 <div>
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
-                            className="rounded-lg border border-gray-400 w-full p-4 px-3 md:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
+                            className="rounded-full border border-gray-400 w-full p-2 lg:p-4 px-3 lg:px-6 focus-within:shadow-sm grid grid-cols-12 gap-2"
                         >
                             <FormField
                                 name="prompt"
                                 render={({ field }) => (
-                                    <FormItem className="col-span-10">
+                                    <FormItem className="col-span-10 lg:col-span-11">
                                         <FormControl className="m-0 p-0">
                                             <Input
                                                 className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent"
@@ -127,11 +127,11 @@ export default function Video() {
                                 )}
                             />
                             <Button
-                                className="col-span-2 w-full p-1"
+                                className="col-span-2 lg:col-span-1 w-full p-1 min-w-fit rounded-full bg-transparent hover:bg-transparent sm:bg-violet-500 sm:hover:bg-violet-500/90"
                                 disabled={loader}>
                                 <span className="hidden sm:block">צור</span>
-                                <Send className="sm:hidden -rotate-90"/>
-                            </Button>
+                                <Send className="sm:hidden -rotate-90 stroke-violet-500 hover:scale-110"/>
+                                </Button>
                         </form>
                     </Form>
                 </div>

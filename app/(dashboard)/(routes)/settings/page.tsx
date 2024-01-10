@@ -48,7 +48,7 @@ export default function Settings() {
                 icon={SettingsIcon}
                 bgColor="bg-gray-100"
             />
-            <div className="w-full sm:px-10 lg:px-16 py-8">
+            <div className="w-full sm:px-10 lg:px-16 py-8 mt-10">
                 {isLoading && <div className="sm:w-40 mt-10">
                     <Loader animation="chat"/>
                 </div>}
@@ -56,11 +56,11 @@ export default function Settings() {
                     !isLoading && <div className="flex flex-col gap-4 items-center sm:items-start">
                         <h2 className="text-lg sm:text-xl">המנוי שלך הוא <span className="p-2 px-4 mx-2 rounded-full bg-gradient-to-r from-orange-700 to-yellow-400 text-gray-100 font-bold tracking-wider hover:from-yellow-400 hover:to-orange-700">{plan}</span></h2>
                         <h2 className="my-4 text-center">והוא מאפשר לך שימוש חופשי בכל הכלים</h2>
-                        <div className="flex justify-between w-48">
+                        <div className="flex justify-between w-52">
                             <h1>תאריך התחלה: </h1>
                             <h1>{from}</h1>
                         </div>
-                        <div className="flex justify-between w-48">
+                        <div className="flex justify-between w-52">
                             <h1>עד תאריך: </h1>
                             <h1>{to}</h1>
                         </div>
@@ -71,7 +71,7 @@ export default function Settings() {
                 }
                 {timeLeft < 2592000000 && !isLoading && <Button
                     variant={"upgrade"}
-                    className="w-60 text-lg rounded-full h-12 mt-20 flex items-start mx-auto sm:mx-0"
+                    className="w-52 text-lg rounded-full h-12 mt-20 flex items-start mx-auto sm:mx-0"
                     onClick={openModal}>
                     אפשר יותר? יאללה
                 </Button>}
