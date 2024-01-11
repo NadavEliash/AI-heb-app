@@ -62,8 +62,8 @@ export default function DashboardPage() {
 
     return (
         <div className="px-4 md:px-8 lg:px-20 caret-transparent">
-            <h2 className="pr-8 mt-20 font-bold text-3xl">גלו את עוצמת הבינה המלאכותית בעברית:</h2>
-            <div className="mt-10 space-y-6 max-w-2xl">
+            <h2 className="pr-8 mt-20 font-bold text-3xl text">גלו את עוצמת הבינה המלאכותית בעברית:</h2>
+            <div className="mt-20 space-y-6 max-w-2xl">
                 {tools.map(tool => (
                     <Card
                         onClick={() => router.push(tool.href)}

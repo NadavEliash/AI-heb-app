@@ -1,5 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    compiler: {
+        styleedComponnts: true
+    },
     images: {
         remotePatterns: [
             { hostname: "oaidalleapiprodscus.blob.core.windows.net" },

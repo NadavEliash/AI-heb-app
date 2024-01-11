@@ -25,22 +25,21 @@ export default function Heading({
 
     return (
         <>
-            <div className="px-4 lg:px-8 flex items-center gap-x-2 lg:gap-x-4 caret-transparent mt-20">
+            <div className="px-4 lg:px-8 flex items-center caret-transparent mt-20">
                 <div className={cn("p-2 w-fit rounded-md", bgColor)}>
                     <Icon className={cn("w-8 h-8 sm:w-10 sm:h-10", iconColor)} />
                 </div>
-                <div className="flex-1">
-                    <h2 className="text-3xl font-bold mr-2 sm:mr-0">{title}</h2>
+                <div className="flex-1 mr-4 sm:mr-2">
+                    <h2 className="text-3xl font-bold">{title}</h2>
                     <p className="hidden sm:block text-sm font-bold">{description}</p>
                 </div>
-                {tips && <div className="bg-yellow-300 hover:bg-yellow-200 rounded-full p-4 cursor-pointer font-bold flex items-center" onClick={() => setTipsOpen(!tipsOpen)}>
+                {tips && <div className="bg-yellow-200 hover:bg-yellow-300 rounded-full p-4 cursor-pointer font-bold flex items-center" onClick={() => setTipsOpen(!tipsOpen)}>
                     <Lightbulb className="w-4 h-4 stroke-black sm:ml-2" />
-                    <span className="hidden sm:flex">טיפים</span>
-                    {/* <span className="hidden sm:inline mr-1">ל{title}</span> */}
+                    <span className="hidden sm:flex">לחץ כאן לטיפים</span>
                 </div>}
                 <div>
                     <Dialog open={tipsOpen} onOpenChange={() => setTipsOpen(false)}>
-                        <DialogContent className="px-2 md:px-6 w-11/12 top-80 caret-transparent">
+                        <DialogContent className="px-2 md:px-6 w-11/12 top-80 caret-transparent rounded-2xl">
                             <DialogHeader>
                                 <DialogTitle className="pt-4">
                                     <div className="flex gap-4 items-center p-2">

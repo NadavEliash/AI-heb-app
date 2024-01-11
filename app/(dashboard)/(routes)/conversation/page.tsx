@@ -103,7 +103,7 @@ export default function Conversation() {
                 ]}
             />
             <div className="px-6 lg:px-24 xl:px-60 w-full">
-                <div className="fixed bg-white w-full bottom-20 short:bottom-4 right-0">
+                <div className="fixed bg-white w-full bottom-20 short:bottom-8 right-0">
                     <div className="md:mr-72 px-6 lg:px-40 xl:px-80">
                         <Form {...form}>
                             <form
