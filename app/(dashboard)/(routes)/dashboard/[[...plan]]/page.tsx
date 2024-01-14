@@ -84,7 +84,7 @@ export default function DashboardPage() {
                     </Card>
                 ))}
             </div>
-            {isLoading && <div className="absolute w-full h-full left-0 top-0 bg-white/80">
+            {isLoading && <div className="absolute w-full h-full left-0 top-0 bg-white/70 z-20">
                 <div className="mt-[50vh] -translate-y-1/2">
                     <div className="h-full flex flex-col gap-y-4 items-center justify-center">
                         <Loader large={true} progres={false} />
