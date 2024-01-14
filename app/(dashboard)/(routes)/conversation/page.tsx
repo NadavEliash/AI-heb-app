@@ -103,12 +103,12 @@ export default function Conversation() {
                 ]}
             />
             <div className="px-6 lg:px-24 xl:px-60 w-full">
-                <div className="fixed bg-white w-full bottom-20 short:bottom-8 right-0">
+                <div className="fixed bg-gradient-to-t from-white from-90% to-transparent w-full bottom-0 left-0 pt-8 pb-20 short:pb-12">
                     <div className="md:mr-72 px-6 lg:px-40 xl:px-80">
                         <Form {...form}>
                             <form
                                 onSubmit={form.handleSubmit(onSubmit)}
-                                className="rounded-full border border-gray-700 p-2 sm:p-4 focus-within:shadow-sm grid grid-cols-12 gap-2"
+                                className="rounded-full border border-gray-700 p-2 sm:p-4 pr-4 focus-within:shadow-sm grid grid-cols-12 gap-2"
                             >
                                 <FormField
                                     name="prompt"
@@ -128,29 +128,29 @@ export default function Conversation() {
                                 <Button
                                     className="col-span-2 lg:col-span-1 p-1 min-w-fit rounded-full bg-transparent hover:bg-transparent"
                                     disabled={isLoading}>
-                                    {/* <p className="hidden sm:block">לשאול</p> */}
-                                    <Send className="-rotate-90 stroke-violet-500 hover:scale-110"/>
+                                    <Send className="-rotate-90 stroke-violet-500 hover:scale-110" />
                                 </Button>
                             </form>
                         </Form>
                     </div>
                 </div>
-                <div className="space-y-4 h-[60vh] short:h-[60vh] flex flex-col justify-end">
+                <div className="absolute h-4 w-full left-0 bg-gradient-to-b from-white to-transparent"></div>
+                <div className="flex flex-col justify-end h-[calc(100vh-19rem)] short:h-[calc(100vh-16rem)]">
                     <div className="flex flex-col-reverse gap-y-4 overflow-y-scroll no-scrollbar">
-                        <div className="w-full h-1"></div>
+                        <div className="w-full h-4"></div>
                         {messages.map(message =>
                             <div
-                            key={message.content}
-                            className={cn("w-full border rounded-lg p-4 sm:p-8 flex items-start gap-x-8 whitespace-pre-wrap", message.role === "assistant" ? "bg-violet-100" : "font-bold bg-slate-200 text-sm")}>
+                                key={message.content}
+                                className={cn("w-full border rounded-lg p-4 sm:p-8 flex items-start gap-x-8 whitespace-pre-wrap", message.role === "assistant" ? "bg-violet-100" : "font-bold bg-slate-200 text-sm")}>
                                 {message.role === "assistant" ? <BotAvatar /> : <UserAvatar />}
                                 {message.content}
                             </div>
                         )}
-                        <div className="w-full h-1"></div>
+                        <div className="w-full h-4"></div>
                     </div>
                     {isLoading && (
                         <div className="p-8 rounded-lg w-full flex flex-col items-center justify-center">
-                            <Loader animation="chat" />
+                            <Loader progres={false} />
                         </div>
                     )}
                 </div>

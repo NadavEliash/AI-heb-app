@@ -49,7 +49,7 @@ export default function Settings() {
                 bgColor="bg-gray-100"
             />
             <div className="w-full sm:px-10 lg:px-10 py-8 mt-10">
-                {isLoading && <div className="sm:w-40 mt-10">
+                {isLoading && <div className="sm:w-40 mt-10 pr-4">
                     <Loader animation="chat"/>
                 </div>}
                 {subscription ?

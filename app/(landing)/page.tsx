@@ -1,12 +1,12 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
-import { useAuth } from "@clerk/nextjs"
-import Image from "next/image"
-import { ImageIcon, LucideIcon, MessageSquare, Music, Video } from "lucide-react"
-import Link from "next/link"
 import { useEffect, useState } from "react"
+import Image from "next/image"
+import Link from "next/link"
+import { useAuth } from "@clerk/nextjs"
+import { ImageIcon, LucideIcon, MessageSquare, Music, Video } from "lucide-react"
 import { Loader } from "@/components/loader"
+import { Button } from "@/components/ui/button"
 
 
 const tools: { title: string, textColor: string, icon: LucideIcon, animation: string, margin: string }[] = [
@@ -75,24 +75,10 @@ export default function LandingPage() {
       {isLoading && <div className="absolute w-full h-full left-0 top-0 bg-white/80">
         <div className="mt-[50vh] -translate-y-1/2">
         <div className="h-full flex flex-col gap-y-4 items-center justify-center">
-                <div className="w-20 h-20 relative animate-spin">
-                    <Image
-                        src="https://www.svgrepo.com/show/332441/loading.svg"
-                        alt="loading..."
-                        width={1024}
-                        height={1024} />
-                </div>
-                <div className="w-14 h-14 absolute animate-spin duration-700">
-                    <Image
-                        src="https://www.svgrepo.com/show/332441/loading.svg"
-                        alt="loading..."
-                        width={1024}
-                        height={1024} />
-                </div>
+                <Loader large={true} progres={false}/>
             </div>
         </div>
       </div>}
     </div>
-
   )
 }

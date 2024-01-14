@@ -137,8 +137,8 @@ export default function Video() {
                 </div>
                 <div className="space-y-4 mt-4">
                     {loader && (
-                        <div className="py-20">
-                            <Loader animation="animate-growing-video" />
+                        <div className="py-10">
+                            <Loader animation="animate-growing-video" progres={true} />
                         </div>
                     )}
 

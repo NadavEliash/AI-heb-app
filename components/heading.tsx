@@ -2,7 +2,6 @@ import { cn } from "@/lib/utils"
 import { Lightbulb, LucideIcon } from "lucide-react"
 import { useState } from "react"
 import { Dialog, DialogClose, DialogContent, DialogHeader, DialogTitle } from "./ui/dialog"
-// import { Accordion, AccordionItem, AccordionContent, AccordionTrigger } from "@/components/ui/accordion"
 
 interface HeadingProps {
     title: string
@@ -61,19 +60,3 @@ export default function Heading({
         </>
     )
 }
-
-// {tips && <div className="-mt-2">
-//     <Accordion type="single" collapsible>
-//         <AccordionItem value="item-1">
-//             <AccordionTrigger className="relative no-underline justify-start mx-20 lg:mx-28">טיפים ל<span className="ml-4">{title}</span></AccordionTrigger>
-//             <AccordionContent className="absolute bg-gradient-to-b from-white/90 from-80% to-transparent pb-16 z-10 w-full md:w-[calc(100%-18rem)]">
-//                 {tips?.map(line =>
-//                     <div key={line} className="text-justify py-1 sm:py-2 mx-6 lg:mx-10">
-//                         <div className="-mb-5">◾</div>
-//                         <p className="inline caret-transparent mr-4">{line}</p>
-//                     </div>
-//                 )}
-//             </AccordionContent>
-//         </AccordionItem>
-//     </Accordion >
-// </div>}

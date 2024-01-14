@@ -1,12 +1,13 @@
 'use client'
 
+import { Loader } from "@/components/loader"
 import { Card, } from "@/components/ui/card"
 import { cn } from "@/lib/utils"
 import axios from "axios"
 import { MessageSquare, ImageIcon, VideoIcon, Music, ArrowLeft, Subscript } from "lucide-react"
 import { useRouter } from "next/navigation"
 import { useParams } from "next/navigation"
-import { useEffect } from "react"
+import { useEffect, useState } from "react"
 
 const tools = [
     {
@@ -38,8 +39,10 @@ const tools = [
 export default function DashboardPage() {
     const router = useRouter()
     const params = useParams()
+    const [isLoading, setIsLoading] = useState(false)
 
     useEffect(() => {
+        setIsLoading(false)
         if (params.plan) {
             setSubscription()
             router.push('/dashboard')
@@ -54,7 +57,7 @@ export default function DashboardPage() {
             if (subscription) {
                 router.refresh()
             }
-            
+
         } catch (error) {
             console.log('fail to subscribe')
         }
@@ -66,7 +69,10 @@ export default function DashboardPage() {
             <div className="mt-20 space-y-6 max-w-2xl">
                 {tools.map(tool => (
                     <Card
-                        onClick={() => router.push(tool.href)}
+                        onClick={() => {
+                            setIsLoading(true)
+                            router.push(tool.href)
+                        }}
                         key={tool.href}
                         className="p-6 border-black/10 flex items-center justify-between hover:shadow-md transiton cursor-pointer rounded-full"
                     >
@@ -78,6 +84,13 @@ export default function DashboardPage() {
                     </Card>
                 ))}
             </div>
+            {isLoading && <div className="absolute w-full h-full left-0 top-0 bg-white/80">
+                <div className="mt-[50vh] -translate-y-1/2">
+                    <div className="h-full flex flex-col gap-y-4 items-center justify-center">
+                        <Loader large={true} progres={false} />
+                    </div>
+                </div>
+            </div>}
         </div>
     )
 }
