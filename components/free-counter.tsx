@@ -30,7 +30,7 @@ export function FreeCounter({ freeApiCount = 0, periodEnd }: FreeCounterProps) {
     if (!mounted) return null
 
     return (
-        <div className={cn(`p-4 ${ periodEnd? "bg-green-500" :"bg-white/70"} text-gray-700 text-center mx-4 sm:mx-8 rounded-lg`, rubik.className)}>
+        <div className={cn(`p-4 ${ periodEnd? "bg-purple-300" :"bg-white/70"} text-gray-700 text-center mx-4 sm:mx-8 rounded-lg`, rubik.className)}>
             {periodEnd ?
                 <div className="mb-2">
                     <p>שימוש חופשי עד:</p>

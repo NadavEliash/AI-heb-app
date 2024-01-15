@@ -53,9 +53,9 @@ export default function Settings() {
                     <Loader animation="chat"/>
                 </div>}
                 {subscription ?
-                    !isLoading && <div className="flex flex-col gap-4 items-center sm:items-start">
+                    !isLoading && <div className="flex flex-col gap-4 items-start px-6 sm:px-0">
                         <h2 className="text-lg sm:text-xl">המנוי שלך הוא <span className="p-2 px-4 mx-2 rounded-full bg-gradient-to-r from-orange-700 to-yellow-400 text-gray-100 font-bold tracking-wider hover:from-yellow-400 hover:to-orange-700">{plan}</span></h2>
-                        <h2 className="my-4 text-center text-lg">והוא מאפשר לך שימוש חופשי בכל הכלים!</h2>
+                        <h2 className="my-4 text-lg">המנוי מאפשר לך שימוש חופשי בכל הכלים!</h2>
                         <div className="flex justify-between w-52">
                             <h1>תאריך התחלה: </h1>
                             <h1>{from}</h1>
