@@ -103,7 +103,7 @@ export default function Conversation() {
                 ]}
             />
             <div className="px-6 lg:px-24 xl:px-60 w-full">
-                <div className="fixed bg-blue-500/80 w-full bottom-0 left-0 pt-3 pb-12 sm:pb-20">
+                <div className="fixed bg-blue-500/80 w-full bottom-0 left-0 pt-3 pb-[6vh] sm:pb-20">
                     <div className="md:mr-72 px-6 lg:px-40 xl:px-80">
                         <Form {...form}>
                             <form
@@ -135,7 +135,7 @@ export default function Conversation() {
                     </div>
                 </div>
                 <div className="absolute h-4 w-full left-0 bg-gradient-to-b from-white to-transparent"></div>
-                <div className="flex flex-col justify-end h-[calc(100vh-15rem)] sm:h-[calc(100vh-18.5rem)] bg-red-500">
+                <div className="flex flex-col justify-end h-[calc(84vh-8rem)] sm:h-[calc(84vh-8.5rem)] bg-red-500">
                     <div className="flex flex-col-reverse gap-y-4 overflow-y-scroll no-scrollbar">
                         <div className="w-full h-4 text-transparent bg-black">.</div>
                         {messages.map(message =>
