@@ -139,7 +139,7 @@ export default function Music() {
                 <div className="space-y-4 mt-4">
                     {loader && (
                         <div className="py-10">
-                            <Loader animation="animate-growing-music" />
+                            <Loader animation="animate-growing-music" progres={true}/>
                         </div>
                     )}
 

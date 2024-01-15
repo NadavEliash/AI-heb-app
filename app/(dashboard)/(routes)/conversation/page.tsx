@@ -116,7 +116,7 @@ export default function Conversation() {
                                         <FormItem className="col-span-10 lg:col-span-11">
                                             <FormControl className="m-0 p-0">
                                                 <Input
-                                                    className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent placeholder:text-sm sm:placeholder:text-base"
+                                                    className="border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent placeholder:text-sm sm:placeholder:text-base overflow-auto"
                                                     disabled={isLoading}
                                                     placeholder="כתבו כאן כל שאלה שתרצו, בכל תחום"
                                                     {...field}
@@ -137,7 +137,7 @@ export default function Conversation() {
                 <div className="absolute h-4 w-full left-0 bg-gradient-to-b from-white to-transparent"></div>
                 <div className="flex flex-col justify-end h-[calc(100vh-19rem)] short:h-[calc(100vh-16rem)]">
                     <div className="flex flex-col-reverse gap-y-4 overflow-y-scroll no-scrollbar">
-                        <div className="w-full h-4"></div>
+                        <div className="w-full h-80 text-transparent">.</div>
                         {messages.map(message =>
                             <div
                                 key={message.content}

@@ -35,8 +35,8 @@ export function Loader({ progres, large, animation }: LoaderProps) {
             {progres && <p className="text-muted-foreground text-center mt-8 text-lg">
                 סבלנות, המחשב חושב...
             </p>}
-            {progres && <div className="border-green-700 border-2 rounded-xl w-2/3 max-w-sm h-4 mt-4 mx-auto overflow-hidden">
-                <div className={cn("w-full h-full bg-green-300 rounded-r-lg translate-x-2", animation)}>
+            {progres && <div className="border-purple-700 border-2 rounded-xl w-2/3 max-w-sm h-2 mt-4 mx-auto overflow-hidden">
+                <div className={cn("w-full h-full bg-purple-300 rounded-r-lg translate-x-2", animation)}>
                 </div>
             </div>}
         </div>
