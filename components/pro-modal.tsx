@@ -26,9 +26,9 @@ export default function ProModal() {
     return (
         <>
             <Dialog open={isOpen} onOpenChange={closeModal}>
-                <DialogContent className="px-2 md:px-6 w-11/12 max-w-2xl rounded-2xl py-4 caret-transparent shadow-md border-2">
+                <DialogContent className="px-2 md:px-6 w-11/12 max-w-2xl rounded-2xl py-2 sm:py-4 caret-transparent shadow-md border-2">
                     <DialogHeader className="w-full">
-                        <DialogTitle className="flex flex-col justify-center items-center font-thin sm:font-semibold sm:text-xl pt-4 sm:pt-6 text-center leading-5 my-4">
+                        <DialogTitle className="flex flex-col justify-center items-center font-thin sm:font-semibold text-base sm:text-xl pt-4 sm:pt-6 text-center leading-5 my-4">
                             רוצים להמשיך ליהנות מבינה עברית ללא הגבלה?
                         </DialogTitle>
                         <h3 className="hidden sm:block text-center text-xl">לגישה חופשית לכל התכנים באתר:</h3>
@@ -37,11 +37,11 @@ export default function ProModal() {
                                 <Badge className="hidden sm:block font-normal p-1 px-4 bg-pink-700 hover:bg-pink-500">
                                     טעימה
                                 </Badge>
-                                <h2 className="text-6xl sm:text-7xl"><span className="text-xl mr-2">₪</span>28</h2>
+                                <h2 className="text-5xl sm:text-7xl"><span className="text-xl mr-2">₪</span>28</h2>
                                 <div>לחודש אחד<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">בלבד</span>
                                 </div>
-                                <p className="text-sm">סה&quot;כ 28 ₪</p>
+                                <p className="text-sm pb-2">סה&quot;כ 28 ₪</p>
                                 <Button className="w-full bg-pink-700 hover:bg-pink-600 rounded-full" onClick={() => onPayment("https://app.upay.co.il/API6/s.php?m=Uzd1dlg4aXdMcmlxakN0YlpwUXZJZz09")}>
                                     המשך
                                 </Button>
@@ -51,11 +51,11 @@ export default function ProModal() {
                                 <Badge className="hidden sm:block font-normal p-1 px-4 bg-blue-500 hover:bg-blue-300">
                                     נשנוש
                                 </Badge>
-                                <h2 className="text-6xl sm:text-7xl"><span className="text-xl mr-2">₪</span>20</h2>
+                                <h2 className="text-5xl sm:text-7xl"><span className="text-xl mr-2">₪</span>20</h2>
                                 <div>לחודש<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">במשך 3 חודשים</span>
                                 </div>
-                                <p className="text-sm">סה&quot;כ 60 ₪</p>
+                                <p className="text-sm pb-2">סה&quot;כ 60 ₪</p>
                                 <Button className="w-full bg-blue-500 hover:bg-blue-400 rounded-full" onClick={() => onPayment("https://app.upay.co.il/API6/s.php?m=V0cwM1JjQ3ZuWDcydkVZclpkZG81Zz09")}>
                                     המשך
                                 </Button>
@@ -65,11 +65,11 @@ export default function ProModal() {
                                 <Badge className="hidden sm:block font-normal p-1 px-4 bg-green-500 hover:bg-green-300">
                                     חופשי על הבר
                                 </Badge>
-                                <h2 className="text-6xl sm:text-7xl"><span className="text-xl mr-2">₪</span>16</h2>
+                                <h2 className="text-5xl sm:text-7xl"><span className="text-xl mr-2">₪</span>16</h2>
                                 <div>לחודש<br className="hidden sm:block" />
                                     <span className="mr-2 sm:mr-0">במשך שנה</span>
                                 </div>
-                                <p className="text-sm">סה&quot;כ 192 ₪</p>
+                                <p className="text-sm pb-2">סה&quot;כ 192 ₪</p>
                                 <Button className="w-full bg-green-500 hover:bg-green-400 rounded-full" onClick={() => onPayment("https://app.upay.co.il/API6/s.php?m=K3ZMZTRHODUzWVF4Z010SXJWdjY2Zz09")}>
                                     המשך
                                 </Button>

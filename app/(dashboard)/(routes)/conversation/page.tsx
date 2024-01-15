@@ -137,7 +137,7 @@ export default function Conversation() {
                 <div className="absolute h-4 w-full left-0 bg-gradient-to-b from-white to-transparent"></div>
                 <div className="flex flex-col justify-end h-[calc(100vh-19rem)] short:h-[calc(100vh-16rem)]">
                     <div className="flex flex-col-reverse gap-y-4 overflow-y-scroll no-scrollbar">
-                        <div className="w-full h-80 text-transparent">.</div>
+                        <div className="w-full h-4 text-transparent">.</div>
                         {messages.map(message =>
                             <div
                                 key={message.content}
