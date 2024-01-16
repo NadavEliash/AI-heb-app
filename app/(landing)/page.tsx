@@ -55,11 +55,11 @@ export default function LandingPage() {
         alt="logo" className="absolute h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 right-4"
         width={20}
         height={20} />
-      <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mt-10 sm:mb-10 leading-normal">ברוכים הבאים <br className="sm:hidden" /> לבינה עברית!</h2>
-      <h3 className="text-2xl sm:text-3xl lg:text-4xl my-6 sm:my-10 leading-normal"> התנסו בכלי בינה מלאכותית  <br className="sm:hidden" />המתקדמים ביותר:</h3>
+      <h2 className="text-4xl sm:text-5xl lg:text-7xl font-bold mt-10 sm:mb-10 leading-tight">ברוכים הבאים <br className="sm:hidden" /> לבינה עברית!</h2>
+      <h3 className="text-xl sm:text-3xl lg:text-4xl my-6 sm:my-10 leading-normal"> התנסו בכלי בינה מלאכותית  <br className="sm:hidden" />המתקדמים ביותר:</h3>
       <div className="flex-1 flex flex-col sm:items-start gap-10 short:gap-4">
         {tools.map(tool =>
-          <div key={tool.title} className={`border-2 shadow-lg rounded-full px-6 flex flex-row justify-between items-center gap-10 py-4 short:py-2 ${tool.animation} hover:drop-shadow-md ${tool.margin}`}>
+          <div key={tool.title} className={`border-2 shadow-lg rounded-full px-6 flex flex-row justify-between items-center gap-10 py-4 ${tool.animation} hover:drop-shadow-md ${tool.margin} mx-4`}>
             <h2 className={`text-${tool.textColor} sm:text-xl lg:text-2xl text-right`}>
               {tool.title}
             </h2>
@@ -68,7 +68,7 @@ export default function LandingPage() {
         )}
       </div>
       <Link className="w-full mb-10 mt-4 sm:mb-20 p-4" href={correctLink}>
-        <Button className="w-full max-w-md h-16 text-3xl rounded-full" variant={"upgrade"} onClick={()=>setIsLoading(true)}>
+        <Button className="w-full max-w-sm h-16 text-3xl rounded-full" variant={"upgrade"} onClick={()=>setIsLoading(true)}>
           התחל ליצור
         </Button>
       </Link>

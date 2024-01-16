@@ -1,6 +1,6 @@
 'use client'
 
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -23,6 +23,7 @@ import { useUserMsg } from "@/store/user-msg-store"
 
 export default function Conversation() {
     const router = useRouter()
+    const ref = useRef<null | HTMLDivElement>(null)
     const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>([])
     const [enMessages, setEnMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>([])
 
@@ -38,6 +39,10 @@ export default function Conversation() {
     const { openModal } = useProModal()
     const { openMsg } = useUserMsg()
 
+    const scrollMessages = () => {
+        ref.current?.scrollIntoView({ behavior: 'smooth' })
+    }
+
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             interface hebUserMessage {
@@ -51,6 +56,7 @@ export default function Conversation() {
             }
 
             setMessages((prev) => [hebUserMessage, ...prev])
+            scrollMessages()
 
             const translatedUserMessage = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
             const enUserMessage = {
@@ -72,6 +78,7 @@ export default function Conversation() {
             setEnMessages((prev) => [...prev, enUserMessage, enResponse])
             setMessages((prev) => [hebResponse, ...prev])
 
+            scrollMessages()
             form.reset()
 
         } catch (error: any) {
@@ -137,7 +144,12 @@ export default function Conversation() {
                 <div className="absolute h-4 w-full left-0 bg-gradient-to-b from-white to-transparent"></div>
                 <div className="flex flex-col justify-end h-[calc(85dvh-8rem)] sm:h-[calc(85dvh-8.5rem)]">
                     <div className="flex flex-col-reverse gap-y-4 overflow-y-scroll no-scrollbar">
-                        <div className="w-full h-4 text-transparent">.</div>
+                        <div className="w-full p-2 bg-transparent" ref={ref}></div>
+                        {isLoading && (
+                            <div className="p-8 rounded-lg w-full flex flex-col items-center justify-center">
+                                <Loader progres={false} />
+                            </div>
+                        )}
                         {messages.map(message =>
                             <div
                                 key={message.content}
@@ -148,11 +160,6 @@ export default function Conversation() {
                         )}
                         <div className="w-full h-2"></div>
                     </div>
-                    {isLoading && (
-                        <div className="p-8 rounded-lg w-full flex flex-col items-center justify-center">
-                            <Loader progres={false} />
-                        </div>
-                    )}
                 </div>
             </div>
         </div>

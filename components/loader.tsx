@@ -7,11 +7,11 @@ interface LoaderProps {
     animation?: string
 }
 export function Loader({ progres, large, animation }: LoaderProps) {
-    const size = large ? "w-8 h-8" : "w-5 h-5"
+    const size = large ? "w-8 h-8" : "w-2 h-3"
 
     return (
         <div className="w-full">
-            <div className="flex gap-10 w-fit mx-auto">
+            <div className={`flex ${large? 'gap-10' : 'gap-6'} w-fit mx-auto`}>
                 <div className={`bg-gray-500 rounded-full ${size} animate-ping delay-0`}></div>
                 <div className={`bg-gray-500 rounded-full ${size} animate-ping delay-200`}></div>
                 <div className={`bg-gray-500 rounded-full ${size} animate-ping delay-300`}></div>

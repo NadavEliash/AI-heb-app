@@ -94,7 +94,7 @@ export default function Music() {
     return (
         <div>
             <Heading
-                title="מחולל השמע"
+                title="מחולל המוזיקה"
                 description="צרו רצועת שמע קצרה בעזרת בינה מלאכותית"
                 icon={MusicIcon}
                 iconColor="text-green-700"

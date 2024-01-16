@@ -34,7 +34,7 @@ export default function Heading({
                 </div>
                 {tips && <div className="bg-yellow-200 hover:bg-yellow-300 rounded-full p-4 cursor-pointer font-bold flex items-center" onClick={() => setTipsOpen(!tipsOpen)}>
                     <Lightbulb className="w-4 h-4 stroke-black sm:ml-2" />
-                    <span className="hidden sm:flex">לחץ כאן לטיפים</span>
+                    <span className="hidden sm:flex">טיפים</span>
                 </div>}
                 <div>
                     <Dialog open={tipsOpen} onOpenChange={() => setTipsOpen(false)}>
