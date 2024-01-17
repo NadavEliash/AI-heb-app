@@ -3,7 +3,6 @@ import type { Metadata } from 'next'
 import { ClerkProvider } from '@clerk/nextjs'
 import { heIL } from "@clerk/localizations"
 import { Fredoka } from "next/font/google"
-import ProModal from '@/components/pro-modal'
 import { NextFont } from 'next/dist/compiled/@next/font'
 
 const fredoka = Fredoka({ weight: "400", subsets: ['hebrew'] }) as NextFont
@@ -25,7 +24,7 @@ export default function RootLayout({
         <head>
           <link rel='icon' href='https://www.svgrepo.com/show/352965/ai.svg' sizes='any' />
         </head>
-        <body className={fredoka.className}>
+        <body className={`${fredoka.className}`}>
           {children}
         </body>
       </html>

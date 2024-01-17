@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useRouter } from "next/navigation"
 import * as z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
@@ -110,7 +110,7 @@ export default function Conversation() {
                 ]}
             />
             <div className="px-6 lg:px-24 xl:px-60 w-full">
-                <div className="fixed bg-gradient-to-t from-white from-95% to-transparent w-full bottom-0 left-0 pt-3 pb-[6dvh] sm:pb-20">
+                <div className="fixed bg-gradient-to-t from-white from-95% to-transparent w-full bottom-0 left-0 pt-3 pb-[6dvh]">
                     <div className="md:mr-72 px-6 lg:px-40 xl:px-80">
                         <Form {...form}>
                             <form
