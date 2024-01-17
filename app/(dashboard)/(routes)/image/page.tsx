@@ -43,25 +43,6 @@ export default function Images() {
     const { openModal } = useProModal()
     const { openMsg } = useUserMsg()
 
-    const downloadImg = async (src: string) => {
-        try {
-            const imgUrl = "http://localhost:3000/_next/image?url=" + src + "&w=1920&q=75"
-            console.log(imgUrl)
-            const response = await axios.post('/api/download_image', { imgUrl }, { responseType: 'arraybuffer' })
-
-            const blob = new Blob([response.data], { type: 'image/jpeg' })
-            const url = window.URL.createObjectURL(blob)
-            const a = document.createElement('a')
-            a.href = url
-            a.download = 'בינה_עברית.jpg'
-            document.body.appendChild(a)
-            a.click()
-            window.URL.revokeObjectURL(url)
-        } catch (error) {
-            console.error('Error: ', error)
-        }
-    }
-
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
         try {
             const translation = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
@@ -102,8 +83,8 @@ export default function Images() {
                     "נסו להיות ספציפיים. הגדירו למחשב סגנון מדויק (למשל: ציור אימפרסיוניסטי של קלוד מונה)",
                 ]}
             />
-            <div className="px-4 lg:px-8 w-full max-w-4xl mt-12">
-                <div>
+            <div className="px-4 lg:px-8 w-full mt-12">
+                <div className="max-w-4xl">
                     <Form {...form}>
                         <form
                             onSubmit={form.handleSubmit(onSubmit)}
@@ -226,30 +207,19 @@ export default function Images() {
                                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 mt-2">
                                     {row.images.map(src => (
                                         <div className="relative group" key={src}>
-                                            <h2 className="hidden lg:block absolute text-sm font-semibold text-transparent bg-transparent group-hover:text-gray-600 group-hover:bg-white group-hover:bg-opacity-80 z-10 p-2 w-full">
+                                            <h2 className="hidden lg:block absolute text-sm font-semibold text-transparent bg-transparent group-hover:text-black group-hover:bg-white/60 z-10 p-2 w-full">
                                                 &quot;{row.text}&quot;
                                             </h2>
                                             <Card
-                                                className="rounded-lg overflow-hidden">
+                                                className="rounded-2xl overflow-hidden">
                                                 <div className="relative aspect-square" onClick={() => setDisplayImage(src)}>
-                                                    <Image
+                                                    <img
                                                         alt="Image"
-                                                        fill
                                                         sizes="max-width: 1024px"
                                                         src={src}
-                                                        className="cursor-pointer"
+                                                        className="cursor-pointer w-full h-full"
                                                     />
                                                 </div>
-                                                {/* <CardFooter className="p-2">
-                                                    <Button
-                                                        onClick={() => { window.open(src) }}
-                                                        variant="secondary"
-                                                        className="mx-auto"
-                                                    >
-                                                        <Download className="h-4 w-4 ml-2" />
-                                                        הורדה
-                                                    </Button>
-                                                </CardFooter> */}
                                             </Card>
                                         </div>
                                     ))}
