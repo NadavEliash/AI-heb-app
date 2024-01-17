@@ -177,13 +177,10 @@ export default function Images() {
                 {displayImage && (
                     <div className="absolute top-0 left-0 w-full h-full hidden md:block">
                         <div className="fixed left-2/4 top-2/4 -translate-x-2/4 -translate-y-2/4 z-30">
-                            <Image
+                            <img
                                 alt="Image"
-                                width={800}
-                                height={800}
-                                loading="eager"
                                 src={displayImage}
-                                className="animate-scale rounded-lg"
+                                className="animate-scale rounded-2xl w-[900px] p-0 m-0"
                             />
                             <X className="fixed p-1 top-2 right-2 h-10 w-10 rounded-xl cursor-pointer animate-scale bg-white/30" onClick={() => setDisplayImage('')} />
                         </div>
