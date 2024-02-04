@@ -12,6 +12,7 @@ import { NextFont } from "next/dist/compiled/@next/font"
 const rubik = Rubik({ weight: "700", subsets: ['hebrew'] }) as NextFont
 
 interface SidebarProps {
+    user: boolean
     freeApiCount: number
     periodEnd?: Date | false
 }
@@ -55,7 +56,7 @@ const routes = [
 ]
 
 export default function Sidebar(
-    { freeApiCount = 0, periodEnd }: SidebarProps
+    { user=false, freeApiCount = 0, periodEnd }: SidebarProps
 ) {
     const pathname = usePathname()
 
@@ -64,7 +65,7 @@ export default function Sidebar(
             <div className="px-3 py-2 flex-1">
                 <Link href="/" className="flex items-center pr-3 mb-14">
                     <div className="relative rounded-full w-12 h-12 ml-4 bg-white">
-                        <Image className="p-1" fill alt="logo" src="https://www.svgrepo.com/show/352965/ai.svg" />
+                        <Image className="p-1" fill alt="logo" src="https://www.svgrepo.com/show/530592/creativity.svg" />
                     </div>
                     <h1 className={cn("text-3xl font-bold", rubik.className)}>בינה עברית</h1>
                 </Link>
@@ -82,7 +83,7 @@ export default function Sidebar(
                 </div>
             </div>
             <div className="mb-8">
-                <FreeCounter freeApiCount={freeApiCount} periodEnd={periodEnd || false}/>
+                <FreeCounter user={user} freeApiCount={freeApiCount} periodEnd={periodEnd || false}/>
             </div>
         </div>
     )

@@ -15,7 +15,7 @@ import { formSchema } from "./constants"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Loader } from "@/components/loader"
-import { MessagesSquare, Rss, Send } from "lucide-react"
+import { ChevronsDown, MessagesSquare, Send } from "lucide-react"
 import { UserAvatar } from "@/components/user-avatar"
 import { BotAvatar } from "@/components/bot-avatar"
 import { useProModal } from "@/store/pro-modal-store"
@@ -23,15 +23,21 @@ import { useUserMsg } from "@/store/user-msg-store"
 
 export default function Conversation() {
     const router = useRouter()
+    const scrollRef = useRef<null | HTMLDivElement>(null)
     const ref = useRef<null | HTMLDivElement>(null)
     const [messages, setMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>([])
     const [enMessages, setEnMessages] = useState<OpenAI.Chat.ChatCompletionMessage[]>([])
+    const [isScroll, setIsScroll] = useState(false)
+
+    useEffect(() => {
+        scrollRef.current?.addEventListener('scroll', () => setIsScroll(true))
+    }, [])
 
     const form = useForm<z.infer<typeof formSchema>>({
         resolver: zodResolver(formSchema),
         defaultValues: {
             prompt: ""
-        }
+        },
     })
 
     const isLoading = form.formState.isSubmitting
@@ -41,6 +47,9 @@ export default function Conversation() {
 
     const scrollMessages = () => {
         ref.current?.scrollIntoView({ behavior: 'smooth' })
+        setTimeout(() => {
+            setIsScroll(false)
+        }, 400);
     }
 
     const onSubmit = async (values: z.infer<typeof formSchema>) => {
@@ -56,7 +65,6 @@ export default function Conversation() {
             }
 
             setMessages((prev) => [hebUserMessage, ...prev])
-            scrollMessages()
 
             const translatedUserMessage = await axios.post("/api/translate", { txt: values.prompt, target: "en" })
             const enUserMessage = {
@@ -78,7 +86,6 @@ export default function Conversation() {
             setEnMessages((prev) => [...prev, enUserMessage, enResponse])
             setMessages((prev) => [hebResponse, ...prev])
 
-            scrollMessages()
             form.reset()
 
         } catch (error: any) {
@@ -88,6 +95,7 @@ export default function Conversation() {
                 openMsg()
             }
         } finally {
+
             setTimeout(() => {
                 router.refresh()
             }, 500)
@@ -111,7 +119,7 @@ export default function Conversation() {
             />
             <div className="px-6 lg:px-24 xl:px-60 w-full">
                 <div className="fixed bg-gradient-to-t from-white from-95% to-transparent w-full bottom-0 left-0 pt-3 pb-[6dvh]">
-                    <div className="md:mr-72 px-6 lg:px-40 xl:px-80">
+                    <div className="md:mr-72 px-6 lg:px-40 xl:px-60">
                         <Form {...form}>
                             <form
                                 onSubmit={form.handleSubmit(onSubmit)}
@@ -142,14 +150,17 @@ export default function Conversation() {
                     </div>
                 </div>
                 <div className="absolute h-4 w-full left-0 bg-gradient-to-b from-white to-transparent"></div>
+                {isScroll && <div className="absolute bottom-[18dvh] left-8 lg:left-24 xl:left-64 cursor-pointer bg-black/20 opacity-50 p-2 rounded-full" onClick={scrollMessages}>
+                    <ChevronsDown></ChevronsDown>
+                </div>}
                 <div className="flex flex-col justify-end h-[calc(85dvh-8rem)] sm:h-[calc(85dvh-8.5rem)]">
-                    <div className="flex flex-col-reverse gap-y-4 overflow-y-scroll no-scrollbar">
+                    <div className="flex flex-col-reverse gap-y-4 overflow-y-scroll no-scrollbar" ref={scrollRef}>
+                        <div className="w-full p-2 bg-transparent" ref={ref}></div>
                         {isLoading && (
                             <div className="p-8 rounded-lg w-full flex flex-col items-center justify-center">
                                 <Loader progres={false} />
                             </div>
                         )}
-                        <div className="w-full p-2 bg-transparent" ref={ref}></div>
                         {messages.map(message =>
                             <div
                                 key={message.content}

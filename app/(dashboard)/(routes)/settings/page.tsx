@@ -2,12 +2,14 @@
 
 import { useEffect, useState } from "react"
 import { SettingsIcon } from "lucide-react"
+import { useAuth } from "@clerk/nextjs"
 
 import Heading from "@/components/heading"
 import { Button } from "@/components/ui/button"
 import { useProModal } from "@/store/pro-modal-store"
 import axios from "axios"
 import { Loader } from "@/components/loader"
+import Link from "next/link"
 
 interface userSubscription {
     id: string
@@ -22,8 +24,10 @@ export default function Settings() {
     const [subscription, setSubscription] = useState<userSubscription | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
+    const { isSignedIn } = useAuth()
+
     useEffect(() => {
-        checkSubscription()
+        isSignedIn ? checkSubscription() : setIsLoading(false)
     }, [])
 
     const checkSubscription = async () => {
@@ -50,7 +54,7 @@ export default function Settings() {
             />
             <div className="w-full sm:px-10 lg:px-10 py-8 mt-10">
                 {isLoading && <div className="sm:w-40 mt-10 pr-4">
-                    <Loader animation="chat"/>
+                    <Loader animation="chat" />
                 </div>}
                 {subscription ?
                     !isLoading && <div className="flex flex-col gap-4 items-start px-6 sm:px-0">
@@ -65,11 +69,17 @@ export default function Settings() {
                             <h1>{to}</h1>
                         </div>
                     </div>
-                    : !isLoading && <div className="py-4">
+                    : isSignedIn? !isLoading && <div className="py-4">
                         <h2 className="text-xl">כרגע אין בחשבונך מסלול משודרג</h2>
                     </div>
+                    : 
+                    <Link href={"/sign-in"}>
+                    <div className="text-xl font-bold bg-slate-200 rounded-full inline p-4">
+                        צרו חשבון כדי להתחיל
+                    </div>
+                    </Link>
                 }
-                {timeLeft < 2592000000 && !isLoading && <Button
+                {isSignedIn && timeLeft < 2592000000 && !isLoading && <Button
                     variant={"upgrade"}
                     className="w-52 text-lg rounded-full sm:rounded-r-xl  h-12 mt-20 flex items-start mx-auto sm:mx-0"
                     onClick={openModal}>

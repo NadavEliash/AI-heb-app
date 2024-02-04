@@ -42,7 +42,6 @@ const tools: { title: string, textColor: string, icon: LucideIcon, animation: st
 
 export default function LandingPage() {
   const { isSignedIn } = useAuth()
-  const correctLink: string = isSignedIn ? "/dashboard" : "/sign-up"
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
@@ -51,7 +50,7 @@ export default function LandingPage() {
 
   return (
     <div className="w-full h-full py-4 px-4 flex flex-col items-center text-center caret-transparent">
-      <Image src="https://www.svgrepo.com/show/352965/ai.svg"
+      <Image src="https://www.svgrepo.com/show/530592/creativity.svg"
         alt="logo" className="absolute h-12 w-12 sm:h-16 sm:w-16 lg:h-20 lg:w-20 right-4"
         width={20}
         height={20} />
@@ -67,7 +66,7 @@ export default function LandingPage() {
           </div>
         )}
       </div>
-      <Link className="w-full mb-10 mt-4 sm:mb-20 p-4" href={correctLink}>
+      <Link className="w-full mb-10 mt-4 sm:mb-20 p-4" href="/dashboard">
         <Button className="w-full max-w-sm h-16 text-3xl rounded-full" variant={"upgrade"} onClick={()=>setIsLoading(true)}>
           התחל ליצור
         </Button>

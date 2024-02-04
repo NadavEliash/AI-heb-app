@@ -22,7 +22,7 @@ export default function RootLayout({
     <ClerkProvider localization={heIL}>
       <html dir='rtl'>
         <head>
-          <link rel='icon' href='https://www.svgrepo.com/show/352965/ai.svg' sizes='any' />
+          <link rel='icon' href='icon.svg' sizes='any' />
         </head>
         <body className={`${fredoka.className}`}>
           {children}
