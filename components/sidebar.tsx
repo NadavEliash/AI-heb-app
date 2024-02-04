@@ -12,7 +12,7 @@ import { NextFont } from "next/dist/compiled/@next/font"
 const rubik = Rubik({ weight: "700", subsets: ['hebrew'] }) as NextFont
 
 interface SidebarProps {
-    user: boolean
+    user?: boolean
     freeApiCount: number
     periodEnd?: Date | false
 }
