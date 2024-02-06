@@ -119,11 +119,11 @@ export default function Conversation() {
             />
             <div className="px-6 lg:px-24 xl:px-60 w-full">
                 <div className="fixed bg-gradient-to-t from-white from-95% to-transparent w-full bottom-0 left-0 pt-3 pb-[6dvh]">
-                    <div className="md:mr-72 px-6 lg:px-40 xl:px-60">
+                    <div className="md:mr-72 px-6">
                         <Form {...form}>
                             <form
                                 onSubmit={form.handleSubmit(onSubmit)}
-                                className="rounded-full border border-gray-700 p-2 sm:p-4 pr-4 focus-within:shadow-sm grid grid-cols-12 gap-2"
+                                className="rounded-full border border-gray-700 p-2 sm:p-4 pr-4 focus-within:shadow-sm grid grid-cols-12 gap-2 max-w-[600px] mx-auto"
                             >
                                 <FormField
                                     name="prompt"
