@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     compiler: {
-        styleedComponnts: true
+        styledComponents: true
     },
     images: {
         remotePatterns: [
