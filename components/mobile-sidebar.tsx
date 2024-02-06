@@ -2,16 +2,17 @@
 
 import { useState, useEffect } from "react"
 import { Menu } from "lucide-react";
-import { Button } from "./ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
 import Sidebar from "./sidebar";
+import { auth } from "@clerk/nextjs";
 
 interface MobileSidebarProps {
+    user: boolean
     freeApiCount: number
     periodEnd?: Date | false
 }
 
-export default function MobileSidebar({ freeApiCount = 0, periodEnd }: MobileSidebarProps) {
+export default function MobileSidebar({ user = false, freeApiCount = 0, periodEnd }: MobileSidebarProps) {
     const [isMounted, setIsMounted] = useState(false)
     const [open, setOpen] = useState(false)
 
@@ -29,7 +30,7 @@ export default function MobileSidebar({ freeApiCount = 0, periodEnd }: MobileSid
                 </div>
             </SheetTrigger>
             <SheetContent side="right" className="p-0" dir="rtl" onClick={()=>setOpen(false)}>
-                <Sidebar freeApiCount={freeApiCount} periodEnd={periodEnd || false}/>
+                <Sidebar user={user? true : false} freeApiCount={freeApiCount} periodEnd={periodEnd || false}/>
             </SheetContent>
         </Sheet>
     )
