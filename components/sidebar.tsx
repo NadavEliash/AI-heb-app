@@ -8,11 +8,11 @@ import { LayoutDashboard, MessageSquare, ImageIcon, VideoIcon, Music, Settings }
 import { usePathname } from "next/navigation"
 import { FreeCounter } from "./free-counter"
 import { NextFont } from "next/dist/compiled/@next/font"
+import { useAuth } from "@clerk/nextjs"
 
 const rubik = Rubik({ weight: "700", subsets: ['hebrew'] }) as NextFont
 
 interface SidebarProps {
-    user?: boolean
     freeApiCount: number
     periodEnd?: Date | false
 }
@@ -56,9 +56,10 @@ const routes = [
 ]
 
 export default function Sidebar(
-    { user=false, freeApiCount = 0, periodEnd }: SidebarProps
+    { freeApiCount = 0, periodEnd }: SidebarProps
 ) {
     const pathname = usePathname()
+    const { userId } = useAuth()
 
     return (
         <div className="py-4 flex flex-col h-full bg-slate-900 text-white overflow-auto">
@@ -83,7 +84,7 @@ export default function Sidebar(
                 </div>
             </div>
             <div className="mb-8">
-                <FreeCounter user={user} freeApiCount={freeApiCount} periodEnd={periodEnd || false}/>
+                <FreeCounter user={userId ? true : false} freeApiCount={freeApiCount} periodEnd={periodEnd || false} />
             </div>
         </div>
     )
