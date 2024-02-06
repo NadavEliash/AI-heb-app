@@ -65,7 +65,7 @@ export default function DashboardPage() {
 
     return (
         <div className="px-4 md:px-8 lg:px-20 caret-transparent">
-            <h2 className="mt-20 font-bold text-3xl lg:text-4xl text-center">גלו את עוצמת הבינה המלאכותית בעברית:</h2>
+            <h2 className="mt-20 font-bold text-3xl lg:text-4xl text-center">אז מה תרצו ליצור היום?</h2>
             <div className="mt-20 space-y-4 sm:space-y-8 max-w-2xl mx-auto">
                 {tools.map(tool => (
                     <Card
