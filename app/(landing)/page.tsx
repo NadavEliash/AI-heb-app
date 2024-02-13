@@ -11,14 +11,14 @@ import { Button } from "@/components/ui/button"
 
 const tools: { title: string, textColor: string, icon: LucideIcon, animation: string, margin: string }[] = [
   {
-    title: 'צ\'אט חופשי בעברית',
+    title: 'צ\'אט GPT בעברית',
     textColor: 'gray-700',
     icon: MessageSquare,
     animation: 'animate-emerge-1',
     margin: 'sm:mr-10'
   },
   {
-    title: 'מחולל תמונות ממשפט בעברית',
+    title: 'מחולל תמונות DALL-E בעברית',
     textColor: 'green-700',
     icon: ImageIcon,
     animation: 'animate-emerge-2',

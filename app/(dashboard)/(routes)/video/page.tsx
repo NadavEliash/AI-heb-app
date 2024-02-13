@@ -32,7 +32,7 @@ export default function Video() {
             setTimeout(() => {
                 completeVideoGeneration()
                 setPrediction(null)
-            }, 90 * 1000)
+            }, 80 * 1000)
         }
     }, [prediction])
 
