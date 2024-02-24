@@ -69,7 +69,7 @@ export default function Settings() {
                             <h1>{to}</h1>
                         </div>
                     </div>
-                    : isSignedIn? !isLoading && <div className="py-4">
+                    : isSignedIn? !isLoading && <div className="py-4 px-6 sm:px-0">
                         <h2 className="text-xl">כרגע אין בחשבונך מסלול משודרג</h2>
                     </div>
                     : 

@@ -96,7 +96,7 @@ export default function Images() {
                                     <FormItem className="col-span-12 lg:col-span-7 border-0 rounded-lg p-1 sm:p-0">
                                         <FormControl className="m-0 p-0">
                                             <Input
-                                                className="px-1 border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent placeholder:text-sm"
+                                                className="px-1 border-0 outline-none focus-visible:ring-0 focus-visible:ring-transparent placeholder:text-xs sm:placeholder:text-sm"
                                                 disabled={isLoading}
                                                 placeholder="למשל: תמונה מצוירת של ילדה בונה ארמון חול על שפת הים"
                                                 {...field}

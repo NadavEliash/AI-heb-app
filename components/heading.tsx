@@ -43,7 +43,7 @@ export default function Heading({
                                 <DialogTitle className="pt-4">
                                     <div className="flex gap-4 items-center p-2">
                                         <Icon className={cn("w-6 h-6", iconColor)} />
-                                        <h1 className="text-right font-normal text-lg">טיפים ל<span>{title}</span></h1>
+                                        <h1 className="text-right font-bold text-lg">טיפים ל<span>{title}</span></h1>
                                     </div>
                                     {tips?.map(line =>
                                         <div key={line} className="text-justify py-1 text-base font-normal sm:py-2 px-2 leading-relaxed flex gap-2">
