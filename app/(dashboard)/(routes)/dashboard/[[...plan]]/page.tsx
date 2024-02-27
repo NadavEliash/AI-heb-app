@@ -74,26 +74,24 @@ export default function DashboardPage() {
     return (
         <div className="px-4 md:px-8 lg:px-20 caret-transparent">
             <h2 className="mt-20 font-bold text-3xl lg:text-4xl text-center">אז מה תרצו ליצור היום?</h2>
-            <div className="overflow-x-auto">
-                <div className="relative mt-10 flex gap-4 sm:mt-20 sm:flex-wrap sm:mx-auto w-[1000px] sm:w-[500px]">
-                    {tools.map(tool => (
-                        <Card
-                            onClick={() => {
-                                setIsLoading(true)
-                                router.push(tool.href)
-                                setTimeout(() => setIsLoading(false), 3000)
-                            }}
-                            key={tool.href}
-                            className={`relative p-6 h-40 w-60 sm:w-[calc(50vw-24px)] sm:max-w-[242px] sm:h-60 rounded-3xl cursor-pointer border-black group flex flex-col justify-between sm:justify-center overflow-hidden`}
-                        >
-                            <div className={`sm:absolute ${tool.location} ${tool.hover} transition-all duration-500 flex items-center gap-6 sm:p-4`}>
-                                <tool.icon className={`w-6 h-6 ${tool.color}`} />
-                            </div>
-                            <h2 className={`text-black sm:text-transparent sm:group-hover:text-black transition-all duration-1000 text-center text-sm sm:text-lg`}>{tool.label}</h2>
-                            {/* <ArrowLeft className="w-5 h-5 mr-2" /> */}
-                        </Card>
-                    ))}
-                </div>
+            <div className="relative mt-10 flex flex-col items-center gap-10 sm:gap-4 sm:mt-20 sm:flex-row sm:flex-wrap sm:mx-auto sm:w-[500px]">
+                {tools.map(tool => (
+                    <Card
+                        onClick={() => {
+                            setIsLoading(true)
+                            router.push(tool.href)
+                            setTimeout(() => setIsLoading(false), 3000)
+                        }}
+                        key={tool.href}
+                        className={`relative p-8 rounded-full  flex flex-col justify-between cursor-pointer border-black sm:p-3 md:w-[calc(50vw-180px)] sm:max-w-[242px] sm:h-60 sm:rounded-3xl group sm:justify-center`}
+                    >
+                        <div className={`sm:absolute ${tool.location} ${tool.hover} transition-all duration-500 flex items-center gap-6 sm:p-4`}>
+                            <tool.icon className={`w-6 h-6 ${tool.color}`} />
+                        </div>
+                        <h2 className={`hidden sm:block text-black sm:text-transparent sm:group-hover:text-black transition-all duration-1000 text-center text-sm sm:text-lg`}>{tool.label}</h2>
+                        {/* <ArrowLeft className="w-5 h-5 mr-2" /> */}
+                    </Card>
+                ))}
             </div>
             {isLoading && <div className="absolute w-full h-full left-0 top-0 bg-white/70 z-20">
                 <div className="mt-[50vh] -translate-y-1/2">
