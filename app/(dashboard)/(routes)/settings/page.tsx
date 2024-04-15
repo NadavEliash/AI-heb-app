@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react"
 import { SettingsIcon } from "lucide-react"
-import { useAuth } from "@clerk/nextjs"
+// import { useAuth } from "@clerk/nextjs"
 
 import Heading from "@/components/heading"
 import { Button } from "@/components/ui/button"
@@ -21,28 +21,28 @@ interface userSubscription {
 }
 
 export default function Settings() {
-    const [subscription, setSubscription] = useState<userSubscription | null>(null)
+    // const [subscription, setSubscription] = useState<userSubscription | null>(null)
     const [isLoading, setIsLoading] = useState<boolean>(true)
 
-    const { isSignedIn } = useAuth()
+    // const { isSignedIn } = useAuth()
 
-    useEffect(() => {
-        isSignedIn ? checkSubscription() : setIsLoading(false)
-    }, [])
+    // useEffect(() => {
+    //     isSignedIn ? checkSubscription() : setIsLoading(false)
+    // }, [])
 
-    const checkSubscription = async () => {
-        const response = await axios.post('/api/check_subscription')
+    // const checkSubscription = async () => {
+    //     const response = await axios.post('/api/check_subscription')
 
-        setSubscription(response.data.plan === "trial" ? null : response.data)
-        setIsLoading(false)
-    }
+    //     setSubscription(response.data.plan === "trial" ? null : response.data)
+    //     setIsLoading(false)
+    // }
 
     const { openModal } = useProModal()
 
-    const plan = subscription?.plan === "month" ? "חודשי" : subscription?.plan === "quarter" ? "לשלושה חודשים" : subscription?.plan === "year" ? "שנתי" : "תקופת ניסיון"
-    const from = subscription ? new Date(subscription.updatedAt).toLocaleDateString('en-IL') : ''
-    const to = subscription ? new Date(subscription.periodEnd).toLocaleDateString('en-IL') : ''
-    const timeLeft = subscription?.periodEnd ? new Date(subscription.periodEnd).getTime() - Date.now() : 0
+    // const plan = subscription?.plan === "month" ? "חודשי" : subscription?.plan === "quarter" ? "לשלושה חודשים" : subscription?.plan === "year" ? "שנתי" : "תקופת ניסיון"
+    // const from = subscription ? new Date(subscription.updatedAt).toLocaleDateString('en-IL') : ''
+    // const to = subscription ? new Date(subscription.periodEnd).toLocaleDateString('en-IL') : ''
+    // const timeLeft = subscription?.periodEnd ? new Date(subscription.periodEnd).getTime() - Date.now() : 0
 
     return (
         <div>
@@ -56,7 +56,7 @@ export default function Settings() {
                 {isLoading && <div className="sm:w-40 mt-10 pr-4">
                     <Loader animation="chat" />
                 </div>}
-                {subscription ?
+                {/* {subscription ?
                     !isLoading && <div className="flex flex-col gap-4 items-start px-6 sm:px-0">
                         <h2 className="text-lg sm:text-xl">המנוי שלך הוא <span className="p-2 px-4 mx-2 rounded-full bg-gradient-to-r from-orange-700 to-yellow-400 text-gray-100 font-bold tracking-wider hover:from-yellow-400 hover:to-orange-700">{plan}</span></h2>
                         <h2 className="my-4 text-lg">המנוי מאפשר לך שימוש חופשי בכל הכלים!</h2>
@@ -78,13 +78,13 @@ export default function Settings() {
                         צרו חשבון כדי להתחיל
                     </div>
                     </Link>
-                }
-                {isSignedIn && timeLeft < 2592000000 && !isLoading && <Button
+                } */}
+                {/* {isSignedIn && timeLeft < 2592000000 && !isLoading && <Button
                     variant={"upgrade"}
                     className="w-52 text-lg rounded-full sm:rounded-r-xl  h-12 mt-20 flex items-start mx-auto sm:mx-0"
                     onClick={openModal}>
                     אפשר יותר? יאללה
-                </Button>}
+                </Button>} */}
             </div>
         </div>
     )
