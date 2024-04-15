@@ -1,5 +1,5 @@
 import OpenAI from 'openai'
-import { auth } from "@clerk/nextjs"
+// import { auth } from "@clerk/nextjs"
 import { NextResponse } from "next/server"
 import { ChatCompletionMessage } from 'openai/resources/chat/index.mjs'
 import { increaseApiLimit, checkApiLimit } from "@/lib/api-limit"
@@ -19,13 +19,13 @@ export async function POST(
     req: Request
 ) {
     try {
-        const { userId } = auth()
+        // const { userId } = auth()
         const body = await req.json()
         const { messages } = body
 
-        if (!userId) {
-            return new NextResponse("Unauthorized", { status: 401 })
-        }
+        // if (!userId) {
+        //     return new NextResponse("Unauthorized", { status: 401 })
+        // }
 
         if (!openai.apiKey) {
             return new NextResponse("OpenAI API key not configured", { status: 500 })
@@ -35,23 +35,23 @@ export async function POST(
             return new NextResponse("Messages are required", { status: 400 })
         }
 
-        const subscription = await checkSubscription()
+        // const subscription = await checkSubscription()
 
-        if (!subscription) {
-            const freeTrial = await checkApiLimit()
-            if (!freeTrial) {
-                return new NextResponse("Free trial has expired", { status: 403 })
-            }
-        }
+        // if (!subscription) {
+        //     const freeTrial = await checkApiLimit()
+        //     if (!freeTrial) {
+        //         return new NextResponse("Free trial has expired", { status: 403 })
+        //     }
+        // }
 
         const response = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [instructionMessage, ...messages]
         })
 
-        if (!subscription) {
-            increaseApiLimit()
-        }
+        // if (!subscription) {
+        //     increaseApiLimit()
+        // }
 
         return NextResponse.json(response.choices[0].message)
     } catch (error) {

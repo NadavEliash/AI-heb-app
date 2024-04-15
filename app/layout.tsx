@@ -1,7 +1,7 @@
 import './globals.css'
 import type { Metadata } from 'next'
-import { ClerkProvider } from '@clerk/nextjs'
-import { heIL } from "@clerk/localizations"
+// import { ClerkProvider } from '@clerk/nextjs'
+// import { heIL } from "@clerk/localizations"
 import { Fredoka } from "next/font/google"
 import { NextFont } from 'next/dist/compiled/@next/font'
 
@@ -19,15 +19,15 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider localization={heIL}>
-      <html dir='rtl'>
-        <head>
-          <link rel='icon' href='icon.svg' sizes='any' />
-        </head>
-        <body className={`${fredoka.className}`}>
-          {children}
-        </body>
-      </html>
-    </ClerkProvider>
+    // <ClerkProvider localization={heIL}>
+    <html dir='rtl'>
+      <head>
+        <link rel='icon' href='icon.svg' sizes='any' />
+      </head>
+      <body className={`${fredoka.className}`}>
+        {children}
+      </body>
+    </html>
+    // </ClerkProvider>
   )
 }

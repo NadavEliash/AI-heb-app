@@ -8,7 +8,7 @@ import { LayoutDashboard, MessageSquare, ImageIcon, VideoIcon, Music, Settings }
 import { usePathname } from "next/navigation"
 import { FreeCounter } from "./free-counter"
 import { NextFont } from "next/dist/compiled/@next/font"
-import { useAuth } from "@clerk/nextjs"
+// import { useAuth } from "@clerk/nextjs"
 
 const rubik = Rubik({ weight: "700", subsets: ['hebrew'] }) as NextFont
 
@@ -48,18 +48,18 @@ const routes = [
         href: '/music',
         color: 'text-emerald-500'
     },
-    {
-        label: 'הגדרות',
-        icon: Settings,
-        href: '/settings',
-    },
+    // {
+    //     label: 'הגדרות',
+    //     icon: Settings,
+    //     href: '/settings',
+    // },
 ]
 
 export default function Sidebar(
-    { freeApiCount = 0, periodEnd }: SidebarProps
+    // { freeApiCount = 0, periodEnd }: SidebarProps
 ) {
     const pathname = usePathname()
-    const { userId } = useAuth()
+    // const { userId } = useAuth()
 
     return (
         <div className="py-4 flex flex-col h-full bg-slate-900 text-white overflow-auto">
@@ -84,7 +84,10 @@ export default function Sidebar(
                 </div>
             </div>
             <div className="mb-8">
-                <FreeCounter user={userId ? true : false} freeApiCount={freeApiCount} periodEnd={periodEnd || false} />
+                {/* <FreeCounter
+                    user={userId ? true : false}
+                    freeApiCount={freeApiCount} periodEnd={periodEnd || false}
+                /> */}
             </div>
         </div>
     )

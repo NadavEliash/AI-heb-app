@@ -18,7 +18,9 @@ interface FreeCounterProps {
 }
 
 
-export function FreeCounter({ user = false, freeApiCount = 0, periodEnd }: FreeCounterProps) {
+export function FreeCounter(
+    // { user = false, freeApiCount = 0, periodEnd }: FreeCounterProps
+) {
     const [mounted, setMounted] = useState(false)
     const router = useRouter()
     const { openModal } = useProModal()
@@ -58,7 +60,7 @@ export function FreeCounter({ user = false, freeApiCount = 0, periodEnd }: FreeC
                     <Button
                         variant={"destructive"}
                         className="w-3/4 text-lg mx-auto"
-                        onClick={()=>router.push('/sign-in')}>
+                        onClick={() => router.push('/sign-in')}>
                         התחבר
                     </Button>
                 </div>}

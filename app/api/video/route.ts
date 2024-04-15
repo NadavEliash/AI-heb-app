@@ -12,13 +12,13 @@ export async function POST(
     req: Request
 ) {
     try {
-        const { userId } = auth()
+        // const { userId } = auth()
         const body = await req.json()
         const { prompt } = body
 
-        if (!userId) {
-            return new NextResponse("Unauthorized", { status: 401 })
-        }
+        // if (!userId) {
+        //     return new NextResponse("Unauthorized", { status: 401 })
+        // }
         if (!replicate.auth) {
             return new NextResponse("Replicate API key not configured", { status: 500 })
         }
@@ -26,14 +26,14 @@ export async function POST(
             return new NextResponse("prompt is required", { status: 400 })
         }
 
-        const subscription = await checkSubscription()
+        // const subscription = await checkSubscription()
 
-        if (!subscription) {
-            const freeTrial = await checkApiLimit()
-            if (!freeTrial) {
-                return new NextResponse("Free trial has expired", { status: 403 })
-            }
-        }
+        // if (!subscription) {
+        //     const freeTrial = await checkApiLimit()
+        //     if (!freeTrial) {
+        //         return new NextResponse("Free trial has expired", { status: 403 })
+        //     }
+        // }
 
 
         // const response = await replicate.run(

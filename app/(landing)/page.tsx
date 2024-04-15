@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react"
 import Image from "next/image"
 import Link from "next/link"
-import { useAuth } from "@clerk/nextjs"
+// import { useAuth } from "@clerk/nextjs"
 import { ImageIcon, LucideIcon, MessageSquare, Music, Video } from "lucide-react"
 import { Loader } from "@/components/loader"
 import { Button } from "@/components/ui/button"
@@ -41,7 +41,7 @@ const tools: { title: string, textColor: string, icon: LucideIcon, animation: st
 ]
 
 export default function LandingPage() {
-  const { isSignedIn } = useAuth()
+  // const { isSignedIn } = useAuth()
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {

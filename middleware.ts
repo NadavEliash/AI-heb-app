@@ -5,9 +5,12 @@ import { authMiddleware } from "@clerk/nextjs";
 // See https://clerk.com/docs/references/nextjs/auth-middleware for more information about configuring your middleware
 
 export default authMiddleware({
-  publicRoutes: ["/", "/dashboard", "/settings"]
+  publicRoutes: ["/", "/dashboard", "/conversation", "/image", "/music", "/video", "/api/(.*)"]
 })
  
 export const config = {
-  matcher: ["/((?!.*\\..*|_next).*)", "/", "/(api|trpc)(.*)"],
+  matcher: [
+    "/((?!.*\\..*|_next).*)", "/",
+    // "/(api|trpc)(.*)"
+  ],
 };
