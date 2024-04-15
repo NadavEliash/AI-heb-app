@@ -28,7 +28,9 @@ export default function MobileSidebar({ freeApiCount = 0, periodEnd }: MobileSid
                 </div>
             </SheetTrigger>
             <SheetContent side="right" className="p-0" dir="rtl" onClick={()=>setOpen(false)}>
-                <Sidebar freeApiCount={freeApiCount} periodEnd={periodEnd || false}/>
+                <Sidebar 
+                // freeApiCount={freeApiCount} periodEnd={periodEnd || false}
+                />
             </SheetContent>
         </Sheet>
     )

@@ -1,4 +1,4 @@
-import { UserButton, useAuth } from "@clerk/nextjs"
+// import { UserButton, useAuth } from "@clerk/nextjs"
 import MobileSidebar from "./mobile-sidebar"
 import { getFreeApiCount } from "@/lib/api-limit"
 import { checkSubscription } from "@/lib/subscription"

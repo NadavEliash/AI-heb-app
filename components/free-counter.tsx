@@ -29,13 +29,13 @@ export function FreeCounter(
         setMounted(true)
     }, [])
 
-    const timeLeft = periodEnd ? periodEnd.getTime() - Date.now() : 0
+    // const timeLeft = periodEnd ? periodEnd.getTime() - Date.now() : 0
 
     if (!mounted) return null
 
     return (
         <>
-            {user ?
+            {/* {user ?
                 <div className={cn(`p-4 ${periodEnd ? "bg-purple-300" : "bg-white/70"} text-gray-700 text-center mx-4 sm:mx-8 rounded-lg`, rubik.className)}>
                     {periodEnd ?
                         <div className="mb-2">
@@ -63,8 +63,7 @@ export function FreeCounter(
                         onClick={() => router.push('/sign-in')}>
                         התחבר
                     </Button>
-                </div>}
-
+                </div>} */}
         </>
     )
 }
