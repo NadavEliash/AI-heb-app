@@ -16,7 +16,7 @@ const tools = [
         href: '/conversation',
         color: 'text-violet-500',
         location: 'sm:left-2 sm:bottom-2',
-        hover: 'sm:group-hover:left-3/4 sm:group-hover:bottom-3/4'
+        hover: 'sm:group-hover:left-2/3 sm:group-hover:bottom-2/3'
     },
     {
         label: 'כתבו משפט והמחשב יהפוך אותו לתמונות מרהיבות',
@@ -24,7 +24,7 @@ const tools = [
         href: '/image',
         color: 'text-pink-700',
         location: 'sm:right-2 sm:bottom-2',
-        hover: 'sm:group-hover:right-3/4 sm:group-hover:bottom-3/4'
+        hover: 'sm:group-hover:right-2/3 sm:group-hover:bottom-2/3'
     },
     {
         label: 'תארו למחשב את הוידאו שברצונכם ליצור',
@@ -32,7 +32,7 @@ const tools = [
         href: '/video',
         color: 'text-orange-700',
         location: 'sm:left-2 sm:top-2',
-        hover: 'sm:group-hover:left-3/4 sm:group-hover:top-3/4'
+        hover: 'sm:group-hover:left-2/3 sm:group-hover:top-2/3'
     },
     {
         label: 'צרו קטע שמע ייחודי בעזרת כמה מילים',
@@ -40,7 +40,7 @@ const tools = [
         href: '/music',
         color: 'text-emerald-500',
         location: 'sm:right-2 sm:top-2',
-        hover: 'sm:group-hover:right-3/4 sm:group-hover:top-3/4'
+        hover: 'sm:group-hover:right-2/3 sm:group-hover:top-2/3'
     },
 ]
 
@@ -86,7 +86,7 @@ export default function DashboardPage() {
                         className={`relative p-8 rounded-full  flex flex-col justify-between cursor-pointer border-black sm:p-3 md:w-[calc(50vw-180px)] sm:max-w-[242px] sm:h-60 sm:rounded-3xl group sm:justify-center`}
                     >
                         <div className={`sm:absolute ${tool.location} ${tool.hover} transition-all duration-500 flex items-center gap-6 sm:p-4`}>
-                            <tool.icon className={`w-6 h-6 ${tool.color}`} />
+                            <tool.icon className={`w-[34px] h-[34px] ${tool.color}`} />
                         </div>
                         <h2 className={`hidden sm:block text-black sm:text-transparent sm:group-hover:text-black transition-all duration-1000 text-center text-sm sm:text-lg`}>{tool.label}</h2>
                         {/* <ArrowLeft className="w-5 h-5 mr-2" /> */}

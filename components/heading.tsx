@@ -28,11 +28,11 @@ export default function Heading({
                 <div className={cn("p-2 w-fit rounded-md", bgColor)}>
                     <Icon className={cn("w-8 h-8 sm:w-10 sm:h-10", iconColor)} />
                 </div>
-                <div className="flex-1 mr-4 sm:mr-2">
+                <div className="flex-1 sm:flex-none mr-4 sm:mr-2">
                     <h2 className="text-3xl font-bold">{title}</h2>
-                    <p className="hidden sm:block text-sm font-bold">{description}</p>
+                    <p className="hidden w-72 sm:block text-sm font-bold">{description}</p>
                 </div>
-                {tips && <div className="bg-yellow-200 hover:bg-yellow-300 rounded-full p-4 cursor-pointer font-bold flex items-center" onClick={() => setTipsOpen(!tipsOpen)}>
+                {tips && <div className="sm:mr-4 bg-yellow-200 hover:bg-yellow-300 border-black/50 border-2 rounded-full p-3 cursor-pointer font-bold flex items-center" onClick={() => setTipsOpen(!tipsOpen)}>
                     <Lightbulb className="w-4 h-4 stroke-black sm:ml-2" />
                     <span className="hidden sm:flex">טיפים</span>
                 </div>}
